@@ -1,0 +1,99 @@
+# Project: \Obligatorio_5
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = dev-build/Obligatorio_5_private.res
+OBJ      = dev-build/Integer.o dev-build/String.o dev-build/ICollectible.o dev-build/ICollection.o dev-build/IDictionary.o dev-build/IIterator.o dev-build/IKey.o dev-build/OrderedKey.o dev-build/List.o dev-build/ListIterator.o dev-build/ListNode.o dev-build/OrderedDictionary.o dev-build/OrderedDictionaryEntry.o dev-build/Conversaciones.o dev-build/Estado.o dev-build/Fecha.o dev-build/Grupo.o dev-build/Mensaje.o dev-build/Miembro.o dev-build/Sistema.o dev-build/Usuario.o dev-build/Visto.o dev-build/main.o $(RES)
+LINKOBJ  = dev-build/Integer.o dev-build/String.o dev-build/ICollectible.o dev-build/ICollection.o dev-build/IDictionary.o dev-build/IIterator.o dev-build/IKey.o dev-build/OrderedKey.o dev-build/List.o dev-build/ListIterator.o dev-build/ListNode.o dev-build/OrderedDictionary.o dev-build/OrderedDictionaryEntry.o dev-build/Conversaciones.o dev-build/Estado.o dev-build/Fecha.o dev-build/Grupo.o dev-build/Mensaje.o dev-build/Miembro.o dev-build/Sistema.o dev-build/Usuario.o dev-build/Visto.o dev-build/main.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = dev-dist/Obligatorio_5_dev.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+dev-build/Integer.o: ICollection/Integer.cpp
+	$(CPP) -c ICollection/Integer.cpp -o dev-build/Integer.o $(CXXFLAGS)
+
+dev-build/String.o: ICollection/String.cpp
+	$(CPP) -c ICollection/String.cpp -o dev-build/String.o $(CXXFLAGS)
+
+dev-build/ICollectible.o: ICollection/interfaces/ICollectible.cpp
+	$(CPP) -c ICollection/interfaces/ICollectible.cpp -o dev-build/ICollectible.o $(CXXFLAGS)
+
+dev-build/ICollection.o: ICollection/interfaces/ICollection.cpp
+	$(CPP) -c ICollection/interfaces/ICollection.cpp -o dev-build/ICollection.o $(CXXFLAGS)
+
+dev-build/IDictionary.o: ICollection/interfaces/IDictionary.cpp
+	$(CPP) -c ICollection/interfaces/IDictionary.cpp -o dev-build/IDictionary.o $(CXXFLAGS)
+
+dev-build/IIterator.o: ICollection/interfaces/IIterator.cpp
+	$(CPP) -c ICollection/interfaces/IIterator.cpp -o dev-build/IIterator.o $(CXXFLAGS)
+
+dev-build/IKey.o: ICollection/interfaces/IKey.cpp
+	$(CPP) -c ICollection/interfaces/IKey.cpp -o dev-build/IKey.o $(CXXFLAGS)
+
+dev-build/OrderedKey.o: ICollection/interfaces/OrderedKey.cpp
+	$(CPP) -c ICollection/interfaces/OrderedKey.cpp -o dev-build/OrderedKey.o $(CXXFLAGS)
+
+dev-build/List.o: ICollection/collections/List.cpp
+	$(CPP) -c ICollection/collections/List.cpp -o dev-build/List.o $(CXXFLAGS)
+
+dev-build/ListIterator.o: ICollection/collections/ListIterator.cpp
+	$(CPP) -c ICollection/collections/ListIterator.cpp -o dev-build/ListIterator.o $(CXXFLAGS)
+
+dev-build/ListNode.o: ICollection/collections/ListNode.cpp
+	$(CPP) -c ICollection/collections/ListNode.cpp -o dev-build/ListNode.o $(CXXFLAGS)
+
+dev-build/OrderedDictionary.o: ICollection/collections/OrderedDictionary.cpp
+	$(CPP) -c ICollection/collections/OrderedDictionary.cpp -o dev-build/OrderedDictionary.o $(CXXFLAGS)
+
+dev-build/OrderedDictionaryEntry.o: ICollection/collections/OrderedDictionaryEntry.cpp
+	$(CPP) -c ICollection/collections/OrderedDictionaryEntry.cpp -o dev-build/OrderedDictionaryEntry.o $(CXXFLAGS)
+
+dev-build/Conversaciones.o: Conversaciones.cpp
+	$(CPP) -c Conversaciones.cpp -o dev-build/Conversaciones.o $(CXXFLAGS)
+
+dev-build/Estado.o: Estado.cpp
+	$(CPP) -c Estado.cpp -o dev-build/Estado.o $(CXXFLAGS)
+
+dev-build/Fecha.o: Fecha.cpp
+	$(CPP) -c Fecha.cpp -o dev-build/Fecha.o $(CXXFLAGS)
+
+dev-build/Grupo.o: Grupo.cpp
+	$(CPP) -c Grupo.cpp -o dev-build/Grupo.o $(CXXFLAGS)
+
+dev-build/Mensaje.o: Mensaje.cpp
+	$(CPP) -c Mensaje.cpp -o dev-build/Mensaje.o $(CXXFLAGS)
+
+dev-build/Miembro.o: Miembro.cpp
+	$(CPP) -c Miembro.cpp -o dev-build/Miembro.o $(CXXFLAGS)
+
+dev-build/Sistema.o: Sistema.cpp
+	$(CPP) -c Sistema.cpp -o dev-build/Sistema.o $(CXXFLAGS)
+
+dev-build/Usuario.o: Usuario.cpp
+	$(CPP) -c Usuario.cpp -o dev-build/Usuario.o $(CXXFLAGS)
+
+dev-build/Visto.o: Visto.cpp
+	$(CPP) -c Visto.cpp -o dev-build/Visto.o $(CXXFLAGS)
+
+dev-build/main.o: main.cpp
+	$(CPP) -c main.cpp -o dev-build/main.o $(CXXFLAGS)
+
+dev-build/Obligatorio_5_private.res: Obligatorio_5_private.rc 
+	$(WINDRES) -i Obligatorio_5_private.rc --input-format=rc -o dev-build/Obligatorio_5_private.res -O coff 
+

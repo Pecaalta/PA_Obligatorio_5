@@ -1,0 +1,7 @@
+Notas
+
+Lista de errores a solucionar luego de crear las funcionalidades.
+
+	Verificar estado de log antes de ejecutar funciones.
+	Verificar tipo seleccionado cada que pido datos
+	Crear objeto interfazGrafica para definir una interfaz mas homogénea

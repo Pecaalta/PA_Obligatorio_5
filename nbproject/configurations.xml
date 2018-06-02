@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>Conversaciones.h</itemPath>
+      <itemPath>Estado.h</itemPath>
+      <itemPath>Fecha.h</itemPath>
+      <itemPath>Grupo.h</itemPath>
+      <itemPath>Mensaje.h</itemPath>
+      <itemPath>Miembro.h</itemPath>
+      <itemPath>Sistema.h</itemPath>
+      <itemPath>Usuario.h</itemPath>
+      <itemPath>Visto.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ICollection" displayName="ICollection" projectFiles="true">
+      <logicalFolder name="collections" displayName="collections" projectFiles="true">
+        <itemPath>ICollection/collections/List.cpp</itemPath>
+        <itemPath>ICollection/collections/List.h</itemPath>
+        <itemPath>ICollection/collections/ListIterator.cpp</itemPath>
+        <itemPath>ICollection/collections/ListIterator.h</itemPath>
+        <itemPath>ICollection/collections/ListNode.cpp</itemPath>
+        <itemPath>ICollection/collections/ListNode.h</itemPath>
+        <itemPath>ICollection/collections/OrderedDictionary.cpp</itemPath>
+        <itemPath>ICollection/collections/OrderedDictionary.h</itemPath>
+        <itemPath>ICollection/collections/OrderedDictionaryEntry.cpp</itemPath>
+        <itemPath>ICollection/collections/OrderedDictionaryEntry.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="interfaces" displayName="interfaces" projectFiles="true">
+        <itemPath>ICollection/interfaces/ICollectible.cpp</itemPath>
+        <itemPath>ICollection/interfaces/ICollectible.h</itemPath>
+        <itemPath>ICollection/interfaces/ICollection.cpp</itemPath>
+        <itemPath>ICollection/interfaces/ICollection.h</itemPath>
+        <itemPath>ICollection/interfaces/IDictionary.cpp</itemPath>
+        <itemPath>ICollection/interfaces/IDictionary.h</itemPath>
+        <itemPath>ICollection/interfaces/IIterator.cpp</itemPath>
+        <itemPath>ICollection/interfaces/IIterator.h</itemPath>
+        <itemPath>ICollection/interfaces/IKey.cpp</itemPath>
+        <itemPath>ICollection/interfaces/IKey.h</itemPath>
+        <itemPath>ICollection/interfaces/OrderedKey.cpp</itemPath>
+        <itemPath>ICollection/interfaces/OrderedKey.h</itemPath>
+      </logicalFolder>
+      <itemPath>ICollection/Integer.cpp</itemPath>
+      <itemPath>ICollection/Integer.h</itemPath>
+      <itemPath>ICollection/String.cpp</itemPath>
+      <itemPath>ICollection/String.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>Conversaciones.cpp</itemPath>
+      <itemPath>Estado.cpp</itemPath>
+      <itemPath>Fecha.cpp</itemPath>
+      <itemPath>Grupo.cpp</itemPath>
+      <itemPath>Mensaje.cpp</itemPath>
+      <itemPath>Miembro.cpp</itemPath>
+      <itemPath>Sistema.cpp</itemPath>
+      <itemPath>Usuario.cpp</itemPath>
+      <itemPath>Visto.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>ICollection</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+      </compileType>
+      <item path="Conversaciones.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Conversaciones.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Estado.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Fecha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Fecha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Grupo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Grupo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/Integer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/Integer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/String.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/String.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/collections/List.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/collections/List.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListIterator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListIterator.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListNode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListNode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionary.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionary.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionaryEntry.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionaryEntry.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollectible.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollectible.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IDictionary.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IDictionary.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IIterator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IIterator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IKey.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IKey.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/OrderedKey.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/OrderedKey.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Mensaje.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Mensaje.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Miembro.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Miembro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Sistema.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Sistema.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Usuario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Usuario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Visto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Visto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="Conversaciones.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Conversaciones.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Estado.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Fecha.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Fecha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Grupo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Grupo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/Integer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/Integer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/String.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/String.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/collections/List.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/collections/List.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListIterator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListIterator.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListNode.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/ListNode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionary.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionary.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionaryEntry.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/collections/OrderedDictionaryEntry.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollectible.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollectible.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/ICollection.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IDictionary.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IDictionary.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IIterator.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IIterator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IKey.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/IKey.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/OrderedKey.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="ICollection/interfaces/OrderedKey.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Mensaje.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Mensaje.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Miembro.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Miembro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Sistema.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Sistema.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Usuario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Usuario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Visto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Visto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
