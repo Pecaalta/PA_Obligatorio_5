@@ -1,21 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Visto.cpp
- * Author: mauro
- * 
- * Created on 2 de junio de 2018, 9:13
- */
-
 #include "Visto.h"
 #include "Usuario.h"
 #include "Fecha.h"
 #include "ICollection/collections/OrderedDictionary.h"
-
 
 // Funciones de usuario
 Usuario* Visto::getUsuario() {

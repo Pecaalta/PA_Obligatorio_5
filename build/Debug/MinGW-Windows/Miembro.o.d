@@ -7,8 +7,9 @@ build/Debug/MinGW-Windows/Miembro.o: Miembro.cpp Miembro.h Fecha.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
  ICollection/interfaces/OrderedKey.h ICollection/interfaces/IKey.h \
- Usuario.h ICollection/interfaces/IDictionary.h \
- ICollection/interfaces/IIterator.h ICollection/interfaces/IKey.h Grupo.h
+ Conversaciones.h ICollection/interfaces/IDictionary.h \
+ ICollection/interfaces/IIterator.h ICollection/interfaces/IKey.h \
+ Usuario.h Grupo.h
 
 Miembro.h:
 
@@ -38,12 +39,14 @@ ICollection/interfaces/OrderedKey.h:
 
 ICollection/interfaces/IKey.h:
 
-Usuario.h:
+Conversaciones.h:
 
 ICollection/interfaces/IDictionary.h:
 
 ICollection/interfaces/IIterator.h:
 
 ICollection/interfaces/IKey.h:
+
+Usuario.h:
 
 Grupo.h:

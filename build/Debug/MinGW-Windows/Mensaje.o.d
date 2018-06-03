@@ -8,7 +8,7 @@ build/Debug/MinGW-Windows/Mensaje.o: Mensaje.cpp Mensaje.h Fecha.h \
  ICollection/collections/../interfaces/IIterator.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/OrderedKey.h Grupo.h
+ ICollection/interfaces/OrderedKey.h Conversaciones.h Miembro.h Grupo.h
 
 Mensaje.h:
 
@@ -45,5 +45,9 @@ ICollection/String.h:
 ICollection/interfaces/ICollectible.h:
 
 ICollection/interfaces/OrderedKey.h:
+
+Conversaciones.h:
+
+Miembro.h:
 
 Grupo.h:

@@ -9,12 +9,12 @@ build/Debug/MinGW-Windows/Conversaciones.o: Conversaciones.cpp \
  ICollection/collections/../interfaces/ICollectible.h Usuario.h \
  ICollection/interfaces/ICollectible.h ICollection/String.h \
  ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/OrderedKey.h Fecha.h Grupo.h \
+ ICollection/interfaces/OrderedKey.h Miembro.h Fecha.h Grupo.h \
  ICollection/collections/OrderedDictionary.h \
  ICollection/collections/OrderedDictionaryEntry.h \
  ICollection/collections/../interfaces/OrderedKey.h \
  ICollection/collections/../interfaces/ICollectible.h \
- ICollection/collections/../interfaces/IDictionary.h Miembro.h Visto.h
+ ICollection/collections/../interfaces/IDictionary.h Visto.h
 
 Conversaciones.h:
 
@@ -50,6 +50,8 @@ ICollection/interfaces/ICollectible.h:
 
 ICollection/interfaces/OrderedKey.h:
 
+Miembro.h:
+
 Fecha.h:
 
 Grupo.h:
@@ -63,7 +65,5 @@ ICollection/collections/../interfaces/OrderedKey.h:
 ICollection/collections/../interfaces/ICollectible.h:
 
 ICollection/collections/../interfaces/IDictionary.h:
-
-Miembro.h:
 
 Visto.h:

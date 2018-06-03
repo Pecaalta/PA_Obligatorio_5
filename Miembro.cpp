@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Miembro.cpp
- * Author: mauro
- * 
- * Created on 2 de junio de 2018, 8:55
- */
-
 #include "Miembro.h"
 #include "Fecha.h"
 #include "Grupo.h"
@@ -45,29 +32,47 @@ void Miembro::setUsuario(Usuario* user) {
     this->user = user;
 };
 
+// Funciones de Administrador
+
 void Miembro::setAdministrador(bool _admin) {
     this->administrador = _admin;
 };
+
 bool Miembro::getAdministrador() {
     return this->administrador;
 };
 
-void Miembro::addConversacion(Grupo* con) {
-    this->user->addConversacion(con);
+// conecto miembrio con conversacion y usuario
+
+void Miembro::addConversacion(Conversaciones* con) {
+    this->user->addConversacion(this);
+    this->Conversacion = con;
 };
+
+// Imprimir
 
 void Miembro::ImprimeUsuario() {
     cout << "----------------------------------------------" << endl;
     this->user->impresionSimple();
     cout << "----------------------------------------------" << endl;
 };
-void Miembro::ImprimeUsuarioDetallada() {
+
+void Miembro::impresionSuperSimple() {
     cout << "----------------------------------------------" << endl;
-    this->user->impresionSimple();
-    cout << (this->administrador? "\t Privilegios administrador" : "\t Privilegios estandar") << endl;
+    this->user->impresionSuperSimple();
     cout << "----------------------------------------------" << endl;
 };
 
+void Miembro::ImprimeUsuarioDetallada() {
+    cout << "----------------------------------------------" << endl;
+    this->user->impresionSimple();
+    cout << (this->administrador ? "\t Privilegios administrador" : "\t Privilegios estandar") << endl;
+    cout << "----------------------------------------------" << endl;
+};
+
+string Miembro::getNumero() {
+    return this->user->getNumero();
+};
 
 // Constructores y Destructores
 

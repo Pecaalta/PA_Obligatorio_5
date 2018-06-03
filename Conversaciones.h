@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Conversaciones.h
- * Author: mauro
- *
- * Created on 2 de junio de 2018, 9:13
- */
-
 #ifndef CONVERSACIONES_H
 #define CONVERSACIONES_H
 
@@ -35,8 +22,20 @@ public:
     void setMensaejs(IDictionary* _mensaejs);
     int getId();
     void setId(int _id);
-
-    // Constructores y Destructores
+    virtual string tipo();
+    
+    void commit();
+    void addContacto(Usuario* user);
+    void removeContacto(Usuario* user);
+    bool isEmpty();
+    void SolicitaListaContactos();
+    void SolicitaListaContactosDetallada();
+    void HacerAdministradores(IKey* k);
+    bool getAdministradores(IKey* k);
+    void setAdmin(Usuario* _user);
+    IDictionary* getVistos();
+    void setVistos(IDictionary* _vistos);
+    
     Conversaciones(IDictionary* _integrantes, IDictionary* _mensaejs);
     Conversaciones(IDictionary* _integrantes);
     Conversaciones(Usuario* _user);

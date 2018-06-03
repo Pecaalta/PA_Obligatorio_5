@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Sistema.cpp
- * Author: mauro
- * 
- * Created on 2 de junio de 2018, 9:13
- */
-
 #include "Sistema.h"
 #include "Usuario.h"
 #include "ICollection/interfaces/IDictionary.h"
@@ -32,47 +19,175 @@
 using namespace std;
 
 // Funciones de activo
-
 Usuario* Sistema::getActivo() {
     return this->activo;
 };
-
 void Sistema::setActivo(Usuario* _activo) {
     this->activo = _activo;
 };
 
 // Funciones de usuarios
-
 IDictionary* Sistema::getUsuarios() {
     return this->usuarios;
 };
-
 void Sistema::setUsuarios(IDictionary* _usuarios) {
     this->usuarios = _usuarios;
 };
 
 // Funciones de conversaciones
-
 IDictionary* Sistema::getConversaciones() {
     return this->conversaciones;
 };
-
 void Sistema::setConversaciones(IDictionary* _conversaciones) {
     this->conversaciones = _conversaciones;
 };
 
 // Funciones de estados
-
 IDictionary* Sistema::getEstados() {
     return this->estados;
 };
-
 void Sistema::setEstados(IDictionary* _estados) {
     this->estados = _estados;
 };
 
-//DSS
+//Funciones Usuarios
+void Sistema::NuevoUsuario(string Numero) {
+    this->activo = new Usuario();
+    IKey* k = new String(Numero.c_str());
+    this->usuarios->add(k, this->activo);
+    string aux;
+    this->activo->setNumero(Numero);
 
+    system("cls");
+    cout << "-----------------------------------------" << endl;
+    cout << " Nuevo Usuario" << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << "Ingrese su Nombre: ";
+    fflush(stdin);
+    getline(cin, aux);
+    this->activo->setNombre(aux);
+
+    cout << "Ingrese su Descripcion: ";
+    fflush(stdin);
+    getline(cin, aux);
+    this->activo->setDireccion(aux);
+
+    cout << "Ingrese url Imagen: ";
+    fflush(stdin);
+    getline(cin, aux);
+    this->activo->setImagen(aux);
+};
+void Sistema::CargarUsuario() {
+    Usuario* usuario_1;
+
+    usuario_1 = new Usuario("Mauro", "0", "Url 0", "Direccion 0", new Fecha(), new Fecha());
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+
+    usuario_1 = new Usuario("Lea", "1", "Url 1", "Direccion 1", new Fecha(), new Fecha());
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+
+    usuario_1 = new Usuario("Maxi", "2", "Url 2", "Direccion 2", new Fecha(), new Fecha());
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+
+    usuario_1 = new Usuario("Andres", "3", "Url 3", "Direccion 3", new Fecha(), new Fecha());
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+
+    usuario_1 = new Usuario("Maia", "4", "Url 4", "Direccion 4", new Fecha(), new Fecha());
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+
+    usuario_1 = new Usuario("Maria", "5", "Url 5", "Direccion 5", new Fecha(), new Fecha());
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+
+    usuario_1 = new Usuario("Agustina", "6", "Url 6", "Direccion 6", new Fecha(), new Fecha());
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+
+};
+
+//Pantallas
+void Sistema::SolicitaListaContactos() {
+    cout << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << " Contactos del Sistema" << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << endl;
+    Usuario* n;
+    if (!this->usuarios->isEmpty()) {
+        IIterator* it = this->usuarios->getIterator();
+        while (it->hasCurrent()) {
+            n = (Usuario*) it->getCurrent();
+            cout << endl;
+            cout << "-----------------------------------------" << endl;
+            n->impresionSimple();
+            cout << "-----------------------------------------" << endl;
+            it->next();
+        }
+        delete it;
+    } else {
+        cout << endl;
+        cout << "\t No tines Contactos" << endl;
+        cout << endl;
+    }
+};
+bool Sistema::ListarOpciones() {
+    system("cls");
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            cout << "Opciones incorecta" << endl;
+        } else {
+            cout << endl;
+        }
+        cout << "-----------------------------------------" << endl;
+        cout << " Opciones del Sistema" << endl;
+        cout << "-----------------------------------------" << endl;
+        cout << endl;
+        cout << "\t 1  - " << "AbrirGuasapTECNO" << endl;
+        cout << "\t 2  - " << "CerrarGuasapTECNO" << endl;
+        cout << "\t 3  - " << "AgregarContactos" << endl;
+        cout << "\t 4  - " << "AltaGrupo" << endl;
+        cout << "\t 5  - " << "AgregarAdministradores" << endl;
+        cout << "\t 6  - " << "EnviarMensaje" << endl;
+        cout << "\t 7  - " << "VerMensajes" << endl;
+        cout << "\t 8  - " << "ArchivarConversaciones" << endl;
+        cout << "\t 9  - " << "AgregarParticipantes" << endl;
+        cout << "\t 10 - " << "EliminarParticipantes" << endl;
+        cout << "\t 11 - " << "ModificarUsuario" << endl;
+        cout << "\t 12 - " << "EliminarMensaje" << endl;
+        cout << "\t 13 - " << "Cerrar Applicacion" << endl;
+        cin >> Opciones;
+        cin.ignore();
+    } while (Opciones < 1 || Opciones > 13);
+    switch (Opciones) {
+        case 1:
+            return AbrirGuasapTECNO(); // Test
+        case 2:
+            return CerrarGuasapTECNO(); // Test
+        case 3:
+            return AgregarContactos(); // Test
+        case 4:
+            return AltaGrupo(); // Test
+        case 5:
+            return AgregarAdministradores(); // Test
+        case 6:
+            return EnviarMensaje(); // 
+        case 7:
+            return VerMensajes(); // 
+        case 8:
+            return ArchivarConversaciones(); // 
+        case 9:
+            return AgregarParticipantes(); // 
+        case 10:
+            return EliminarParticipantes(); // 
+        case 11:
+            return ModificarUsuario(); // 
+        case 12:
+            return EliminarMensaje(); // 
+        case 13:
+            return true;
+    }
+};
+
+//DSS
 bool Sistema::AbrirGuasapTECNO() {
     string Numero;
     int Opcion;
@@ -163,7 +278,6 @@ bool Sistema::AbrirGuasapTECNO() {
         } while (true);
     }
 };
-
 bool Sistema::CerrarGuasapTECNO() {
     system("cls");
     int opcion = 1;
@@ -194,7 +308,6 @@ bool Sistema::CerrarGuasapTECNO() {
         cout << "\t No hay usuario logeado" << endl;
     }
 };
-
 bool Sistema::AgregarContactos() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -266,7 +379,6 @@ bool Sistema::AgregarContactos() {
         }
     } while (true);
 };
-
 bool Sistema::AltaGrupo() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -384,7 +496,6 @@ bool Sistema::AltaGrupo() {
     return false;
 
 };
-
 bool Sistema::AgregarAdministradores() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -410,12 +521,11 @@ bool Sistema::AgregarAdministradores() {
     system("cls");
     return this->activo->AgregarAdministradores();
 };
-
 bool Sistema::EnviarMensaje() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha
         iniciado sesión, desea enviar un mensaje.
-        Primero, el sistema lista las conversaciones del usuario. Para cada
+            Primero, el sistema lista las conversaciones del usuario. Para cada
         conversación activa, si se corresponde a un grupo se muestra el
         nombre del grupo. Si es una conversación simple, se muestra
         nombre y número de celular del contacto con el cual se mantiene la
@@ -457,14 +567,9 @@ bool Sistema::EnviarMensaje() {
         En caso que el usuario no participe en ninguna conversación, el
         sistema muestra un mensaje apropiado y se finaliza el caso de uso.
         Este comportamiento se repite para situaciones análogas.
-     */
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Enviar Mensaje" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+     */     
+    this->activo->EnviarMensaje();
 };
-
 bool Sistema::VerMensajes() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -500,13 +605,8 @@ bool Sistema::VerMensajes() {
         muestra un aviso y se finaliza el caso de uso. En situaciones análogas se 
         procede de la misma manera.
      */
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Ver Mensajes" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    this->activo->VerMensajes();
 };
-
 bool Sistema::ArchivarConversaciones() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -523,13 +623,8 @@ bool Sistema::ArchivarConversaciones() {
         En caso que el usuario no tenga conversaciones activas, el sistema
         muestra un mensaje acorde y se finaliza el caso de uso.
      */
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Archivar Conversaciones" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    this->activo->ArchivarConversaciones();
 };
-
 bool Sistema::AgregarParticipantes() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -549,13 +644,8 @@ bool Sistema::AgregarParticipantes() {
         En caso que el usuario no participe en ningún grupo, el sistema muestra 
         un aviso y se finaliza el caso de uso.
      */
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Agregar Participantes" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    this->activo->AgregarParticipantes();
 };
-
 bool Sistema::EliminarParticipantes() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -578,13 +668,8 @@ bool Sistema::EliminarParticipantes() {
         En caso que el usuario no participe en ningún grupo, el sistema muestra
         un aviso y se finaliza el caso de uso.
      */
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Eliminar Participantes" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    this->activo->EliminarParticipantes();
 };
-
 bool Sistema::ModificarUsuario() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -602,7 +687,6 @@ bool Sistema::ModificarUsuario() {
     cout << "-----------------------------------------" << endl;
     cout << endl;
 };
-
 bool Sistema::EliminarMensaje() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
@@ -638,158 +722,10 @@ bool Sistema::EliminarMensaje() {
         muestra un aviso y se finaliza el caso de uso. En situaciones análogas se
         procede de la misma manera.
      */
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Eliminar Mensaje" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    this->activo->EliminarMensaje();
 };
-
-
-//Funciones Internas
-
-void Sistema::NuevoUsuario(string Numero) {
-    this->activo = new Usuario();
-    IKey* k = new String(Numero.c_str());
-    this->usuarios->add(k, this->activo);
-    string aux;
-    this->activo->setNumero(Numero);
-
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Nuevo Usuario" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << "Ingrese su Nombre: ";
-    fflush(stdin);
-    getline(cin, aux);
-    this->activo->setNombre(aux);
-
-    cout << "Ingrese su Descripcion: ";
-    fflush(stdin);
-    getline(cin, aux);
-    this->activo->setDireccion(aux);
-
-    cout << "Ingrese url Imagen: ";
-    fflush(stdin);
-    getline(cin, aux);
-    this->activo->setImagen(aux);
-};
-
-void Sistema::CargarUsuario() {
-    Usuario* usuario_1;
-
-    usuario_1 = new Usuario("Mauro", "0", "Url 0", "Direccion 0", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-    usuario_1 = new Usuario("Lea", "1", "Url 1", "Direccion 1", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-    usuario_1 = new Usuario("Maxi", "2", "Url 2", "Direccion 2", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-    usuario_1 = new Usuario("Andres", "3", "Url 3", "Direccion 3", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-    usuario_1 = new Usuario("Maia", "4", "Url 4", "Direccion 4", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-    usuario_1 = new Usuario("Maria", "5", "Url 5", "Direccion 5", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-    usuario_1 = new Usuario("Agustina", "6", "Url 6", "Direccion 6", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-};
-
-void Sistema::SolicitaListaContactos() {
-    cout << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << " Contactos del Sistema" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
-    Usuario* n;
-    if (!this->usuarios->isEmpty()) {
-        IIterator* it = this->usuarios->getIterator();
-        while (it->hasCurrent()) {
-            n = (Usuario*) it->getCurrent();
-            cout << endl;
-            cout << "-----------------------------------------" << endl;
-            n->impresionSimple();
-            cout << "-----------------------------------------" << endl;
-            it->next();
-        }
-        delete it;
-    } else {
-        cout << endl;
-        cout << "\t No tines Contactos" << endl;
-        cout << endl;
-    }
-};
-
-//Pantallas
-
-bool Sistema::ListarOpciones() {
-    system("cls");
-    int Opciones = -1;
-    do {
-        if (Opciones != -1) {
-            cout << "Opciones incorecta" << endl;
-        } else {
-            cout << endl;
-        }
-        cout << "-----------------------------------------" << endl;
-        cout << " Opciones del Sistema" << endl;
-        cout << "-----------------------------------------" << endl;
-        cout << endl;
-        cout << "\t 1  - " << "AbrirGuasapTECNO" << endl;
-        cout << "\t 2  - " << "CerrarGuasapTECNO" << endl;
-        cout << "\t 3  - " << "AgregarContactos" << endl;
-        cout << "\t 4  - " << "AltaGrupo" << endl;
-        cout << "\t 5  - " << "AgregarAdministradores" << endl;
-        cout << "\t 6  - " << "EnviarMensaje" << endl;
-        cout << "\t 7  - " << "VerMensajes" << endl;
-        cout << "\t 8  - " << "ArchivarConversaciones" << endl;
-        cout << "\t 9  - " << "AgregarParticipantes" << endl;
-        cout << "\t 10 - " << "EliminarParticipantes" << endl;
-        cout << "\t 11 - " << "ModificarUsuario" << endl;
-        cout << "\t 12 - " << "EliminarMensaje" << endl;
-        cout << "\t 13 - " << "Cerrar Applicacion" << endl;
-        cin >> Opciones;
-        cin.ignore();
-    } while (Opciones < 1 || Opciones > 13);
-    switch (Opciones) {
-        case 1:
-            return AbrirGuasapTECNO(); // Test
-        case 2:
-            return CerrarGuasapTECNO(); // Test
-        case 3:
-            return AgregarContactos(); // Test
-        case 4:
-            return AltaGrupo(); // Test
-        case 5:
-            return AgregarAdministradores(); // Test
-        case 6:
-            return EnviarMensaje(); // 
-        case 7:
-            return VerMensajes(); // 
-        case 8:
-            return ArchivarConversaciones(); // 
-        case 9:
-            return AgregarParticipantes(); // 
-        case 10:
-            return EliminarParticipantes(); // 
-        case 11:
-            return ModificarUsuario(); // 
-        case 12:
-            return EliminarMensaje(); // 
-        case 13:
-            return true;
-    }
-};
-
 
 // Constructores y Destructores
-
 Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary * _estados) {
     this->IndexConversacion = 0;
     this->activo = _activo;
@@ -799,7 +735,6 @@ Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _convers
     this->estados = _estados;
     this->log = false;
 };
-
 Sistema::Sistema() {
     this->IndexConversacion = 0;
     this->activo = NULL;
@@ -809,6 +744,5 @@ Sistema::Sistema() {
     this->estados = new OrderedDictionary();
     this->log = false;
 };
-
 Sistema::~Sistema() {
 };
