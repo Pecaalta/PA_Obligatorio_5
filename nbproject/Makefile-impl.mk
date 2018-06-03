@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Obligatorio_5
+PROJECTNAME=PA_Obligatorio_5
 
 # Active Configuration
 DEFAULTCONF=Debug
