@@ -251,8 +251,28 @@ void Usuario::SolicitaListaContactos() {
         cout << endl;
     }
 };
-
-
+bool Usuario::ModificarUsuario() {
+    system("cls");
+    cout << "-----------------------------------------" << endl;
+    cout << " Modificar Usuario" << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << endl;
+    /*
+     * 1 - editar Nombre
+     * 2 - editar imagen
+     * 3 - editar descripcion
+     * 4 - salir
+     * 
+     * do {
+     *  escanear en variable
+     * }while(opcion > 0 || < 4);
+     * switch 
+     *  case 1:
+     *  this->getNombre(usar variable)
+     */
+    
+    return false;//No sale de la aplicacion
+}
 // Mensajes
 bool Usuario::EnviarMensaje() {
     system("cls");

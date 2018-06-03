@@ -47,6 +47,8 @@ public:
     void ListarNombreDeGrupos();
     int CuentaArchivadas();
     
+
+    bool ModificarUsuario();
     bool EnviarMensaje();
     bool EliminarMensaje();
     bool VerMensajes();

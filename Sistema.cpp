@@ -156,6 +156,7 @@ bool Sistema::ListarOpciones() {
         cout << "\t 13 - " << "Cerrar Applicacion" << endl;
         cin >> Opciones;
         cin.ignore();
+
     } while (Opciones < 1 || Opciones > 13);
     switch (Opciones) {
         case 1:
@@ -167,7 +168,7 @@ bool Sistema::ListarOpciones() {
         case 4:
             return AltaGrupo(); // Test
         case 5:
-            return AgregarAdministradores(); // Test
+            return AgregarAdministradores(); // mauro
         case 6:
             return EnviarMensaje(); // 
         case 7:
@@ -175,11 +176,11 @@ bool Sistema::ListarOpciones() {
         case 8:
             return ArchivarConversaciones(); // 
         case 9:
-            return AgregarParticipantes(); // 
+            return AgregarParticipantes(); // lucas
         case 10:
-            return EliminarParticipantes(); // 
+            return EliminarParticipantes(); // seba 
         case 11:
-            return ModificarUsuario(); // 
+            return ModificarUsuario(); // maxi
         case 12:
             return EliminarMensaje(); // 
         case 13:
@@ -681,11 +682,7 @@ bool Sistema::ModificarUsuario() {
         Luego el sistema actualiza la información personal del usuario con los
         nuevos valores ingresados y finaliza el caso de uso.
      */
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Modificar Usuario" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    this->activo->ModificarUsuario();
 };
 bool Sistema::EliminarMensaje() {
     /*
