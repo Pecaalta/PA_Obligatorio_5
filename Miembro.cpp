@@ -2,6 +2,7 @@
 #include "Fecha.h"
 #include "Grupo.h"
 
+#include "InterfazGrafica.h"
 // Funciones de archivado
 
 bool Miembro::getArchivado() {
@@ -44,23 +45,29 @@ bool Miembro::getAdministrador() {
 
 // conecto miembrio con conversacion y usuario
 
-void Miembro::addConversacion(Conversaciones* con) {
-    this->user->addConversacion(this);
+void Miembro::addConversacion(Grupo* con) {
+    this->user->addGrupo(this);
     this->Conversacion = con;
+};
+
+Grupo* Miembro::getConversacion() {
+    return this->Conversacion;
 };
 
 // Imprimir
 
+void Miembro::ImprimeGrupo() {
+    this->Conversacion->impresionSimple();
+};
+
 void Miembro::ImprimeUsuario() {
-    cout << "----------------------------------------------" << endl;
     this->user->impresionSimple();
-    cout << "----------------------------------------------" << endl;
+  
+                li(this->administrador ? "administrador" : "Comun");
 };
 
 void Miembro::impresionSuperSimple() {
-    cout << "----------------------------------------------" << endl;
     this->user->impresionSuperSimple();
-    cout << "----------------------------------------------" << endl;
 };
 
 void Miembro::ImprimeUsuarioDetallada() {
@@ -74,19 +81,33 @@ string Miembro::getNumero() {
     return this->user->getNumero();
 };
 
+void Miembro::SolicitaListaContactosDetallada() {
+    this->Conversacion->SolicitaListaContactosDetallada();
+}
+
 // Constructores y Destructores
 
-Miembro::Miembro(bool _archivado, Fecha* _fecha) {
-    this->archivado = _archivado;
-    this->user = NULL;
-    this->fecha = _fecha;
+Miembro::Miembro(Usuario* _user, Grupo* _grupo) {
+    this->Conversacion = _grupo;
+    this->user = _user;
+    this->fecha = new Fecha();
     this->administrador = false;
+    this->archivado = false;
+}
+
+Miembro::Miembro(Usuario* _user) {
+    this->administrador = false;
+    this->Conversacion = NULL;
+    this->archivado = false;
+    this->user = _user;
+    this->fecha = new Fecha();
 }
 
 Miembro::Miembro() {
     this->administrador = false;
     this->archivado = false;
     this->user = NULL;
+    this->Conversacion = NULL;
     this->fecha = new Fecha();
 }
 

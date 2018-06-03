@@ -8,6 +8,7 @@
       <itemPath>Estado.h</itemPath>
       <itemPath>Fecha.h</itemPath>
       <itemPath>Grupo.h</itemPath>
+      <itemPath>InterfazGrafica.h</itemPath>
       <itemPath>Mensaje.h</itemPath>
       <itemPath>Miembro.h</itemPath>
       <itemPath>Sistema.h</itemPath>
@@ -57,6 +58,7 @@
       <itemPath>Estado.cpp</itemPath>
       <itemPath>Fecha.cpp</itemPath>
       <itemPath>Grupo.cpp</itemPath>
+      <itemPath>InterfazGrafica.cpp</itemPath>
       <itemPath>Mensaje.cpp</itemPath>
       <itemPath>Miembro.cpp</itemPath>
       <itemPath>Sistema.cpp</itemPath>
@@ -204,6 +206,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="InterfazGrafica.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InterfazGrafica.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Mensaje.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -363,6 +369,10 @@
             ex="false"
             tool="3"
             flavor2="0">
+      </item>
+      <item path="InterfazGrafica.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InterfazGrafica.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Mensaje.cpp" ex="false" tool="1" flavor2="0">
       </item>

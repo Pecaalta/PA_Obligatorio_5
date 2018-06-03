@@ -1,11 +1,11 @@
 #ifndef VISTO_H
 #define VISTO_H
-#include "Usuario.h"
 #include "Fecha.h"
 #include "ICollection/interfaces/ICollectible.h"
 #include "ICollection/interfaces/IIterator.h"
 #include "ICollection/collections/List.h"
 #include "ICollection/String.h"
+#include "Usuario.h"
 
 class Visto : public ICollectible{
   public:
@@ -17,7 +17,6 @@ class Visto : public ICollectible{
 	void  setIdmensaje(int _idmensaje);
 
 	// Constructores y Destructores
-	Visto(Usuario* _usuario, Fecha* _fecha, int _idmensaje );
 	Visto(Usuario* _usuario);
 	Visto();
 	~Visto();

@@ -8,8 +8,8 @@ build/Debug/MinGW-Windows/main.o: main.cpp Sistema.h Usuario.h \
  ICollection/collections/../interfaces/IIterator.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/OrderedKey.h Conversaciones.h Miembro.h Fecha.h \
- Grupo.h
+ ICollection/interfaces/OrderedKey.h Conversaciones.h Visto.h Fecha.h \
+ Miembro.h Grupo.h
 
 Sistema.h:
 
@@ -47,8 +47,10 @@ ICollection/interfaces/OrderedKey.h:
 
 Conversaciones.h:
 
-Miembro.h:
+Visto.h:
 
 Fecha.h:
+
+Miembro.h:
 
 Grupo.h:

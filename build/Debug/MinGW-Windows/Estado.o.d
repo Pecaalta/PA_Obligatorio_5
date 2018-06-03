@@ -7,7 +7,7 @@ build/Debug/MinGW-Windows/Estado.o: Estado.cpp Estado.h \
  ICollection/collections/../interfaces/IIterator.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/OrderedKey.h
+ ICollection/interfaces/OrderedKey.h InterfazGrafica.h
 
 Estado.h:
 
@@ -36,3 +36,5 @@ ICollection/String.h:
 ICollection/interfaces/ICollectible.h:
 
 ICollection/interfaces/OrderedKey.h:
+
+InterfazGrafica.h:

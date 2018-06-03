@@ -2,6 +2,7 @@
 #include "string"
 #include "string.h"
 
+#include "InterfazGrafica.h"
 #include "ICollection/interfaces/IDictionary.h"
 #include "ICollection/collections/OrderedDictionary.h"
 #include "ICollection/Integer.h"
@@ -12,93 +13,115 @@
 using namespace std;
 
 // Funciones de nombre
+
 string Usuario::getNombre() {
     return this->nombre;
 };
+
 void Usuario::setNombre(string _nombre) {
     this->nombre = _nombre;
 };
 
 // Funciones de numero
+
 string Usuario::getNumero() {
     return this->numero;
 };
+
 void Usuario::setNumero(string _numero) {
     this->numero = _numero;
 };
 
 // Funciones de imagen
+
 string Usuario::getImagen() {
     return this->imagen;
 };
+
 void Usuario::setImagen(string _imagen) {
     this->imagen = _imagen;
 };
 
 // Funciones de direccion
+
 string Usuario::getDireccion() {
     return this->direccion;
 };
+
 void Usuario::setDireccion(string _direccion) {
     this->direccion = _direccion;
 };
 
 // Funciones de creacion
+
 Fecha* Usuario::getCreacion() {
     return this->creacion;
 };
+
 void Usuario::setCreacion(Fecha* _creacion) {
     this->creacion = _creacion;
 };
 
 // Funciones de ultima
+
 Fecha* Usuario::getUltima() {
     return this->ultima;
 };
+
 void Usuario::setUltima(Fecha* _ultima) {
     this->ultima = _ultima;
 };
 
 // Funciones de conversaciones
+
 IDictionary* Usuario::getConversaciones() {
     return this->conversaciones;
 };
+
 void Usuario::setConversaciones(IDictionary* _conversaciones) {
     this->conversaciones = _conversaciones;
 };
 
 // Funciones de estados
+
 IDictionary* Usuario::getEstados() {
     return this->estados;
 };
+
 void Usuario::setEstados(IDictionary* _estados) {
     this->estados = _estados;
 };
 
 // Funciones de mensajes
+
 IDictionary* Usuario::getMensajes() {
     return this->mensajes;
 };
+
 void Usuario::setMensajes(IDictionary* _mensajes) {
     this->mensajes = _mensajes;
 };
 
 // Conversacion
-void Usuario::addConversacion(Miembro* con) {
-    this->conversaciones->add(new String(con->getNumero().c_str()),con);
+
+void Usuario::addGrupo(Miembro* con) {
+    this->grupos->add(new String(con->getConversacion()->getNombre().c_str()), con);
 }
 // Imprimir
+
 void Usuario::impresionSimple() {
-    cout << "\t Nombre: " << this->nombre << endl;
-    cout << "\t Numero: " << this->numero << endl;
-    cout << "\t Imagen: " << this->imagen << endl;
+    li("Nombre: " + this->nombre);
+    li("Numero: " + this->numero);
+    li("Imagen: " + this->imagen);
 }
+
 void Usuario::impresionSuperSimple() {
-    cout << "\t Nombre: " << this->nombre << endl;
-    cout << "\t Numero: " << this->numero << endl;
+    li("Nombre: " + this->nombre);
+    li("Numero: " + this->numero);
 }
 
 //Cuenta Archivadas
+
 int Usuario::CuentaArchivadas() {
     int count = 0;
     Miembro* n;
@@ -128,11 +151,36 @@ int Usuario::CuentaArchivadas() {
 }
 
 // Listados
+
 void Usuario::ListarMisGruposSimple() {
 
-    cout << "-----------------------------------------" << endl;
-    cout << " Tus Grupos" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Tus Grupos");
+    Miembro* n;
+    li();
+    if (!this->grupos->isEmpty()) {
+        IIterator* it = this->grupos->getIterator();
+        while (it->hasCurrent()) {
+            n = (Miembro*) it->getCurrent();
+            cout << endl;
+            if (!n->getArchivado()) {
+                li("-");
+                n->impresionSuperSimple();
+                li("-");
+            }
+            it->next();
+        }
+        delete it;
+    } else {
+        li("-");
+        li("No tines Grupos");
+        li("-");
+    }
+    li();
+}
+
+bool Usuario::ListarMisGrupoas() {
+    system("cls");
+    header("Tus Grupos");
     cout << endl;
     Miembro* n;
     if (!this->grupos->isEmpty()) {
@@ -140,31 +188,7 @@ void Usuario::ListarMisGruposSimple() {
         while (it->hasCurrent()) {
             n = (Miembro*) it->getCurrent();
             cout << endl;
-            if (!n->getArchivado()) {
-                n->impresionSuperSimple();
-            }
-            it->next();
-        }
-        delete it;
-    } else {
-        cout << endl;
-        cout << "\t No tines Grupos" << endl;
-        cout << endl;
-    }
-}
-bool Usuario::ListarMisGrupoas() {
-    system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Tus Grupos" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
-    Grupo* n;
-    if (!this->grupos->isEmpty()) {
-        IIterator* it = this->grupos->getIterator();
-        while (it->hasCurrent()) {
-            n = (Grupo*) it->getCurrent();
-            cout << endl;
-            n->impresionSimple();
+            n->ImprimeGrupo();
             it->next();
         }
         delete it;
@@ -177,11 +201,10 @@ bool Usuario::ListarMisGrupoas() {
         return false;
     }
 }
+
 void Usuario::ListarMisConversacionesArchivadas() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Tus Conversaciones Archivadas" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Tus Conversaciones Archivadas");
     cout << endl;
     Miembro* n;
     if (!this->conversaciones->isEmpty()) {
@@ -201,12 +224,12 @@ void Usuario::ListarMisConversacionesArchivadas() {
         cout << endl;
     }
 };
+
 void Usuario::ListarNombreDeGrupos() {
 };
+
 void Usuario::ListarMisConversaciones() {
-    cout << "-----------------------------------------" << endl;
-    cout << " Tus Conversaciones Activas" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Tus Conversaciones Activas");
     cout << endl;
     Miembro* n;
     if (!this->conversaciones->isEmpty()) {
@@ -226,36 +249,37 @@ void Usuario::ListarMisConversaciones() {
         cout << endl;
     }
 }
+
 void Usuario::SolicitaListaContactos() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Tus Contactos" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Tus Contactos");
     cout << endl;
     Usuario* n;
+    li();
     if (!this->contactos->isEmpty()) {
         IIterator* it = this->contactos->getIterator();
         while (it->hasCurrent()) {
             n = (Usuario*) it->getCurrent();
-            cout << endl;
-            cout << "----------------------------------------------" << endl;
-            cout << "\t Nombre: " << n->getNombre() << endl;
-            cout << "\t Numero: " << n->getNumero() << endl;
-            cout << "\t Imagen: " << n->getImagen() << endl;
+            li("-");
+            li("Nombre " + n->getNombre());
+            li("Numero " + n->getNumero());
+            li("Imagen " + n->getImagen());
+            li("Descripcion " + n->getDireccion());
+            li("-");
             it->next();
         }
         delete it;
     } else {
-        cout << endl;
-        cout << "\t No tines Contactos" << endl;
-        cout << endl;
+        li("-");
+        li("No tines Contactos");
+        li("-");
     }
+    li();
 };
+
 bool Usuario::ModificarUsuario() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Modificar Usuario" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Modificar Usuario");
     cout << endl;
     /*
      * 1 - editar Nombre
@@ -270,15 +294,14 @@ bool Usuario::ModificarUsuario() {
      *  case 1:
      *  this->getNombre(usar variable)
      */
-    
-    return false;//No sale de la aplicacion
+
+    return false; //No sale de la aplicacion
 }
 // Mensajes
+
 bool Usuario::EnviarMensaje() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Enviar Mensaje" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Enviar Mensaje");
     cout << endl;
 
     this->ListarMisConversaciones();
@@ -291,55 +314,65 @@ bool Usuario::EnviarMensaje() {
         cout << " Archivadas " << cant << endl;
         cout << "-----------------------------------------" << endl;
     }
+    int opcion;
+    {
+        cout << "\t 1 - Seleccionar una conversación activa" << endl;
+        cout << "\t 2 - Ver las conversaciones archivadas" << endl;
+        cout << "\t 3 - Enviar un mensaje a un contacto sin conversacion" << endl;
+        cout << "\t 4 - Volver" << endl;
+        cin >> opcion;
+    }
+    while (opcion < 1 || opcion > 4);
+    switch (opcion) {
+        case 1:
+
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+    }
+
     system("pause");
-    /*
-        1. Seleccionar una conversación activa
-                2. Ver las conversaciones archivadas
-                3. Enviar un mensaje a un contacto con el cuál aún no ha iniciado
-                una conversación
-     */
+
 };
+
 bool Usuario::EliminarMensaje() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Eliminar Mensaje" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    header("Eliminar Mensaje");
 };
+
 bool Usuario::VerMensajes() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Ver Mensajes" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    header("Ver Mensaje");
 };
 
 // Conversaciones
+
 bool Usuario::ArchivarConversaciones() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Archivar Conversaciones" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Archivar Conversaciones");
     cout << endl;
 };
+
 bool Usuario::AgregarParticipantes() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Agregar Participantes" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Agregar Participantes");
     cout << endl;
 };
+
 bool Usuario::EliminarParticipantes() {
     system("cls");
-    cout << "-----------------------------------------" << endl;
-    cout << " Eliminar Participantes" << endl;
-    cout << "-----------------------------------------" << endl;
+    header("Eliminar Participantes");
     cout << endl;
 };
 
 bool Usuario::member(IKey* k) {
     return !this->contactos->isEmpty() and this->contactos->member(k);
 };
+
 void Usuario::addContacto(Usuario* user) {
     IKey* k = new String(user->getNumero().c_str());
     this->contactos->add(k, user);
@@ -348,15 +381,15 @@ void Usuario::addContacto(Usuario* user) {
 void Usuario::ActualisarConeccion() {
     this->ultima->Actual();
 };
+
 bool Usuario::AgregarAdministradores() {
     int Opciones;
     string Nombre;
     IKey* k;
+
+    Grupo* gurpo = NULL;
     do {
-        cout << "----------------------------------------------" << endl;
-        cout << " Agregar Administradores" << endl;
-        cout << "----------------------------------------------" << endl;
-        cout << endl;
+        header("Agregar Administradores");
         if (this->ListarMisGrupoas()) {
             cout << "----------------------------------------------" << endl;
             cout << "\t Selecciona Grupo: ";
@@ -364,9 +397,9 @@ bool Usuario::AgregarAdministradores() {
             getline(cin, Nombre);
             k = new String(Nombre.c_str());
             while (!this->grupos->member(k)) {
-                cout << "\t No hay grupos con ese nombre";
-                cout << "\t 1 - Reintentar";
-                cout << "\t 2 - Salir";
+                cout << "\t No hay grupos con ese nombre" << endl;
+                cout << "\t 1 - Reintentar" << endl;
+                cout << "\t 2 - Salir" << endl;
                 cin >> Opciones;
                 if (Opciones == 2) {
                     return false;
@@ -377,8 +410,8 @@ bool Usuario::AgregarAdministradores() {
                 delete k;
                 k = new String(Nombre.c_str());
             }
-            Grupo* gurpo = (Grupo*) this->grupos->find(k);
-            gurpo->SolicitaListaContactosDetallada();
+            gurpo = ((Miembro*) this->grupos->find(k))->getConversacion();
+            gurpo->SolicitaListaContactos();
             cout << "\t Selecciona Usuario: ";
             fflush(stdin);
             getline(cin, Nombre);
@@ -400,21 +433,21 @@ bool Usuario::AgregarAdministradores() {
             }
             do {
                 system("cls");
-                cout << "-----------------------------------------" << endl;
-                cout << " Agregar Administradores" << endl;
-                cout << "-----------------------------------------" << endl;
-                cout << endl;
+                header("Agregar Administradores");
+
                 cout << "\t 1 - Agregar Administrador" << endl;
                 cout << "\t 2 - Salir" << endl;
+                cin >> Opciones;
             } while (Opciones != 1 and Opciones != 2);
         } else {
             Opciones = 2;
         }
-    } while (Opciones == 2);
+    } while (Opciones != 2);
     return false;
 };
 
 // Constructores y Destructores
+
 Usuario::Usuario(string _nombre, string _numero, string _imagen, string _direccion, Fecha* _creacion, Fecha* _ultima) {
     this->nombre = _nombre;
     this->numero = _numero;
@@ -428,6 +461,7 @@ Usuario::Usuario(string _nombre, string _numero, string _imagen, string _direcci
     this->mensajes = new OrderedDictionary();
     this->grupos = new OrderedDictionary();
 }
+
 Usuario::Usuario() {
     this->nombre = "";
     this->numero = "";
@@ -441,6 +475,7 @@ Usuario::Usuario() {
     this->mensajes = new OrderedDictionary();
     this->grupos = new OrderedDictionary();
 };
+
 Usuario::~Usuario() {
 };
 

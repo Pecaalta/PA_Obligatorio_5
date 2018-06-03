@@ -3,6 +3,7 @@
 #include "Fecha.h"
 #include "ICollection/collections/OrderedDictionary.h"
 
+#include "InterfazGrafica.h"
 // Funciones de usuario
 Usuario* Visto::getUsuario() {
 	return this->usuario;
@@ -28,11 +29,6 @@ void Visto::setIdmensaje(int _idmensaje) {
 };
 
 // Constructores y Destructores
-Visto::Visto(Usuario* _usuario, Fecha* _fecha, int _idmensaje ) {
-	this->usuario = _usuario;
-	this->fecha = _fecha;
-	this->idmensaje = _idmensaje;
-}
 Visto::Visto(Usuario* _usuario) {
 	this->usuario = _usuario;
 	this->fecha = new Fecha();

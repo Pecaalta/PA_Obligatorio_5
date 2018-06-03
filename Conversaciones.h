@@ -13,42 +13,30 @@ using namespace std;
 #include "ICollection/collections/List.h"
 
 class Usuario;
+class Visto;
 
 class Conversaciones : public ICollectible {
 public:
-    IDictionary* getIntegrantes();
-    void setIntegrantes(IDictionary* _integrantes);
     IDictionary* getMensaejs();
     void setMensaejs(IDictionary* _mensaejs);
-    int getId();
-    void setId(int _id);
+    Usuario* getUser1();
+    void setUser1(Usuario* user1);
+    Usuario* getUser2();
+    void setUser2(Usuario* user2);
     virtual string tipo();
-    
-    void commit();
-    void addContacto(Usuario* user);
-    void removeContacto(Usuario* user);
-    bool isEmpty();
-    void SolicitaListaContactos();
-    void SolicitaListaContactosDetallada();
-    void HacerAdministradores(IKey* k);
-    bool getAdministradores(IKey* k);
-    void setAdmin(Usuario* _user);
-    IDictionary* getVistos();
-    void setVistos(IDictionary* _vistos);
-    
-    Conversaciones(IDictionary* _integrantes, IDictionary* _mensaejs);
-    Conversaciones(IDictionary* _integrantes);
-    Conversaciones(Usuario* _user);
+      
+    Conversaciones(Usuario* _user_1, Usuario* _user_2, IDictionary* _mensaejs);
+    Conversaciones(Usuario* _user_1, Usuario* _user_2);
     Conversaciones();
     ~Conversaciones();
 private:
-    IDictionary* integrantes;
     IDictionary* mensaejs;
-    IDictionary* visto;
-    int id;
+    Visto* user1;
+    Visto* user2;
 };
 
 
+#include "Visto.h"
 #include "Usuario.h"
 
 #endif /* CONVERSACIONES_H */

@@ -52,6 +52,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ICollection/interfaces/IIterator.o \
 	${OBJECTDIR}/ICollection/interfaces/IKey.o \
 	${OBJECTDIR}/ICollection/interfaces/OrderedKey.o \
+	${OBJECTDIR}/InterfazGrafica.o \
 	${OBJECTDIR}/Mensaje.o \
 	${OBJECTDIR}/Miembro.o \
 	${OBJECTDIR}/Sistema.o \
@@ -78,11 +79,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obligatorio_5.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obligatorio_5.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/obligatorio_5 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Conversaciones.o: Conversaciones.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -168,6 +169,11 @@ ${OBJECTDIR}/ICollection/interfaces/OrderedKey.o: ICollection/interfaces/Ordered
 	${MKDIR} -p ${OBJECTDIR}/ICollection/interfaces
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ICollection/interfaces/OrderedKey.o ICollection/interfaces/OrderedKey.cpp
+
+${OBJECTDIR}/InterfazGrafica.o: InterfazGrafica.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/InterfazGrafica.o InterfazGrafica.cpp
 
 ${OBJECTDIR}/Mensaje.o: Mensaje.cpp
 	${MKDIR} -p ${OBJECTDIR}

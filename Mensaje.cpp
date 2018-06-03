@@ -1,6 +1,7 @@
 #include "Mensaje.h"
 #include "Fecha.h"
 
+#include "InterfazGrafica.h"
 #include "string.h"
 
 using namespace std;

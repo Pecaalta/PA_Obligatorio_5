@@ -13,7 +13,7 @@
 using namespace std;
 
 class Usuario;
-class Conversaciones;
+class Grupo;
 
 class Miembro : public ICollectible {
 public:
@@ -25,25 +25,31 @@ public:
     void setUsuario(Usuario* user);
     bool getAdministrador();
     void setAdministrador(bool _admin);
-    void addConversacion(Conversaciones* con);
+    void addConversacion(Grupo* con);
+    Grupo* getConversacion();
+    
+    void ImprimeGrupo();
     void ImprimeUsuario();
     void impresionSuperSimple();
     void ImprimeUsuarioDetallada();
     string getNumero();
+    
+    void SolicitaListaContactosDetallada();
 
     // Constructores y Destructores
-    Miembro(bool _archivado, Fecha* _fecha);
+    Miembro(Usuario* _user,Grupo* _grupo );
+    Miembro(Usuario* _user);
     Miembro();
     ~Miembro();
 private:
     Usuario* user;
     bool archivado;
     bool administrador;
-    Conversaciones* Conversacion;
+    Grupo* Conversacion;
     Fecha* fecha;
 };
 
-#include "Conversaciones.h"
+#include "Grupo.h"
 #include "Usuario.h"
 #endif /* MIEMBRO_H */
 

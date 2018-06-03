@@ -35,7 +35,7 @@ public:
     void setEstados(IDictionary* _estados);
     IDictionary* getMensajes();
     void setMensajes(IDictionary* _mensajes);
-    void addConversacion(Miembro* con);
+    void addGrupo(Miembro* con);
     void impresionSimple();
     void impresionSuperSimple();
     bool ListarMisGrupoas();

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "InterfazGrafica.h"
 #include "Fecha.h"
 
 // Funciones de segundo

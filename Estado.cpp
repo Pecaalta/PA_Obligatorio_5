@@ -2,6 +2,7 @@
 #include "string.h"
 #include "ICollection/interfaces/IDictionary.h"
 
+#include "InterfazGrafica.h"
 using namespace std;
 
 // Funciones de texto

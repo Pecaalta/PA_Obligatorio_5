@@ -6,15 +6,15 @@ build/Debug/MinGW-Windows/Conversaciones.o: Conversaciones.cpp \
  ICollection/collections/ListNode.h \
  ICollection/collections/../interfaces/ICollection.h \
  ICollection/collections/../interfaces/IIterator.h \
- ICollection/collections/../interfaces/ICollectible.h Usuario.h \
+ ICollection/collections/../interfaces/ICollectible.h Visto.h Fecha.h \
  ICollection/interfaces/ICollectible.h ICollection/String.h \
  ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/OrderedKey.h Miembro.h Fecha.h Grupo.h \
+ ICollection/interfaces/OrderedKey.h Usuario.h Miembro.h Grupo.h \
  ICollection/collections/OrderedDictionary.h \
  ICollection/collections/OrderedDictionaryEntry.h \
  ICollection/collections/../interfaces/OrderedKey.h \
  ICollection/collections/../interfaces/ICollectible.h \
- ICollection/collections/../interfaces/IDictionary.h Visto.h
+ ICollection/collections/../interfaces/IDictionary.h InterfazGrafica.h
 
 Conversaciones.h:
 
@@ -40,7 +40,9 @@ ICollection/collections/../interfaces/IIterator.h:
 
 ICollection/collections/../interfaces/ICollectible.h:
 
-Usuario.h:
+Visto.h:
+
+Fecha.h:
 
 ICollection/interfaces/ICollectible.h:
 
@@ -50,9 +52,9 @@ ICollection/interfaces/ICollectible.h:
 
 ICollection/interfaces/OrderedKey.h:
 
-Miembro.h:
+Usuario.h:
 
-Fecha.h:
+Miembro.h:
 
 Grupo.h:
 
@@ -66,4 +68,4 @@ ICollection/collections/../interfaces/ICollectible.h:
 
 ICollection/collections/../interfaces/IDictionary.h:
 
-Visto.h:
+InterfazGrafica.h:
