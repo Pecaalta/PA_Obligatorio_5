@@ -34,6 +34,7 @@ public:
     void ImprimeUsuarioDetallada();
     string getNumero();
     
+    void MenuAgragaAdministrador();
     void SolicitaListaContactosDetallada();
 
     // Constructores y Destructores

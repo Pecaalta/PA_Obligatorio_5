@@ -55,7 +55,6 @@ public:
     void setVistos(IDictionary* _vistos);
 
 
-
 private:
     IDictionary* integrantes;
     IDictionary* mensaejs;

@@ -101,24 +101,22 @@ void Grupo::commit() {
 }
 
 void Grupo::SolicitaListaContactos() {
-    cout << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << " Contactos del Grupo" << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl;
+    header("Contactos de " + this->nombre);
     Miembro* n;
     if (!this->integrantes->isEmpty()) {
         IIterator* it = this->integrantes->getIterator();
+        li();
         while (it->hasCurrent()) {
+            li("-");
             n = (Miembro*) it->getCurrent();
             n->ImprimeUsuario();
+            li("-");
             it->next();
         }
+        li();
         delete it;
     } else {
-        cout << endl;
-        cout << "\t No tines Contactos" << endl;
-        cout << endl;
+        alarm("No tines Contactos");
     }
 };
 
@@ -171,12 +169,12 @@ string Grupo::tipo() {
 // Funciones de imprecion
 
 void Grupo::impresionSimple() {
-    li("Nombre: " + this->nombre );
-    li("Imagen: " + this->imagen );
+    li("Nombre: " + this->nombre);
+    li("Imagen: " + this->imagen);
 }
 
 void Grupo::impresionSuperSimple() {
-    li("Nombre: " + this->nombre );
+    li("Nombre: " + this->nombre);
 }
 
 // Constructores y Destructores

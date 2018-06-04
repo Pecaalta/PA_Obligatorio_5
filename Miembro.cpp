@@ -78,6 +78,10 @@ string Miembro::getNumero() {
     return this->user->getNumero();
 };
 
+void Miembro::MenuAgragaAdministrador() {
+    this->Conversacion->SolicitaListaContactosDetallada();
+}
+
 void Miembro::SolicitaListaContactosDetallada() {
     this->Conversacion->SolicitaListaContactosDetallada();
 }

@@ -133,7 +133,8 @@ bool Sistema::ListarOpciones() {
     int Opciones = 0;
     do {
         header(" Opciones del Sistema");
-        ol();
+        cout << (int)'ñ';
+                ol();
         ol("AbrirGuasapTECNO");
         ol("CerrarGuasapTECNO");
         ol("AgregarContactos");
@@ -310,7 +311,7 @@ bool Sistema::AgregarContactos() {
         un contacto que ya posee, el sistema muestra un mensaje acorde sin
         finalizar el caso de uso.
      */
-    int Opciones = 0;
+    int Opciones = 0, OpcionesSubMenu = 0;
     string Numero;
     IKey* k;
     do {
@@ -344,16 +345,16 @@ bool Sistema::AgregarContactos() {
                     ol();
                     ol("Añadir a mis contactos");
                     ol("Me equivoque");
-                    Opciones = CinInt();
-                    if (Opciones == 1) {
+                    OpcionesSubMenu = CinInt();
+                    if (OpcionesSubMenu == 1) {
                         this->activo->addContacto(n);
                     }
-                } while (olBool(Opciones));
+                } while (olBool(OpcionesSubMenu));
             }
         } else if (Opciones == 2) {
             return false;
         }
-    } while (olBool(Opciones) || Opciones == 2 );
+    } while (true);
 };
 
 bool Sistema::AltaGrupo() {
@@ -381,7 +382,7 @@ bool Sistema::AltaGrupo() {
         manera.
      */
     if (this->activo->isEmptyContactos()) {
-        alarm("No tienes contacxtos como para aser un grupo");
+        alarm("No tienes contactos como para aser un grupo");
         return false;
     }
     int Opciones = 0;
@@ -461,13 +462,14 @@ bool Sistema::AltaGrupo() {
             ol("No");
             Opciones = CinInt();
             if (Opciones == 2) {
-                FinalisarPaso1 = false;
+                delete contactos;
+                return false;
             }
         } while (Opciones != 1 and Opciones != 2);
     } while (Opciones != 1 and Opciones != 2);
     if (Opciones == 1) {
-        Nombre = CinInt("Ingrese un Nombre");
-        Imagen = CinInt("Ingrese un Imagen");
+        Nombre = CinString("Ingrese un Nombre");
+        Imagen = CinString("Ingrese un Imagen");
 
         k = new String(Nombre.c_str());
         Grupo* g = new Grupo(Nombre, Imagen, contactos);

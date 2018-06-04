@@ -197,7 +197,9 @@ bool Usuario::ListarMisGrupoas() {
         IIterator* it = this->grupos->getIterator();
         while (it->hasCurrent()) {
             n = (Miembro*) it->getCurrent();
+            li("-");
             n->ImprimeGrupo();
+            li("-");
             it->next();
         }
         delete it;
