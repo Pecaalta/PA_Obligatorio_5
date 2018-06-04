@@ -31,6 +31,9 @@ public:
     void setUltima(Fecha* _ultima);
     IDictionary* getConversaciones();
     void setConversaciones(IDictionary* _conversaciones);
+    bool memberContactos(IKey* k);
+    bool isEmptyContactos();
+    Usuario* findContactos(IKey* k);
     IDictionary* getEstados();
     void setEstados(IDictionary* _estados);
     IDictionary* getMensajes();
@@ -41,13 +44,13 @@ public:
     bool ListarMisGrupoas();
     void ListarMisGruposSimple();
     bool AgregarAdministradores();
-    
+
     void ListarMisConversaciones();
     void ListarMisConversacionesArchivadas();
     void ListarNombreDeGrupos();
     int CuentaArchivadas();
-    
 
+    bool AltaGrupo();
     bool ModificarUsuario();
     bool EnviarMensaje();
     bool EliminarMensaje();

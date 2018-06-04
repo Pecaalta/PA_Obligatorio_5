@@ -133,11 +133,6 @@ bool Sistema::ListarOpciones() {
     int Opciones = 0;
     do {
         header(" Opciones del Sistema");
-        if (Opciones != 0) {
-            Subheader("Opciones incorecta");
-        } else {
-            cout << endl;
-        }
         ol();
         ol("AbrirGuasapTECNO");
         ol("CerrarGuasapTECNO");
@@ -153,34 +148,38 @@ bool Sistema::ListarOpciones() {
         ol("EliminarMensaje");
         ol("Cerrar Applicacion");
         Opciones = CinInt();
-    } while (Opciones < 1 || Opciones > olNum());
-    switch (Opciones) {
-        case 1:
-            return AbrirGuasapTECNO(); // Test
-        case 2:
-            return CerrarGuasapTECNO(); // Test
-        case 3:
-            return AgregarContactos(); // Test
-        case 4:
-            return AltaGrupo(); // Test
-        case 5:
-            return AgregarAdministradores(); // mauro
-        case 6:
-            return EnviarMensaje(); // 
-        case 7:
-            return VerMensajes(); // 
-        case 8:
-            return ArchivarConversaciones(); // 
-        case 9:
-            return AgregarParticipantes(); // lucas
-        case 10:
-            return EliminarParticipantes(); // seba 
-        case 11:
-            return ModificarUsuario(); // maxi
-        case 12:
-            return EliminarMensaje(); // 
-        case 13:
-            return true;
+    } while (olBool(Opciones));
+    if (Opciones != 1 and this->activo == NULL) {
+        alarm("¡No hay usuario en secion!");
+    } else {
+        switch (Opciones) {
+            case 1:
+                return AbrirGuasapTECNO(); // Test
+            case 2:
+                return CerrarGuasapTECNO(); // Test
+            case 3:
+                return AgregarContactos(); // Test
+            case 4:
+                return AltaGrupo(); // Test
+            case 5:
+                return AgregarAdministradores(); // mauro
+            case 6:
+                return EnviarMensaje(); // 
+            case 7:
+                return VerMensajes(); // 
+            case 8:
+                return ArchivarConversaciones(); // 
+            case 9:
+                return AgregarParticipantes(); // lucas
+            case 10:
+                return EliminarParticipantes(); // seba 
+            case 11:
+                return ModificarUsuario(); // maxi
+            case 12:
+                return EliminarMensaje(); // 
+            case 13:
+                return true;
+        }
     }
 };
 
@@ -191,7 +190,6 @@ bool Sistema::AbrirGuasapTECNO() {
     int Opcion;
     system("cls");
     header("Abrir GuasapTECNO");
-    cout << endl;
     Numero = CinString("Ingrese su Numero");
     IKey* k = new String(Numero.c_str());
     if (this->activo == NULL) {
@@ -199,8 +197,9 @@ bool Sistema::AbrirGuasapTECNO() {
             do {
                 system("cls");
                 header("No hay usaurio en el sistema");
-                cout << "\t 1 -  Registrarse" << endl;
-                cout << "\t 2 -  Salir" << endl;
+                ol();
+                ol("Registrarse");
+                ol("Salir");
                 Opcion = CinInt();
                 if (Opcion == 1) {
                     this->NuevoUsuario(Numero);
@@ -209,15 +208,16 @@ bool Sistema::AbrirGuasapTECNO() {
                 } else if (Opcion == 2) {
                     return true;
                 }
-            } while (Opcion != 1 && Opcion != 2);
+            } while (olBool(Opcion));
         } else {
             do {
                 if (!this->usuarios->member(k)) {
                     system("cls");
                     header("El usaurio no existe");
-                    cout << "\t 1 -  Registrarse" << endl;
-                    cout << "\t 2 -  Reintentar" << endl;
-                    cout << "\t 3 -  Salir" << endl;
+                    ol();
+                    ol("Registrarse");
+                    ol("Reintentar");
+                    ol("Salir");
                     Opcion = CinInt();
                     if (Opcion == 1) {
                         this->NuevoUsuario(Numero);
@@ -235,16 +235,17 @@ bool Sistema::AbrirGuasapTECNO() {
                     this->log = true;
                     return false;
                 }
-            } while (true);
+            } while (olBool(Opcion));
         }
     } else {
         do {
             if (Numero.compare(this->activo->getNumero()) != 0) {
                 system("cls");
                 header("Hay otro usaurio logeado");
-                cout << "\t 1 -  Cerrar secion" << endl;
-                cout << "\t 2 -  Reintentar" << endl;
-                cout << "\t 3 -  Salir" << endl;
+                ol();
+                ol("Cerrar secion");
+                ol("Reintentar");
+                ol("Salir");
                 Opcion = CinInt();
                 if (Opcion == 1) {
                     this->CerrarGuasapTECNO();
@@ -261,7 +262,7 @@ bool Sistema::AbrirGuasapTECNO() {
             } else {
                 return false;
             }
-        } while (true);
+        } while (olBool(Opcion));
     }
 };
 
@@ -272,10 +273,11 @@ bool Sistema::CerrarGuasapTECNO() {
         do {
             header("Cerrar GuasapTECNO");
             if (opcion != 0) {
-                Subheader("Opcion incorrecta");
+                alarm("Opcion incorrecta");
             }
-            cout << "\t 1 - Volver" << endl;
-            cout << "\t 2 - Cerrar secion" << endl;
+            ol();
+            ol("Volver");
+            ol("Cerrar secion");
             opcion = CinInt();
             if (opcion == 1) {
                 return false;
@@ -285,7 +287,7 @@ bool Sistema::CerrarGuasapTECNO() {
             }
         } while (true);
     } else {
-        header("No hay usuario logeado");
+        alarm("No hay usuario logeado");
         system("pause");
     }
 };
@@ -312,20 +314,24 @@ bool Sistema::AgregarContactos() {
     string Numero;
     IKey* k;
     do {
+        header("Agregar contacto");
         this->activo->SolicitaListaContactos();
-        cout << "\t 1 - Agregar contacto" << endl;
-        cout << "\t 2 - Volver" << endl;
+        ol();
+        ol("Agregar contacto");
+        ol("Volvern");
         Opciones = CinInt();
         if (Opciones == 1) {
             header("Agregar Contactos");
             Numero = CinString("Ingrese el numero");
             k = new String(Numero.c_str());
             if (this->usuarios->isEmpty()) {
-                header("¡El hay usuarios en el sistema!");
+                alarm("¡El hay usuarios en el sistema!");
             } else if (!this->usuarios->member(k)) {
-                header("¡El Usuario no existe!");
+                alarm("¡El Usuario no existe!");
+            } else if (this->activo->getNumero().compare(Numero) == 0) {
+                alarm("¡No te puedes agregar como contacto!");
             } else if (this->activo->member(k)) {
-                header("¡El Usuario ya es un contacto!");
+                alarm("¡El Usuario ya es un contacto!");
             } else {
                 Usuario* n = (Usuario*) this->usuarios->find(k);
                 li();
@@ -335,18 +341,19 @@ bool Sistema::AgregarContactos() {
                 li("Descripcion " + n->getDireccion());
                 li();
                 do {
-                    cout << "\t 1 Añadir a mis contactos" << endl;
-                    cout << "\t 2 Me equivoque" << endl;
+                    ol();
+                    ol("Añadir a mis contactos");
+                    ol("Me equivoque");
                     Opciones = CinInt();
                     if (Opciones == 1) {
                         this->activo->addContacto(n);
                     }
-                } while (Opciones != 1 and Opciones != 2);
+                } while (olBool(Opciones));
             }
         } else if (Opciones == 2) {
             return false;
         }
-    } while (true);
+    } while (olBool(Opciones) || Opciones == 2 );
 };
 
 bool Sistema::AltaGrupo() {
@@ -373,9 +380,10 @@ bool Sistema::AltaGrupo() {
         se finaliza el caso de uso. En situaciones análogas se procede de la misma
         manera.
      */
-    system("cls");
-    header("Alta Grupo");
-    cout << endl;
+    if (this->activo->isEmptyContactos()) {
+        alarm("No tienes contacxtos como para aser un grupo");
+        return false;
+    }
     int Opciones = 0;
     string Numero, Nombre, Imagen;
     IDictionary* contactos = new OrderedDictionary();
@@ -384,51 +392,60 @@ bool Sistema::AltaGrupo() {
     bool FinalisarPaso1 = true;
     do {
         do {
-            IIterator* it = contactos->getIterator();
-            while (it->hasCurrent()) {
-                n = (Usuario*) it->getCurrent();
-                cout << endl;
-                li();
-                n->impresionSimple();
-                li();
-                it->next();
+            header("Alta Grupo");
+            Subheader("Contactos del grupo al momento");
+            li();
+            if (contactos->isEmpty()) {
+                li("El grupo esta vacio por el momento.");
+            } else {
+                IIterator* it = contactos->getIterator();
+                while (it->hasCurrent()) {
+                    n = (Usuario*) it->getCurrent();
+                    li("-");
+                    n->impresionSimple();
+                    li("-");
+                    it->next();
+                }
+                delete it;
             }
-            delete it;
-
-            this->SolicitaListaContactos();
-            cout << "\t 1 Agregar contactos" << endl;
-            cout << "\t 2 Quitar contactos" << endl;
-            cout << "\t 3 Finalizar" << endl;
+            li();
+            this->activo->SolicitaListaContactos();
+            ol();
+            ol("Agregar contactos");
+            ol("Quitar contactos");
+            ol("Finalizar");
             Opciones = CinInt();
             if (Opciones == 1 || Opciones == 2) {
                 Numero = CinString("Ingrese el numero");
                 k = new String(Numero.c_str());
-                if (Numero.compare(this->activo->getNumero()) != 0) {
-                    if (Opciones == 1) {
-                        if (!contactos->member(k)) {
-                            contactos->add(k, (Usuario*)this->usuarios->find(k));
-                        } else {
-                            header("Ya pertenece al grupo");
-                            system("pause");
+                if (this->activo->memberContactos(k)) {
+                    if (Numero.compare(this->activo->getNumero()) != 0) {
+                        if (Opciones == 1) {
+                            if (!contactos->member(k)) {
+                                contactos->add(k, this->activo->findContactos(k));
+                            } else {
+                                alarm("Ya pertenece al grupo");
+                            }
+                        } else if (Opciones == 2) {
+                            if (contactos->member(k)) {
+                                contactos->remove(k);
+                            } else {
+                                alarm("No pertenece al grupo");
+                            }
                         }
-                    } else if (Opciones == 2) {
-                        if (contactos->member(k)) {
-                            contactos->remove(k);
-                        } else {
-                            header("No pertenece al grupo");
-                            system("pause");
-                        }
+                    } else {
+                        alarm("Imposivle es tu numero");
                     }
                 } else {
-                    header("Imposivle es tu numero");
-                    system("pause");
+                    alarm("El numero no es tu contacto");
                 }
             } else if (Opciones == 3) {
                 if (contactos->isEmpty()) {
                     system("cls");
                     header("El Grupo esta vacio");
-                    cout << "1 - Seguir" << endl;
-                    cout << "2 - Salir" << endl;
+                    ol();
+                    ol("Seguir");
+                    ol("Salir");
                     Opciones = CinInt();
                     if (Opciones == 2) {
                         delete contactos;
@@ -438,9 +455,10 @@ bool Sistema::AltaGrupo() {
             }
         } while (Opciones != 3);
         do {
-            header(" ¿Confirma grupo ? ");
-            cout << "1 - Si" << endl;
-            cout << "2 - No" << endl;
+            header(" ¿ Confirma grupo ? ");
+            ol();
+            ol("Si");
+            ol("No");
             Opciones = CinInt();
             if (Opciones == 2) {
                 FinalisarPaso1 = false;
@@ -448,7 +466,6 @@ bool Sistema::AltaGrupo() {
         } while (Opciones != 1 and Opciones != 2);
     } while (Opciones != 1 and Opciones != 2);
     if (Opciones == 1) {
-
         Nombre = CinInt("Ingrese un Nombre");
         Imagen = CinInt("Ingrese un Imagen");
 
@@ -458,7 +475,6 @@ bool Sistema::AltaGrupo() {
         this->grupos->add(k, g);
     }
     return false;
-
 };
 
 bool Sistema::AgregarAdministradores() {

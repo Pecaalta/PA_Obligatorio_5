@@ -33,7 +33,6 @@ void Grupo::setVistos(IDictionary* _vistos) {
 
 void Grupo::setAdmin(Usuario* _user) {
     IKey* k = new String(_user->getNumero().c_str());
-
     Miembro* mim = new Miembro(_user, this);
     Visto* vis = new Visto(_user);
     mim->setAdministrador(true);

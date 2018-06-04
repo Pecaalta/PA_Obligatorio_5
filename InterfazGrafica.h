@@ -16,8 +16,12 @@
 
 #include "string"
 using namespace std;
+
+ void gotoxy(int x,int y);
+
 void Subheader(string texto);
 void header(string texto);
+void header(bool limpiarPantalla, string texto);
 string CinString();
 string CinString(string texto);
 int CinInt();
@@ -28,5 +32,7 @@ void li(string texto);
 void ol(string texto);
 void ol();
 int olNum();
+bool olBool(int numero);
+void alarm(string text);
 #endif /* INTERFAZGRAFICA_H */
 

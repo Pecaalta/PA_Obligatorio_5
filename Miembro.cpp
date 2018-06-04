@@ -62,8 +62,7 @@ void Miembro::ImprimeGrupo() {
 
 void Miembro::ImprimeUsuario() {
     this->user->impresionSimple();
-  
-                li(this->administrador ? "administrador" : "Comun");
+    li(this->administrador ? "administrador" : "Comun");
 };
 
 void Miembro::impresionSuperSimple() {
@@ -71,10 +70,8 @@ void Miembro::impresionSuperSimple() {
 };
 
 void Miembro::ImprimeUsuarioDetallada() {
-    cout << "----------------------------------------------" << endl;
     this->user->impresionSimple();
-    cout << (this->administrador ? "\t Privilegios administrador" : "\t Privilegios estandar") << endl;
-    cout << "----------------------------------------------" << endl;
+    li(this->administrador ? "administrador" : "Comun");
 };
 
 string Miembro::getNumero() {

@@ -82,6 +82,18 @@ void Usuario::setConversaciones(IDictionary* _conversaciones) {
     this->conversaciones = _conversaciones;
 };
 
+bool Usuario::memberContactos(IKey* k) {
+    return (!this->contactos->isEmpty() and this->contactos->member(k));
+}
+
+bool Usuario::isEmptyContactos() {
+    return this->contactos->isEmpty();
+}
+
+Usuario* Usuario::findContactos(IKey* k) {
+    return (Usuario*) this->contactos->find(k);
+};
+
 // Funciones de estados
 
 IDictionary* Usuario::getEstados() {
@@ -153,8 +165,7 @@ int Usuario::CuentaArchivadas() {
 // Listados
 
 void Usuario::ListarMisGruposSimple() {
-
-    header("Tus Grupos");
+    Subheader("Tus Grupos");
     Miembro* n;
     li();
     if (!this->grupos->isEmpty()) {
@@ -179,39 +190,33 @@ void Usuario::ListarMisGruposSimple() {
 }
 
 bool Usuario::ListarMisGrupoas() {
-    system("cls");
-    header("Tus Grupos");
-    cout << endl;
-    Miembro* n;
     if (!this->grupos->isEmpty()) {
+        Subheader("Tus Grupos");
+        Miembro* n;
+        li();
         IIterator* it = this->grupos->getIterator();
         while (it->hasCurrent()) {
             n = (Miembro*) it->getCurrent();
-            cout << endl;
             n->ImprimeGrupo();
             it->next();
         }
         delete it;
+        li();
         return true;
     } else {
-        cout << endl;
-        cout << "\t No tines Grupos" << endl;
-        cout << endl;
-        system("pause");
+        alarm("No tines Grupos");
         return false;
     }
 }
 
 void Usuario::ListarMisConversacionesArchivadas() {
-    system("cls");
-    header("Tus Conversaciones Archivadas");
-    cout << endl;
+    Subheader("Tus Conversaciones Archivadas");
     Miembro* n;
+    li();
     if (!this->conversaciones->isEmpty()) {
         IIterator* it = this->conversaciones->getIterator();
         while (it->hasCurrent()) {
             n = (Miembro*) it->getCurrent();
-            cout << endl;
             if (n->getArchivado()) {
                 n->impresionSuperSimple();
             }
@@ -219,40 +224,41 @@ void Usuario::ListarMisConversacionesArchivadas() {
         }
         delete it;
     } else {
-        cout << endl;
-        cout << "\t No tines Conversaciones Archivadas" << endl;
-        cout << endl;
+        li("No tines Conversaciones Archivadas");
     }
+    li();
 };
 
 void Usuario::ListarNombreDeGrupos() {
 };
 
 void Usuario::ListarMisConversaciones() {
-    header("Tus Conversaciones Activas");
-    cout << endl;
+    Subheader("Tus Conversaciones Activas");
     Miembro* n;
+    li();
     if (!this->conversaciones->isEmpty()) {
         IIterator* it = this->conversaciones->getIterator();
         while (it->hasCurrent()) {
             n = (Miembro*) it->getCurrent();
-            cout << endl;
             if (!n->getArchivado()) {
+                li("-");
                 n->impresionSuperSimple();
+
+                li("-");
             }
             it->next();
         }
         delete it;
     } else {
-        cout << endl;
-        cout << "\t No tines Conversaciones Activas" << endl;
-        cout << endl;
+        li("-");
+        li("No tines Conversaciones Activas");
+        li("-");
     }
+    li();
 }
 
 void Usuario::SolicitaListaContactos() {
-    system("cls");
-    header("Tus Contactos");
+    Subheader("Tus Contactos");
     cout << endl;
     Usuario* n;
     li();
@@ -391,53 +397,41 @@ bool Usuario::AgregarAdministradores() {
     do {
         header("Agregar Administradores");
         if (this->ListarMisGrupoas()) {
-            cout << "----------------------------------------------" << endl;
-            cout << "\t Selecciona Grupo: ";
-            fflush(stdin);
-            getline(cin, Nombre);
+            Nombre = CinString("Selecciona Grupo");
             k = new String(Nombre.c_str());
             while (!this->grupos->member(k)) {
-                cout << "\t No hay grupos con ese nombre" << endl;
-                cout << "\t 1 - Reintentar" << endl;
-                cout << "\t 2 - Salir" << endl;
-                cin >> Opciones;
+                header("No hay grupos con ese nombre");
+                ol();
+                ol("Reintentar");
+                ol("Salir");
+                Opciones = CinInt();
                 if (Opciones == 2) {
                     return false;
                 }
-                cout << "\t Selecciona Grupo: ";
-                fflush(stdin);
-                getline(cin, Nombre);
+                header("Agregar Administradores");
+                this->ListarMisGrupoas();
+                Nombre = CinString("Selecciona Grupo");
                 delete k;
                 k = new String(Nombre.c_str());
             }
             gurpo = ((Miembro*) this->grupos->find(k))->getConversacion();
             gurpo->SolicitaListaContactos();
-            cout << "\t Selecciona Usuario: ";
-            fflush(stdin);
-            getline(cin, Nombre);
+            Nombre = CinString("Selecciona Usuario");
             k = new String(Nombre.c_str());
             if (!gurpo->getAdministradores(new String(this->numero.c_str()))) {
-                system("cls");
-                cout << "-----------------------------------------" << endl;
-                cout << " No tines permisos" << endl;
-                cout << "-----------------------------------------" << endl;
-                system("pause");
+                alarm("No tines permisos");
             } else if (!gurpo->getAdministradores(k)) {
                 gurpo->HacerAdministradores(k);
             } else {
-                system("cls");
-                cout << "-----------------------------------------" << endl;
-                cout << " No tines permisos" << endl;
-                cout << "-----------------------------------------" << endl;
-                system("pause");
+                alarm("No tines permisos");
             }
             do {
                 system("cls");
                 header("Agregar Administradores");
-
-                cout << "\t 1 - Agregar Administrador" << endl;
-                cout << "\t 2 - Salir" << endl;
-                cin >> Opciones;
+                ol();
+                ol("Agregar Administrador");
+                ol("Salir");
+                Opciones = CinInt();
             } while (Opciones != 1 and Opciones != 2);
         } else {
             Opciones = 2;
