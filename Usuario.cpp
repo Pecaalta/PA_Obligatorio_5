@@ -308,27 +308,25 @@ bool Usuario::ModificarUsuario() {
 // Mensajes
 
 bool Usuario::EnviarMensaje() {
-    system("cls");
     header("Enviar Mensaje");
-    cout << endl;
-
     this->ListarMisConversaciones();
     cout << endl;
     this->ListarMisGruposSimple();
     cout << endl;
     int cant = this->CuentaArchivadas();
-    if (cant > 0) {
-        cout << "-----------------------------------------" << endl;
-        cout << " Archivadas " << cant << endl;
-        cout << "-----------------------------------------" << endl;
-    }
+    li();
+    li(" Archivadas " + to_string(this->CuentaArchivadas()));
+    li();
     int opcion;
-    {
-        cout << "\t 1 - Seleccionar una conversación activa" << endl;
-        cout << "\t 2 - Ver las conversaciones archivadas" << endl;
-        cout << "\t 3 - Enviar un mensaje a un contacto sin conversacion" << endl;
-        cout << "\t 4 - Volver" << endl;
-        cin >> opcion;
+    string Numero;
+    IKey* k;
+    do{
+        ol();
+        ol("Seleccionar una conversación activa");
+        ol("Ver las conversaciones archivadas");
+        ol("Enviar un mensaje a un contacto sin conversacion");
+        ol("Volver");
+        opcion = CinInt();
     }
     while (opcion < 1 || opcion > 4);
     switch (opcion) {
@@ -338,12 +336,26 @@ bool Usuario::EnviarMensaje() {
         case 2:
             break;
         case 3:
+            this->SolicitaListaContactos();
+            Numero = CinString("Seleccionar una Contacto");
+            k = new String(Numero.c_str());
+            if (this->contactos->member(k)){
+                do {
+                    cout << "Seleccionar Tipo de mensaje";
+                    ol();
+                    ol("Ver las conversaciones archivadas");
+                    ol("Enviar un mensaje a un contacto sin conversacion");
+                    ol("Volver");
+                    opcion = CinInt();
+                } while (opcion < 1 || opcion > 4);
+            }else{
+                alarm("No posee ese numero como contacto");
+            }
             break;
         case 4:
+            return false;
             break;
     }
-
-    system("pause");
 
 };
 

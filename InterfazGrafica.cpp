@@ -73,7 +73,7 @@ void header(string texto) {
     int anchoImprimible = (ancho - 10);
     int spacio = (anchoImprimible - texto.size()) / 2;
     int var1 = (spacio * 2);
-    int var2 = anchoImprimible - texto.size();
+    int var2 = anchoImprimible - texto.size();    
     cout << endl;
     cout << tab << ASCII[2];
     for (int i = 0; i < anchoImprimible; i++) {
@@ -84,7 +84,7 @@ void header(string texto) {
     cout << tab << ASCII[1];
     for (int i = 0; i < spacio; i++) {
         cout << " ";
-    }
+    }   
     cout << texto;
     if (var1 != var2) {
         cout << " ";

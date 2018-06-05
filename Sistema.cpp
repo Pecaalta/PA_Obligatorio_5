@@ -132,9 +132,8 @@ void Sistema::SolicitaListaContactos() {
 bool Sistema::ListarOpciones() {
     int Opciones = 0;
     do {
-        header(" Opciones del Sistema");
-        cout << (int)'ñ';
-                ol();
+        header(" ñOpciones del Sistema");
+        ol();
         ol("AbrirGuasapTECNO");
         ol("CerrarGuasapTECNO");
         ol("AgregarContactos");
@@ -163,9 +162,9 @@ bool Sistema::ListarOpciones() {
             case 4:
                 return AltaGrupo(); // Test
             case 5:
-                return AgregarAdministradores(); // mauro
+                return AgregarAdministradores(); // Test
             case 6:
-                return EnviarMensaje(); // 
+                return EnviarMensaje(); // Mauro
             case 7:
                 return VerMensajes(); // 
             case 8:
@@ -520,7 +519,7 @@ bool Sistema::EnviarMensaje() {
         opciones:
         1. Seleccionar una conversación activa
         2. Ver las conversaciones archivadas
-        3.Enviar un mensaje a un contacto con el cuál aún no ha iniciado
+        3. Enviar un mensaje a un contacto con el cuál aún no ha iniciado
         una conversación
         Si el usuario elige la primera opción, luego ingresa el identificador
         de la conversación activa que quiere seleccionar.
