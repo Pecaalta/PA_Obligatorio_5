@@ -32,6 +32,7 @@ public:
     IDictionary* getIntegrantes();
     void setIntegrantes(IDictionary* _integrantes);
 
+    void addMensaje(Mensaje* mens, string Numero);
     string tipo();
 
     // Constructores y Destructores

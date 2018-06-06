@@ -26,7 +26,7 @@ public:
     void setAutor(Usuario* _autor);
 
     // Constructores y Destructores
-    Mensaje(Fecha* _fecha, int _id, string _texto, bool _borrado, Usuario* _autor);
+    Mensaje(int _id, string _texto, Usuario* _autor);
     Mensaje();
     ~Mensaje();
 private:

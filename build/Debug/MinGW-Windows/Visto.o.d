@@ -9,7 +9,7 @@ build/Debug/MinGW-Windows/Visto.o: Visto.cpp Visto.h Fecha.h \
  ICollection/interfaces/OrderedKey.h ICollection/interfaces/IKey.h \
  Usuario.h ICollection/interfaces/IDictionary.h \
  ICollection/interfaces/IIterator.h ICollection/interfaces/IKey.h \
- Conversaciones.h Miembro.h Grupo.h \
+ Conversaciones.h Miembro_Conversacion.h Mensaje.h Miembro.h Grupo.h \
  ICollection/collections/OrderedDictionary.h \
  ICollection/collections/OrderedDictionaryEntry.h \
  ICollection/collections/../interfaces/OrderedKey.h \
@@ -53,6 +53,10 @@ ICollection/interfaces/IIterator.h:
 ICollection/interfaces/IKey.h:
 
 Conversaciones.h:
+
+Miembro_Conversacion.h:
+
+Mensaje.h:
 
 Miembro.h:
 

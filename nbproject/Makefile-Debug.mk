@@ -55,6 +55,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/InterfazGrafica.o \
 	${OBJECTDIR}/Mensaje.o \
 	${OBJECTDIR}/Miembro.o \
+	${OBJECTDIR}/Miembro_Conversacion.o \
 	${OBJECTDIR}/Sistema.o \
 	${OBJECTDIR}/Usuario.o \
 	${OBJECTDIR}/Visto.o \
@@ -79,11 +80,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Conversaciones.o: Conversaciones.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -184,6 +185,11 @@ ${OBJECTDIR}/Miembro.o: Miembro.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Miembro.o Miembro.cpp
+
+${OBJECTDIR}/Miembro_Conversacion.o: Miembro_Conversacion.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Miembro_Conversacion.o Miembro_Conversacion.cpp
 
 ${OBJECTDIR}/Sistema.o: Sistema.cpp
 	${MKDIR} -p ${OBJECTDIR}

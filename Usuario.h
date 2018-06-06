@@ -13,6 +13,7 @@
 #include "string"
 #include "string.h"
 #include "Grupo.h"
+#include "Mensaje.h"
 using namespace std;
 
 class Usuario : public ICollectible {
@@ -38,21 +39,28 @@ public:
     void setEstados(IDictionary* _estados);
     IDictionary* getMensajes();
     void setMensajes(IDictionary* _mensajes);
+    void addConversacion(Usuario* user, Conversaciones* con);
+    void addConversacion(Usuario* user, Miembro_Conversacion* miembro);
+    
+    
     void addGrupo(Miembro* con);
     void impresionSimple();
     void impresionSuperSimple();
     bool ListarMisGrupoas();
     void ListarMisGruposSimple();
+    void ListarMisGruposSimpleArchivadas();
+    
     bool AgregarAdministradores();
 
     void ListarMisConversaciones();
     void ListarMisConversacionesArchivadas();
     void ListarNombreDeGrupos();
     int CuentaArchivadas();
+    int CuentaNoArchivadas();
 
     bool AltaGrupo();
     bool ModificarUsuario();
-    bool EnviarMensaje();
+    int EnviarMensaje(int idMensaje);
     bool EliminarMensaje();
     bool VerMensajes();
     bool ArchivarConversaciones();

@@ -28,10 +28,10 @@ int CinInt();
 int CinInt(string texto);
 void li();
 void li(string texto);
-
 void ol(string texto);
 void ol();
 int olNum();
+void p(string texto);
 bool olBool(int numero);
 void alarm(string text);
 #endif /* INTERFAZGRAFICA_H */

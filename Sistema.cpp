@@ -132,7 +132,7 @@ void Sistema::SolicitaListaContactos() {
 bool Sistema::ListarOpciones() {
     int Opciones = 0;
     do {
-        header(" ñOpciones del Sistema");
+        header(" Opciones del Sistema");
         ol();
         ol("AbrirGuasapTECNO");
         ol("CerrarGuasapTECNO");
@@ -168,7 +168,7 @@ bool Sistema::ListarOpciones() {
             case 7:
                 return VerMensajes(); // 
             case 8:
-                return ArchivarConversaciones(); // 
+                return ArchivarConversaciones(); // Test
             case 9:
                 return AgregarParticipantes(); // lucas
             case 10:
@@ -527,12 +527,12 @@ bool Sistema::EnviarMensaje() {
         conversaciones archivadas de igual forma a la que se listan las
         conversaciones activas. Luego el usuario ingresa el identificador de
         la conversación archivada que quiere seleccionar.
-        Si elige la tercera opción, el sistema lista todos los contactos del
+            Si elige la tercera opción, el sistema lista todos los contactos del
         usuario, mostrando para cada uno su número de celular y nombre.
         Luego el usuario indica el contacto con el cual quiere iniciar la
         conversación individual, ingresando el número de celular del
         mismo.
-        Posteriormente, el usuario elige el tipo de mensaje que desea enviar
+            Posteriormente, el usuario elige el tipo de mensaje que desea enviar
         entre las opciones simple, imagen, video o contacto. En caso de
         elegir un mensaje simple debe ingresar el texto a enviar. En el caso
         de una imagen, debe ingresar su URL, formato, tamaño y de forma
@@ -551,7 +551,9 @@ bool Sistema::EnviarMensaje() {
         sistema muestra un mensaje apropiado y se finaliza el caso de uso.
         Este comportamiento se repite para situaciones análogas.
      */
-    this->activo->EnviarMensaje();
+    this->IDMensaje = this->activo->EnviarMensaje(this->IDMensaje);
+    return false;
+    
 };
 
 bool Sistema::VerMensajes() {
@@ -711,9 +713,18 @@ bool Sistema::EliminarMensaje() {
 };
 
 // Constructores y Destructores
+Sistema* Sistema::instance = 0;
 
+Sistema* Sistema::getInstance()
+{
+    if (instance == 0)
+    {
+        instance = new Sistema();
+    }
+    return instance;
+}
 Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary * _estados) {
-    this->IndexConversacion = 0;
+    this->IDMensaje = 0;
     this->activo = _activo;
     this->usuarios = _usuarios;
     this->conversaciones = _conversaciones;
@@ -723,7 +734,7 @@ Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _convers
 };
 
 Sistema::Sistema() {
-    this->IndexConversacion = 0;
+    this->IDMensaje = 0;
     this->activo = NULL;
     this->usuarios = new OrderedDictionary();
     this->conversaciones = new OrderedDictionary();

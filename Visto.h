@@ -13,9 +13,10 @@ class Visto : public ICollectible{
 	void  setUsuario(Usuario* _usuario);
 	Fecha* getFecha();
 	void  setFecha(Fecha* _fecha);
+	void  setFecha();
 	int getIdmensaje();
 	void  setIdmensaje(int _idmensaje);
-
+string getNumeroUsuario();
 	// Constructores y Destructores
 	Visto(Usuario* _usuario);
 	Visto();

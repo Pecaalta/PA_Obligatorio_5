@@ -45,6 +45,10 @@ bool Miembro::getAdministrador() {
 
 // conecto miembrio con conversacion y usuario
 
+void Miembro::addMensaje(Mensaje* mens, string Numero) {
+    this->Conversacion->addMensaje(mens, Numero);
+}
+
 void Miembro::addConversacion(Grupo* con) {
     this->user->addGrupo(this);
     this->Conversacion = con;
@@ -67,6 +71,10 @@ void Miembro::ImprimeUsuario() {
 
 void Miembro::impresionSuperSimple() {
     this->user->impresionSuperSimple();
+};
+
+void Miembro::impresionNombreGrupo() {
+    li("Nombre: " + this->Conversacion->getNombre());
 };
 
 void Miembro::ImprimeUsuarioDetallada() {

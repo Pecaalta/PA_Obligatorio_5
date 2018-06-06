@@ -73,7 +73,7 @@ void header(string texto) {
     int anchoImprimible = (ancho - 10);
     int spacio = (anchoImprimible - texto.size()) / 2;
     int var1 = (spacio * 2);
-    int var2 = anchoImprimible - texto.size();    
+    int var2 = anchoImprimible - texto.size();
     cout << endl;
     cout << tab << ASCII[2];
     for (int i = 0; i < anchoImprimible; i++) {
@@ -84,7 +84,7 @@ void header(string texto) {
     cout << tab << ASCII[1];
     for (int i = 0; i < spacio; i++) {
         cout << " ";
-    }   
+    }
     cout << texto;
     if (var1 != var2) {
         cout << " ";
@@ -99,6 +99,21 @@ void header(string texto) {
         cout << ASCII[0];
     }
     cout << ASCII[4] << endl;
+    cout << endl;
+};
+
+void p(string texto) {
+    int anchoImprimible = ancho - (tab.size() * 4) - 3;
+    anchoImprimible -= 4;
+    int i = 0;
+    cout << tab;
+    for (i; i < anchoImprimible && i < texto.size(); i++) {
+        cout << texto[i];
+    }
+    if (i == anchoImprimible) {
+        cout << "... ";
+    }
+
     cout << endl;
 };
 
@@ -148,12 +163,12 @@ void Subheader(string texto) {
     for (int i = 0; i < spacio; i++) {
         cout << " ";
     }
-    
+
     cout << " " << texto << " " << endl;
 
     cout << tab << tab << "  ";
     for (int i = 0; i < anchoImprimible; i++) {
-        cout << (char)205;
+        cout << (char) 205;
     }
     cout << endl;
 };
@@ -168,7 +183,6 @@ void li() {
         }
         cout << (char) 191;
     } else {
-
         cout << (char) 192;
         for (int i = 0; i < anchoImprimible; i++) {
             cout << (char) 196;

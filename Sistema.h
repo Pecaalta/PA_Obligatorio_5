@@ -1,9 +1,10 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 #include "Usuario.h"
+#include "ISistema.h"
 #include "ICollection/interfaces/IDictionary.h"
 
-class Sistema {
+class Sistema: public ISistema {
 public:
     Usuario* getActivo();
     void setActivo(Usuario* _activo);
@@ -35,12 +36,14 @@ public:
     // Pantallas
     bool ListarOpciones();
     // Constructores y Destructores
+    ~Sistema();
+    static Sistema* getInstance();
+private:
+    static Sistema* instance;
     Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary* _estados);
     Sistema();
-    ~Sistema();
-private:
     bool log;
-    int IndexConversacion;
+    int IDMensaje;
     Usuario* activo;
     IDictionary* usuarios;
     IDictionary* conversaciones;

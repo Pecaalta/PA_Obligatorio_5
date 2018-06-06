@@ -13,13 +13,14 @@
 
 #include <cstdlib>
 
+#include "ISistema.h"
 #include "Sistema.h"
 #include "iostream"
 #include "string"
 using namespace std;
 
 int main(int argc, char** argv) {
-    Sistema* sis = new Sistema();
+    ISistema* sis = Sistema::getInstance();
     sis->CargarUsuario();
     while(!sis->ListarOpciones());
     return 0;

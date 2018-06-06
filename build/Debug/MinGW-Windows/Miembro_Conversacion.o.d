@@ -1,35 +1,27 @@
-build/Debug/MinGW-Windows/Mensaje.o: Mensaje.cpp Mensaje.h Fecha.h \
- Usuario.h ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/IDictionary.h ICollection/interfaces/IKey.h \
+build/Debug/MinGW-Windows/Miembro_Conversacion.o: \
+ Miembro_Conversacion.cpp Miembro.h Fecha.h \
  ICollection/interfaces/ICollectible.h ICollection/interfaces/IIterator.h \
- ICollection/interfaces/IIterator.h ICollection/interfaces/IKey.h \
- ICollection/collections/List.h ICollection/collections/ListNode.h \
+ ICollection/interfaces/ICollectible.h ICollection/collections/List.h \
+ ICollection/collections/ListNode.h \
  ICollection/collections/../interfaces/ICollection.h \
  ICollection/collections/../interfaces/IIterator.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/OrderedKey.h Conversaciones.h \
- Miembro_Conversacion.h Visto.h Miembro.h Grupo.h InterfazGrafica.h
+ ICollection/interfaces/OrderedKey.h ICollection/interfaces/IKey.h \
+ Mensaje.h Usuario.h ICollection/interfaces/IDictionary.h \
+ ICollection/interfaces/IIterator.h ICollection/interfaces/IKey.h \
+ Conversaciones.h Miembro_Conversacion.h Visto.h Grupo.h \
+ InterfazGrafica.h
 
-Mensaje.h:
+Miembro.h:
 
 Fecha.h:
 
-Usuario.h:
-
-ICollection/interfaces/ICollectible.h:
-
-ICollection/interfaces/IDictionary.h:
-
-ICollection/interfaces/IKey.h:
-
 ICollection/interfaces/ICollectible.h:
 
 ICollection/interfaces/IIterator.h:
 
-ICollection/interfaces/IIterator.h:
-
-ICollection/interfaces/IKey.h:
+ICollection/interfaces/ICollectible.h:
 
 ICollection/collections/List.h:
 
@@ -47,13 +39,23 @@ ICollection/interfaces/ICollectible.h:
 
 ICollection/interfaces/OrderedKey.h:
 
+ICollection/interfaces/IKey.h:
+
+Mensaje.h:
+
+Usuario.h:
+
+ICollection/interfaces/IDictionary.h:
+
+ICollection/interfaces/IIterator.h:
+
+ICollection/interfaces/IKey.h:
+
 Conversaciones.h:
 
 Miembro_Conversacion.h:
 
 Visto.h:
-
-Miembro.h:
 
 Grupo.h:
 

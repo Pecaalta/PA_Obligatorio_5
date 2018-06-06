@@ -1,4 +1,4 @@
-build/Debug/MinGW-Windows/main.o: main.cpp Sistema.h Usuario.h \
+build/Debug/MinGW-Windows/main.o: main.cpp ISistema.h Usuario.h \
  ICollection/interfaces/ICollectible.h \
  ICollection/interfaces/IDictionary.h ICollection/interfaces/IKey.h \
  ICollection/interfaces/ICollectible.h ICollection/interfaces/IIterator.h \
@@ -8,10 +8,11 @@ build/Debug/MinGW-Windows/main.o: main.cpp Sistema.h Usuario.h \
  ICollection/collections/../interfaces/IIterator.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
- ICollection/interfaces/OrderedKey.h Conversaciones.h Visto.h Fecha.h \
- Miembro.h Grupo.h
+ ICollection/interfaces/OrderedKey.h Conversaciones.h \
+ Miembro_Conversacion.h Fecha.h Mensaje.h Visto.h Miembro.h Grupo.h \
+ Sistema.h
 
-Sistema.h:
+ISistema.h:
 
 Usuario.h:
 
@@ -47,10 +48,16 @@ ICollection/interfaces/OrderedKey.h:
 
 Conversaciones.h:
 
-Visto.h:
+Miembro_Conversacion.h:
 
 Fecha.h:
+
+Mensaje.h:
+
+Visto.h:
 
 Miembro.h:
 
 Grupo.h:
+
+Sistema.h:

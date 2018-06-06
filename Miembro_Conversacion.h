@@ -1,5 +1,5 @@
-#ifndef MIEMBRO_H
-#define MIEMBRO_H
+#ifndef MIEMBRO_CONVERSACION_H
+#define MIEMBRO_CONVERSACION_H
 
 #include "Fecha.h"
 
@@ -14,9 +14,9 @@ using namespace std;
 
 class Usuario;
 class Mensaje;
-class Grupo;
+class Conversaciones;
 
-class Miembro : public ICollectible {
+class Miembro_Conversacion : public ICollectible {
 public:
     bool getArchivado();
     void setArchivado(bool _archivado);
@@ -24,36 +24,35 @@ public:
     void setFecha(Fecha* _fecha);
     Usuario* getUsuario();
     void setUsuario(Usuario* user);
-    bool getAdministrador();
-    void setAdministrador(bool _admin);
-    void addConversacion(Grupo* con);
-    Grupo* getConversacion();
-    void addMensaje(Mensaje* mens, string Numero);
-    void ImprimeGrupo();
+    void addConversacion(Usuario* user, Conversaciones* con);
+    Conversaciones* getConversacion();
+    
+    void ImprimeConversacion(Usuario* user);
+    void ImprimeConversacion();
     void ImprimeUsuario();
-    void impresionSuperSimple();    
-    void impresionNombreGrupo();
-
+    void impresionSuperSimple();
     void ImprimeUsuarioDetallada();
     string getNumero();
+    void addMensaje(Mensaje* mens, string Numero);
     
     void MenuAgragaAdministrador();
     void SolicitaListaContactosDetallada();
 
     // Constructores y Destructores
-    Miembro(Usuario* _user,Grupo* _grupo );
-    Miembro(Usuario* _user);
-    Miembro();
-    ~Miembro();
+    Miembro_Conversacion(Usuario* _yo,Usuario* _user );
+    Miembro_Conversacion(Usuario* _user);
+    Miembro_Conversacion(Usuario* _yo,Conversaciones* _con);
+    Miembro_Conversacion();
+    ~Miembro_Conversacion();
 private:
     Usuario* user;
     bool archivado;
-    bool administrador;
-    Grupo* Conversacion;
+    Conversaciones* Conversacion;
     Fecha* fecha;
 };
+
 #include "Mensaje.h"
-#include "Grupo.h"
+#include "Conversaciones.h"
 #include "Usuario.h"
-#endif /* MIEMBRO_H */
+#endif /* MIEMBRO_CONVERSACION_H */
 

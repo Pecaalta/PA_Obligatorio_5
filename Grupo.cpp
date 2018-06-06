@@ -18,7 +18,14 @@ bool Grupo::getAdministradores(IKey* k) {
     return this->integrantes->member(k) and ((Miembro*)this->integrantes->find(k))->getAdministrador();
 }
 
-
+void Grupo::addMensaje(Mensaje* mens, string Numero) {
+    IKey* k = new String(to_string(mens->getId()).c_str());
+    this->mensaejs->add(k,mens);
+    k = new String(Numero.c_str());
+    Visto* v = (Visto*)this->visto->find(k);
+    v->setIdmensaje(mens->getId());
+    v->setFecha();
+}
 //Agrego visto
 
 IDictionary* Grupo::getVistos() {
