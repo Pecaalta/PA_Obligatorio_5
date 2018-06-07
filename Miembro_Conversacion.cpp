@@ -67,6 +67,11 @@ void Miembro_Conversacion::impresionSuperSimple() {
 void Miembro_Conversacion::ImprimeUsuarioDetallada() {
     this->user->impresionSimple();
 };
+void Miembro_Conversacion::ImprimeMensajes() {
+    header("Mensajes");
+    this->Conversacion->ImprimeMensajes();
+   
+};
 
 string Miembro_Conversacion::getNumero() {
     return this->user->getNumero();

@@ -32,6 +32,7 @@ public:
     void ImprimeUsuario();
     void impresionSuperSimple();
     void ImprimeUsuarioDetallada();
+    void ImprimeMensajes();
     string getNumero();
     void addMensaje(Mensaje* mens, string Numero);
     

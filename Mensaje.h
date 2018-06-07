@@ -24,6 +24,7 @@ public:
     void setBorrado(bool _borrado);
     Usuario* getAutor();
     void setAutor(Usuario* _autor);
+   void SetVisto(Usuario* _user);
 
     // Constructores y Destructores
     Mensaje(int _id, string _texto, Usuario* _autor);
@@ -34,6 +35,7 @@ private:
     int id;
     string texto;
     bool borrado;
+    IDictionary* MVisto;
     Usuario* autor;
 };
 

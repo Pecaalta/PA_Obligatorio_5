@@ -20,7 +20,15 @@ bool Grupo::getAdministradores(IKey* k) {
 
 void Grupo::addMensaje(Mensaje* mens, string Numero) {
     IKey* k = new String(to_string(mens->getId()).c_str());
-    this->mensaejs->add(k,mens);
+    this->mensaejs->add(k, mens);
+    Miembro* n;
+    IIterator* it = this->integrantes->getIterator();
+    while (it->hasCurrent()) {
+        n = (Miembro*) it->getCurrent();
+        mens->SetVisto(n->getUsuario());
+        it->next();
+    }
+    delete it;
     k = new String(Numero.c_str());
     Visto* v = (Visto*)this->visto->find(k);
     v->setIdmensaje(mens->getId());

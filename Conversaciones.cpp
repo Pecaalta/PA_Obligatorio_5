@@ -85,6 +85,30 @@ void Conversaciones::impresionSimple(string _user) {
     }
 };
 
+void Conversaciones::ImprimeMensajes() {
+    Mensaje* m;
+    int id = this->user1->getIdmensaje();
+    li();
+    if (!this->mensaejs->isEmpty()) {
+        IIterator* it = this->mensaejs->getIterator();
+        while (it->hasCurrent()) {
+            m = (Mensaje*) it->getCurrent();
+            if (id < m->getId() ) {
+                li("-");
+                li("Autor: " + m->getAutor()->getNombre());
+                li("Contenido: " + m->getTexto());
+                li("-");
+            }
+            it->next();
+        }
+        delete it;
+    } else {
+        li("-");
+        li("No tines Contactos");
+        li("-");
+    }
+    li();
+};
 // Constructores y Destructores
 
 /*

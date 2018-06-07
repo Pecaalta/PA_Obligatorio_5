@@ -352,22 +352,42 @@ void Usuario::SolicitaListaContactos() {
 };
 
 bool Usuario::ModificarUsuario() {
-    system("cls");
-    header("Modificar Usuario");
-    cout << endl;
-    /*
-     * 1 - editar Nombre
-     * 2 - editar imagen
-     * 3 - editar descripcion
-     * 4 - salir
-     * 
-     * do {
-     *  escanear en variable
-     * }while(opcion > 0 || < 4);
-     * switch 
-     *  case 1:
-     *  this->getNombre(usar variable)
-     */
+    int Opciones = -1;
+    string aux;
+
+    do {
+
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        header("Modificar Usuario");
+        ol();
+        ol("Modificar Nombre");
+        ol("Modificar Descripcion");
+        ol("Modificar Imagen de Perfil");
+        ol("Cancelar");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 4);
+
+    switch (Opciones) {
+        case 1: 
+            aux = CinString("Ingrese su Nombre");
+            this->setNombre(aux);
+            break;
+
+        case 2: 
+            aux = CinString("Ingrese su Descripcion");
+            this->setDireccion(aux);
+            break;
+
+        case 3: 
+            aux = CinString("Ingrese su Imagen");
+            this->setImagen(aux);
+            break;
+
+        case 5:
+            return 0;
+    }
 
     return false; //No sale de la aplicacion
 }
@@ -538,8 +558,78 @@ bool Usuario::EliminarMensaje() {
 };
 
 bool Usuario::VerMensajes() {
+    bool exit = false;
+    int opcion, cant;
+    string Numero;
+    string texto, URL, form, tama, desc, dura;
+    Mensaje* mens = NULL;
+    IKey* k;
+    Miembro* mim = NULL;
+    Miembro_Conversacion* mimcon;
+
+
     system("cls");
-    header("Ver Mensaje");
+    this->ListarMisConversaciones();
+    cout << endl;
+    this->ListarMisGruposSimple();
+    cout << endl;
+    cant = this->CuentaArchivadas();
+    li();
+    li(" Archivadas " + to_string(this->CuentaArchivadas()));
+    li();
+    do {
+        cout << endl;
+        ol();
+        ol("Seleccionar una conversacion activa");
+        ol("Ver las conversaciones archivadas");
+        ol("Volver");
+        opcion = CinInt();
+    } while (opcion < 1 || opcion > 3);
+    switch (opcion) {
+        case 1:
+            if (!this->conversaciones->isEmpty() || !this->grupos->isEmpty()) {
+                Numero = CinString("Seleccionar una Conversacion");
+                k = new String(Numero.c_str());
+                if (this->conversaciones->member(k)) {
+                    mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
+                } else if (this->grupos->member(k)) {
+                    mim = (Miembro*) this->grupos->find(k);
+                } else {
+                    alarm("No posee ese Conversacion con ese numero");
+                }
+            } else {
+                alarm("No posees Conversaciones");
+            }
+            break;
+        case 2:
+            header("Selecciona Conversacion archivada");
+            this->ListarMisConversacionesArchivadas();
+            cout << endl;
+            this->ListarMisGruposSimpleArchivadas();
+            cout << endl;
+            Numero = CinString("Seleccionar una Conversacion");
+            k = new String(Numero.c_str());
+            if (this->conversaciones->member(k)) {
+                mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
+                mimcon->setArchivado(false);
+            } else if (this->grupos->member(k)) {
+                mim = (Miembro*) this->grupos->find(k);
+                mim->setArchivado(false);
+            } else {
+                alarm("No posee ese Conversacion con ese numero");
+            }
+            break;
+        case 3:
+            return false;
+            break;
+    }
+    if (mimcon != NULL) {
+        mimcon->ImprimeMensajes();
+    } else if (mim != NULL) {
+
+    }
+    system("pause");
+
 };
 
 // Conversaciones

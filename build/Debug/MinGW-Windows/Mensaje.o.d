@@ -9,7 +9,12 @@ build/Debug/MinGW-Windows/Mensaje.o: Mensaje.cpp Mensaje.h Fecha.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
  ICollection/interfaces/OrderedKey.h Conversaciones.h \
- Miembro_Conversacion.h Visto.h Miembro.h Grupo.h InterfazGrafica.h
+ Miembro_Conversacion.h Visto.h Miembro.h Grupo.h InterfazGrafica.h \
+ ICollection/collections/OrderedDictionary.h \
+ ICollection/collections/OrderedDictionaryEntry.h \
+ ICollection/collections/../interfaces/OrderedKey.h \
+ ICollection/collections/../interfaces/ICollectible.h \
+ ICollection/collections/../interfaces/IDictionary.h
 
 Mensaje.h:
 
@@ -58,3 +63,13 @@ Miembro.h:
 Grupo.h:
 
 InterfazGrafica.h:
+
+ICollection/collections/OrderedDictionary.h:
+
+ICollection/collections/OrderedDictionaryEntry.h:
+
+ICollection/collections/../interfaces/OrderedKey.h:
+
+ICollection/collections/../interfaces/ICollectible.h:
+
+ICollection/collections/../interfaces/IDictionary.h:
