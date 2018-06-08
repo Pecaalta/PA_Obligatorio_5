@@ -4,9 +4,11 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Contacto.h</itemPath>
       <itemPath>Conversaciones.h</itemPath>
       <itemPath>Estado.h</itemPath>
       <itemPath>Fecha.h</itemPath>
+      <itemPath>Foto.h</itemPath>
       <itemPath>Grupo.h</itemPath>
       <itemPath>ISistema.h</itemPath>
       <itemPath>InterfazGrafica.h</itemPath>
@@ -15,7 +17,9 @@
       <itemPath>Miembro_Conversacion.h</itemPath>
       <itemPath>Sistema.h</itemPath>
       <itemPath>Usuario.h</itemPath>
+      <itemPath>Video.h</itemPath>
       <itemPath>Visto.h</itemPath>
+      <itemPath>factory.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ICollection" displayName="ICollection" projectFiles="true">
       <logicalFolder name="collections" displayName="collections" projectFiles="true">
@@ -56,9 +60,11 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Contacto.cpp</itemPath>
       <itemPath>Conversaciones.cpp</itemPath>
       <itemPath>Estado.cpp</itemPath>
       <itemPath>Fecha.cpp</itemPath>
+      <itemPath>Foto.cpp</itemPath>
       <itemPath>Grupo.cpp</itemPath>
       <itemPath>InterfazGrafica.cpp</itemPath>
       <itemPath>Mensaje.cpp</itemPath>
@@ -66,7 +72,9 @@
       <itemPath>Miembro_Conversacion.cpp</itemPath>
       <itemPath>Sistema.cpp</itemPath>
       <itemPath>Usuario.cpp</itemPath>
+      <itemPath>Video.cpp</itemPath>
       <itemPath>Visto.cpp</itemPath>
+      <itemPath>factory.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -94,6 +102,10 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Contacto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Contacto.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Conversaciones.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Conversaciones.h" ex="false" tool="3" flavor2="0">
@@ -105,6 +117,10 @@
       <item path="Fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Fecha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Foto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Foto.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Grupo.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -236,9 +252,17 @@
       </item>
       <item path="Usuario.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Video.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Video.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Visto.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Visto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="factory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="factory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -263,6 +287,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Contacto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Contacto.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Conversaciones.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Conversaciones.h" ex="false" tool="3" flavor2="0">
@@ -274,6 +302,10 @@
       <item path="Fecha.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Fecha.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Foto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Foto.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Grupo.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -405,9 +437,17 @@
       </item>
       <item path="Usuario.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Video.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Video.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Visto.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Visto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="factory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="factory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

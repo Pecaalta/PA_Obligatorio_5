@@ -30,7 +30,8 @@ public:
     void impresionSimple();
     void impresionSimple(Usuario* _user);
     void impresionSimple(string _user);
-void ImprimeMensajes();
+    void ImprimeMensajes(Usuario* user);
+    void ImprimeMensajeDetallado(string numbre);
 
     Conversaciones(Usuario* _user_1, Usuario* _user_2, IDictionary* _mensaejs);
     Conversaciones(Miembro_Conversacion* mimbro, Usuario* _user_1);

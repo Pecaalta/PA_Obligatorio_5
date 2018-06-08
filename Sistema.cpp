@@ -1,3 +1,8 @@
+
+
+#include<fstream>
+#include<windows.h>
+
 #include "Sistema.h"
 #include "Usuario.h"
 #include "ICollection/interfaces/IDictionary.h"
@@ -77,31 +82,83 @@ void Sistema::NuevoUsuario(string Numero) {
 
     aux = CinString("Ingrese url Imagen");
     this->activo->setImagen(aux);
+    GuardaUsuarioLocal(this->activo);
 };
+/*
+string cod(string texto){
+  for (int i = 0;i < texto.size()-1; i++) {
+        if (texto[i] == ' ') texto[i] = '_';
+    }
+}
+string decod(string texto){
+  for (int i = 0;i < texto.size(); i++) {
+        if (texto[i] == '_') texto[i] = ' ';
+    }
+}
+void Sistema::CargarUsuarioLocal() {
+    ifstream lectura;
+    string nombre, numero, imagen, dir;
+    IKey* k;
+    lectura.open("fichero.csv", ios::in);
+    while (lectura.good()) {
+        lectura >> nombre >> numero >> imagen>>dir;
+        k = new String(numero.c_str());
+        if (!this->usuarios->member(k)) {
+            this->usuarios->add(k, new Usuario(decod(nombre), decod(numero), decod(imagen), decod(dir)));
+        }
+    }
+    lectura.close();
+}
+ */
+
+struct DtUsuario {
+    char Nombre[20] = "";
+    char Numero[20] = "";
+    char Url[100] = "";
+    char direccion[100] = "";
+};
+void Sistema::GuardaUsuarioLocal(Usuario* user) {
+    DtUsuario userCargar;
+    strncpy(userCargar.Nombre, user->getNombre().c_str(), sizeof(userCargar.Nombre));
+    strncpy(userCargar.direccion, user->getDireccion().c_str(), sizeof(userCargar.direccion));
+    strncpy(userCargar.Numero, user->getNumero().c_str(), sizeof(userCargar.Numero));
+    strncpy(userCargar.Url, user->getImagen().c_str(), sizeof(userCargar.Url));
+
+    ofstream fichero;
+    fichero.open("fichero.csv", ios::app);
+    fichero.write((char*)&userCargar, sizeof(userCargar));
+
+    fichero.close();
+}
 
 void Sistema::CargarUsuario() {
-    Usuario* usuario_1;
 
-    usuario_1 = new Usuario("Mauro", "0", "Url 0", "Direccion 0", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+    Usuario* usuario_1 = new Usuario("Mauro", "0", "Url 0", "Direccion 0");
+    Usuario* usuario_2 = new Usuario("Lea", "1", "Url 1", "Direccion 1");
+    Usuario* usuario_3 = new Usuario("Maxi", "2", "Url 2", "Direccion 2");
+    Usuario* usuario_4 = new Usuario("Andres", "3", "Url 3", "Direccion 3");
+    Usuario* usuario_5 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
+    
+    usuario_1->addContacto(usuario_4);
+    usuario_1->addContacto(usuario_1);
+    usuario_1->addContacto(usuario_2);
 
-    usuario_1 = new Usuario("Lea", "1", "Url 1", "Direccion 1", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+    usuario_2->addContacto(usuario_4);
+    usuario_2->addContacto(usuario_1);
 
-    usuario_1 = new Usuario("Maxi", "2", "Url 2", "Direccion 2", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+    usuario_3->addContacto(usuario_5);
+    usuario_3->addContacto(usuario_1);
 
-    usuario_1 = new Usuario("Andres", "3", "Url 3", "Direccion 3", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+    usuario_4->addContacto(usuario_1);
 
-    usuario_1 = new Usuario("Maia", "4", "Url 4", "Direccion 4", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+    usuario_5->addContacto(usuario_1);
+    usuario_5->addContacto(usuario_2);
 
-    usuario_1 = new Usuario("Maria", "5", "Url 5", "Direccion 5", new Fecha(), new Fecha());
     this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-
-    usuario_1 = new Usuario("Agustina", "6", "Url 6", "Direccion 6", new Fecha(), new Fecha());
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
+    this->usuarios->add(new String(usuario_2->getNumero().c_str()), usuario_2);
+    this->usuarios->add(new String(usuario_3->getNumero().c_str()), usuario_3);
+    this->usuarios->add(new String(usuario_4->getNumero().c_str()), usuario_4);
+    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_5);
 
 };
 
@@ -553,7 +610,7 @@ bool Sistema::EnviarMensaje() {
      */
     this->IDMensaje = this->activo->EnviarMensaje(this->IDMensaje);
     return false;
-    
+
 };
 
 bool Sistema::VerMensajes() {
@@ -715,14 +772,13 @@ bool Sistema::EliminarMensaje() {
 // Constructores y Destructores
 Sistema* Sistema::instance = 0;
 
-Sistema* Sistema::getInstance()
-{
-    if (instance == 0)
-    {
+Sistema* Sistema::getInstance() {
+    if (instance == 0) {
         instance = new Sistema();
     }
     return instance;
 }
+
 Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary * _estados) {
     this->IDMensaje = 0;
     this->activo = _activo;

@@ -74,6 +74,7 @@ public:
 
     // Constructores y Destructores
     Usuario(string _nombre, string _numero, string _imagen, string _direccion, Fecha* _creacion, Fecha* _ultima);
+    Usuario(string _nombre, string _numero, string _imagen, string _direccion);
     Usuario();
     ~Usuario();
 private:

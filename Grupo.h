@@ -34,6 +34,9 @@ public:
 
     void addMensaje(Mensaje* mens, string Numero);
     string tipo();
+    
+    void ImprimeMensajes(Usuario* user);
+    void ImprimeMensajeDetallado(string numbre);
 
     // Constructores y Destructores
     Grupo(string _nombre, string _imagen);

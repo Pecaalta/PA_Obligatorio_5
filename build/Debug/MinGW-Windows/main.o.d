@@ -10,7 +10,7 @@ build/Debug/MinGW-Windows/main.o: main.cpp ISistema.h Usuario.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
  ICollection/interfaces/OrderedKey.h Conversaciones.h \
  Miembro_Conversacion.h Fecha.h Mensaje.h Visto.h Miembro.h Grupo.h \
- Sistema.h
+ Sistema.h factory.h
 
 ISistema.h:
 
@@ -61,3 +61,5 @@ Miembro.h:
 Grupo.h:
 
 Sistema.h:
+
+factory.h:

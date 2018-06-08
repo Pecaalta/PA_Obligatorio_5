@@ -77,6 +77,16 @@ void Miembro::impresionNombreGrupo() {
     li("Nombre: " + this->Conversacion->getNombre());
 };
 
+
+void Miembro::ImprimeMensajes(Usuario* user) {//Este numero representa el telefono para poner vistos
+    header("Mensajes");
+    this->Conversacion->ImprimeMensajes(user);
+};
+void Miembro::ImprimeMensajeDetallado(string numbre) {//este numero representa el identificador para vuscar el mensaeje
+    header("Mensajes");
+    this->Conversacion->ImprimeMensajeDetallado(numbre);
+};
+
 void Miembro::ImprimeUsuarioDetallada() {
     this->user->impresionSimple();
     li(this->administrador ? "administrador" : "Comun");

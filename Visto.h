@@ -17,6 +17,7 @@ class Visto : public ICollectible{
 	int getIdmensaje();
 	void  setIdmensaje(int _idmensaje);
 string getNumeroUsuario();
+void Imprimir();
 	// Constructores y Destructores
 	Visto(Usuario* _usuario);
 	Visto();
@@ -25,6 +26,7 @@ string getNumeroUsuario();
 	Usuario* usuario;
 	Fecha* fecha;
 	int idmensaje;
+	bool check;
 };
 
 

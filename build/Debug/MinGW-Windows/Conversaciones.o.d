@@ -14,7 +14,8 @@ build/Debug/MinGW-Windows/Conversaciones.o: Conversaciones.cpp \
  ICollection/collections/OrderedDictionaryEntry.h \
  ICollection/collections/../interfaces/OrderedKey.h \
  ICollection/collections/../interfaces/ICollectible.h \
- ICollection/collections/../interfaces/IDictionary.h InterfazGrafica.h
+ ICollection/collections/../interfaces/IDictionary.h InterfazGrafica.h \
+ Contacto.h Video.h Foto.h
 
 Conversaciones.h:
 
@@ -73,3 +74,9 @@ ICollection/collections/../interfaces/ICollectible.h:
 ICollection/collections/../interfaces/IDictionary.h:
 
 InterfazGrafica.h:
+
+Contacto.h:
+
+Video.h:
+
+Foto.h:

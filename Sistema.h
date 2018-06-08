@@ -4,7 +4,7 @@
 #include "ISistema.h"
 #include "ICollection/interfaces/IDictionary.h"
 
-class Sistema: public ISistema {
+class Sistema : public ISistema {
 public:
     Usuario* getActivo();
     void setActivo(Usuario* _activo);
@@ -32,6 +32,9 @@ public:
     void NuevoUsuario(string Numero);
     void CargarUsuario();
     void SolicitaListaContactos();
+    void CargarUsuarioLocal();
+    void GuardaUsuarioLocal(Usuario*);
+
 
     // Pantallas
     bool ListarOpciones();

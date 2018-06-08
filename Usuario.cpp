@@ -11,6 +11,9 @@
 #include "Miembro.h"
 #include "Mensaje.h"
 #include "Miembro_Conversacion.h"
+#include "Foto.h"
+#include "Video.h"
+#include "Contacto.h"
 
 using namespace std;
 
@@ -210,6 +213,7 @@ int Usuario::CuentaArchivadas() {
 void Usuario::ListarMisGruposSimple() {
     Subheader("Tus Grupos");
     Miembro* n;
+    int cont = 0;
     li();
     if (!this->grupos->isEmpty()) {
         IIterator* it = this->grupos->getIterator();
@@ -219,8 +223,15 @@ void Usuario::ListarMisGruposSimple() {
                 li("-");
                 n->impresionNombreGrupo();
                 li("-");
+            } else {
+                cont++;
             }
             it->next();
+        }
+        if (cont == 0) {
+            li("-");
+            li("No tines Grupos");
+            li("-");
         }
         delete it;
     } else {
@@ -232,19 +243,27 @@ void Usuario::ListarMisGruposSimple() {
 }
 
 void Usuario::ListarMisGruposSimpleArchivadas() {
-    Subheader("Tus Grupos");
+    Subheader("Tus Grupos Archivados");
     Miembro* n;
+    int cont = 0;
     li();
     if (!this->grupos->isEmpty()) {
         IIterator* it = this->grupos->getIterator();
         while (it->hasCurrent()) {
             n = (Miembro*) it->getCurrent();
-            if (!n->getArchivado()) {
+            if (n->getArchivado()) {
                 li("-");
                 n->impresionNombreGrupo();
                 li("-");
+            } else {
+                cont++;
             }
             it->next();
+        }
+        if (cont == 0) {
+            li("-");
+            li("No tines Grupos");
+            li("-");
         }
         delete it;
     } else {
@@ -259,6 +278,7 @@ bool Usuario::ListarMisGrupoas() {
     if (!this->grupos->isEmpty()) {
         Subheader("Tus Grupos");
         Miembro* n;
+        int cont = 0;
         li();
         IIterator* it = this->grupos->getIterator();
         while (it->hasCurrent()) {
@@ -278,8 +298,9 @@ bool Usuario::ListarMisGrupoas() {
 }
 
 void Usuario::ListarMisConversacionesArchivadas() {
-    Subheader("Tus Conversaciones Activas");
+    Subheader("Tus Conversaciones Archivadas");
     Miembro_Conversacion* n;
+    int cont = 0;
     li();
     if (!this->conversaciones->isEmpty()) {
         IIterator* it = this->conversaciones->getIterator();
@@ -289,8 +310,15 @@ void Usuario::ListarMisConversacionesArchivadas() {
                 li("-");
                 n->ImprimeConversacion(this);
                 li("-");
+            } else {
+                cont++;
             }
             it->next();
+        }
+        if (cont == 0) {
+            li("-");
+            li("No tines Conversaciones");
+            li("-");
         }
         delete it;
     } else {
@@ -305,6 +333,7 @@ void Usuario::ListarMisConversaciones() {
     Subheader("Tus Conversaciones Activas");
     Miembro_Conversacion* n;
     li();
+    int cont = 0;
     if (!this->conversaciones->isEmpty()) {
         IIterator* it = this->conversaciones->getIterator();
         while (it->hasCurrent()) {
@@ -313,8 +342,15 @@ void Usuario::ListarMisConversaciones() {
                 li("-");
                 n->ImprimeConversacion(this);
                 li("-");
+            } else {
+                cont++;
             }
             it->next();
+        }
+        if (cont == 0) {
+            li("-");
+            li("No tines Conversaciones");
+            li("-");
         }
         delete it;
     } else {
@@ -370,17 +406,17 @@ bool Usuario::ModificarUsuario() {
     } while (Opciones < 1 || Opciones > 4);
 
     switch (Opciones) {
-        case 1: 
+        case 1:
             aux = CinString("Ingrese su Nombre");
             this->setNombre(aux);
             break;
 
-        case 2: 
+        case 2:
             aux = CinString("Ingrese su Descripcion");
             this->setDireccion(aux);
             break;
 
-        case 3: 
+        case 3:
             aux = CinString("Ingrese su Imagen");
             this->setImagen(aux);
             break;
@@ -402,10 +438,13 @@ int Usuario::EnviarMensaje(int idMensaje) {
     IKey* k;
     Miembro* mim = NULL;
     Miembro_Conversacion* mimcon;
+    int cerarMensaje = 0;
 
     do {
-        do {
+        do {//Mintras quiera seleccionar conversacion
             system("cls");
+
+            //Selecciona conversacion
             this->ListarMisConversaciones();
             cout << endl;
             this->ListarMisGruposSimple();
@@ -430,8 +469,10 @@ int Usuario::EnviarMensaje(int idMensaje) {
                         k = new String(Numero.c_str());
                         if (this->conversaciones->member(k)) {
                             mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
+                            cerarMensaje = 1;
                         } else if (this->grupos->member(k)) {
                             mim = (Miembro*) this->grupos->find(k);
+                            cerarMensaje = 2;
                         } else {
                             alarm("No posee ese Conversacion con ese numero");
                         }
@@ -440,21 +481,27 @@ int Usuario::EnviarMensaje(int idMensaje) {
                     }
                     break;
                 case 2:
-                    header("Selecciona Conversacion archivada");
-                    this->ListarMisConversacionesArchivadas();
-                    cout << endl;
-                    this->ListarMisGruposSimpleArchivadas();
-                    cout << endl;
-                    Numero = CinString("Seleccionar una Conversacion");
-                    k = new String(Numero.c_str());
-                    if (this->conversaciones->member(k)) {
-                        mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
-                        mimcon->setArchivado(false);
-                    } else if (this->grupos->member(k)) {
-                        mim = (Miembro*) this->grupos->find(k);
-                        mim->setArchivado(false);
+                    if (this->CuentaArchivadas() > 0) {
+                        header("Selecciona Conversacion archivada");
+                        this->ListarMisConversacionesArchivadas();
+                        cout << endl;
+                        this->ListarMisGruposSimpleArchivadas();
+                        cout << endl;
+                        Numero = CinString("Seleccionar una Conversacion");
+                        k = new String(Numero.c_str());
+                        if (this->conversaciones->member(k)) {
+                            mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
+                            mimcon->setArchivado(false);
+                            cerarMensaje = 1;
+                        } else if (this->grupos->member(k)) {
+                            mim = (Miembro*) this->grupos->find(k);
+                            mim->setArchivado(false);
+                            cerarMensaje = 2;
+                        } else {
+                            alarm("No posee ese Conversacion con ese numero");
+                        }
                     } else {
-                        alarm("No posee ese Conversacion con ese numero");
+                        alarm("No posee ese Conversacion Archivadas");
                     }
                     break;
                 case 3:
@@ -473,6 +520,7 @@ int Usuario::EnviarMensaje(int idMensaje) {
                                 mimcon = new Miembro_Conversacion(this);
                                 this->conversaciones->add(k, mimcon);
                                 ((Usuario*)this->contactos->find(k))->addConversacion(this, mimcon->getConversacion());
+                                cerarMensaje = 1;
                             }
                         } else {
                             alarm("No posee ese numero como contacto");
@@ -484,8 +532,8 @@ int Usuario::EnviarMensaje(int idMensaje) {
                     break;
             }
 
-
-            if (mim != NULL || mimcon != NULL) {
+            //Crea mensaje
+            if (cerarMensaje != 0) {
                 do {
                     header("Seleccionar Tipo de mensaje");
                     ol();
@@ -508,48 +556,49 @@ int Usuario::EnviarMensaje(int idMensaje) {
                         tama = CinString("tamaño");
                         desc = CinString("Descripcion");
                         texto = CinString("Texto");
-                        mens = new Mensaje(idMensaje, texto, this);
+                        mens = new Foto(URL, form, tama, desc, idMensaje, texto, this);
                         idMensaje++;
                         break;
                     case 3:
                         URL = CinString("Url video");
                         dura = CinString("Duracion");
                         texto = CinString("Texto");
-                        mens = new Mensaje(idMensaje, texto, this);
+                        mens = new Video(URL, dura, idMensaje, texto, this);
                         idMensaje++;
                         break;
                     case 4:
                         this->SolicitaListaContactos();
                         numero = CinString("Ingrese el numero a mandar");
-                        texto = CinString("Texto");
-                        mens = new Mensaje(idMensaje, texto, this);
-                        idMensaje++;
+                        k = new String(numero.c_str());
+                        if (this->contactos->member(k)) {
+                            texto = CinString("Texto");
+                            mens = new Contacto((Usuario*)this->contactos->find(k), idMensaje, texto, this);
+                            idMensaje++;
+                        } else {
+                            alarm("El contacto no se encontro");
+                        }
                         break;
                 }
             }
-            if (mim != NULL) {
+
+            //Envia mensaje
+            if (cerarMensaje == 2) {
                 mim->addMensaje(mens, this->getNumero());
-            } else {
+                header("Crear otro Mensaje");
+            } else if (cerarMensaje == 1) {
                 mimcon->addMensaje(mens, this->getNumero());
+                header("Crear otro Mensaje");
+            } else {
+                header("Volver a intentar crear Mensaje");
             }
-            header("Crear otro Mensaje");
             ol();
-            ol("Enviar otro mensajes");
+            ol("Enviar mensajes");
             ol("Volver");
             opcion = CinInt();
-        } while (opcion != 2);
-
-        do {
-            header("Elegir otra conversacion");
-            ol();
-            ol("Si");
-            ol("No");
-            opcion = CinInt();
             exit = opcion != 2;
-        } while (opcion < 1 || opcion > 2);
-
+        } while (opcion != 2);
     } while (exit);
-
+    return idMensaje;
 };
 
 bool Usuario::EliminarMensaje() {
@@ -566,9 +615,11 @@ bool Usuario::VerMensajes() {
     IKey* k;
     Miembro* mim = NULL;
     Miembro_Conversacion* mimcon;
+    int cerarMensaje = 0;
 
 
     system("cls");
+    cout << endl;
     this->ListarMisConversaciones();
     cout << endl;
     this->ListarMisGruposSimple();
@@ -592,8 +643,10 @@ bool Usuario::VerMensajes() {
                 k = new String(Numero.c_str());
                 if (this->conversaciones->member(k)) {
                     mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
+                    cerarMensaje = 1;
                 } else if (this->grupos->member(k)) {
                     mim = (Miembro*) this->grupos->find(k);
+                    cerarMensaje = 2;
                 } else {
                     alarm("No posee ese Conversacion con ese numero");
                 }
@@ -612,9 +665,11 @@ bool Usuario::VerMensajes() {
             if (this->conversaciones->member(k)) {
                 mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
                 mimcon->setArchivado(false);
+                cerarMensaje = 1;
             } else if (this->grupos->member(k)) {
                 mim = (Miembro*) this->grupos->find(k);
                 mim->setArchivado(false);
+                cerarMensaje = 2;
             } else {
                 alarm("No posee ese Conversacion con ese numero");
             }
@@ -623,12 +678,36 @@ bool Usuario::VerMensajes() {
             return false;
             break;
     }
-    if (mimcon != NULL) {
-        mimcon->ImprimeMensajes();
-    } else if (mim != NULL) {
+    opcion = -1;
+    do {
+        if (opcion != -1) {
+            alarm("Opcion invalida");
+        }
+        if (cerarMensaje == 1) {
+            mimcon->ImprimeMensajes(this);
+        } else if (cerarMensaje == 2) {
+            mim->ImprimeMensajes(this);
 
-    }
-    system("pause");
+        }
+        if (cerarMensaje == 1 || cerarMensaje == 2) {
+            cout << endl;
+            ol();
+            ol("Seleccionar una Mensaje");
+            ol("Volver");
+            opcion = CinInt();
+            if (opcion == 1) {
+                if (cerarMensaje == 1) {
+                    Numero = CinString("Cual es el identificador");
+                    mimcon->ImprimeMensajeDetallado(Numero);
+                } else if (cerarMensaje == 2) {
+                    Numero = CinString("Cual es el identificador");
+                    mim->ImprimeMensajeDetallado(Numero);
+                }
+            }
+            system("pause");
+        }
+    } while (opcion != 2);
+
 
 };
 
@@ -691,11 +770,11 @@ bool Usuario::EliminarParticipantes() {
     cout << endl;
 };
 
-bool Usuario::member(IKey* k) {
+bool Usuario::member(IKey * k) {
     return !this->contactos->isEmpty() and this->contactos->member(k);
 };
 
-void Usuario::addContacto(Usuario* user) {
+void Usuario::addContacto(Usuario * user) {
     IKey* k = new String(user->getNumero().c_str());
     this->contactos->add(k, user);
 };
@@ -758,7 +837,21 @@ bool Usuario::AgregarAdministradores() {
 
 // Constructores y Destructores
 
-Usuario::Usuario(string _nombre, string _numero, string _imagen, string _direccion, Fecha* _creacion, Fecha* _ultima) {
+Usuario::Usuario(string _nombre, string _numero, string _imagen, string _direccion, Fecha* _creacion, Fecha * _ultima) {
+    this->nombre = _nombre;
+    this->numero = _numero;
+    this->imagen = _imagen;
+    this->direccion = _direccion;
+    this->ultima = _ultima;
+    this->creacion = _creacion;
+    this->contactos = new OrderedDictionary();
+    this->conversaciones = new OrderedDictionary();
+    this->estados = new OrderedDictionary();
+    this->mensajes = new OrderedDictionary();
+    this->grupos = new OrderedDictionary();
+}
+
+Usuario::Usuario(string _nombre, string _numero, string _imagen, string _direccion) {
     this->nombre = _nombre;
     this->numero = _numero;
     this->imagen = _imagen;

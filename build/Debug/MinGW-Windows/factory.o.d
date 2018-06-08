@@ -1,5 +1,5 @@
-build/Debug/MinGW-Windows/Usuario.o: Usuario.cpp Usuario.h \
- ICollection/interfaces/ICollectible.h \
+build/Debug/MinGW-Windows/factory.o: factory.cpp factory.h ISistema.h \
+ Usuario.h ICollection/interfaces/ICollectible.h \
  ICollection/interfaces/IDictionary.h ICollection/interfaces/IKey.h \
  ICollection/interfaces/ICollectible.h ICollection/interfaces/IIterator.h \
  ICollection/interfaces/IIterator.h ICollection/interfaces/IKey.h \
@@ -10,12 +10,11 @@ build/Debug/MinGW-Windows/Usuario.o: Usuario.cpp Usuario.h \
  ICollection/String.h ICollection/interfaces/ICollectible.h \
  ICollection/interfaces/OrderedKey.h Conversaciones.h \
  Miembro_Conversacion.h Fecha.h Mensaje.h Visto.h Miembro.h Grupo.h \
- InterfazGrafica.h ICollection/collections/OrderedDictionary.h \
- ICollection/collections/OrderedDictionaryEntry.h \
- ICollection/collections/../interfaces/OrderedKey.h \
- ICollection/collections/../interfaces/ICollectible.h \
- ICollection/collections/../interfaces/IDictionary.h \
- ICollection/Integer.h Foto.h Video.h Contacto.h
+ Sistema.h
+
+factory.h:
+
+ISistema.h:
 
 Usuario.h:
 
@@ -63,22 +62,4 @@ Miembro.h:
 
 Grupo.h:
 
-InterfazGrafica.h:
-
-ICollection/collections/OrderedDictionary.h:
-
-ICollection/collections/OrderedDictionaryEntry.h:
-
-ICollection/collections/../interfaces/OrderedKey.h:
-
-ICollection/collections/../interfaces/ICollectible.h:
-
-ICollection/collections/../interfaces/IDictionary.h:
-
-ICollection/Integer.h:
-
-Foto.h:
-
-Video.h:
-
-Contacto.h:
+Sistema.h:

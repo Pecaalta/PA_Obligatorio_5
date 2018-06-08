@@ -4,6 +4,9 @@
 #include "Visto.h"
 
 #include "InterfazGrafica.h"
+#include "Contacto.h"
+#include "Video.h"
+#include "Foto.h"
 
 //Administradores
 
@@ -180,6 +183,76 @@ void Grupo::setImagen(string _imagen) {
 string Grupo::tipo() {
     return "Grupo";
 };
+
+
+void Grupo::ImprimeMensajes(Usuario* user) {
+    Mensaje* m;
+    li();
+    if (!this->mensaejs->isEmpty()) {
+        IIterator* it = this->mensaejs->getIterator();
+        while (it->hasCurrent()) {
+            m = (Mensaje*) it->getCurrent();
+            //if (id < m->getId()) {
+            m->SetVisto(user);
+            li("-");
+            li("Id: " + to_string(m->getId()));
+            li("Autor: " + m->getAutor()->getNombre());
+            li("Texto: " + m->getTexto());
+            if (m->tipo.compare("Contacto") == 0) {
+                li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
+                li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
+            } else if (m->tipo.compare("Video") == 0) {
+                li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+                li("Url: " + ((Video*) m) ->getURL());
+            } else if (m->tipo.compare("Foto") == 0) {
+                li("Descripcion : " + ((Foto*) m) ->getDesc());
+                li("Formato : " + ((Foto*) m) ->getForm());
+                li("Tamaño : " + ((Foto*) m) ->getTama());
+                li("Ur : " + ((Foto*) m) ->getURL());
+            }
+            li("-");
+            //}
+            it->next();
+        }
+        delete it;
+    } else {
+        li("-");
+        li("No tines Contactos");
+        li("-");
+    }
+    li();
+};
+
+void Grupo::ImprimeMensajeDetallado(string numbre) {
+    header("Mensajes");
+    IKey* k = new String(numbre.c_str());
+    if (this->mensaejs->member(k)) {
+        Mensaje* m = (Mensaje*)this->mensaejs->find(k);
+        li();
+        li("Id: " + to_string(m->getId()));
+        li("Autor: " + m->getAutor()->getNombre());
+        li("Texto: " + m->getTexto());
+        li("");
+        li("Vistos");
+        if (m->tipo.compare("Contacto") == 0) {
+            li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
+            li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
+        } else if (m->tipo.compare("Video") == 0) {
+            li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+            li("Url: " + ((Video*) m) ->getURL());
+        } else if (m->tipo.compare("Foto") == 0) {
+            li("Descripcion : " + ((Foto*) m) ->getDesc());
+            li("Formato : " + ((Foto*) m) ->getForm());
+            li("Tamaño : " + ((Foto*) m) ->getTama());
+            li("Ur : " + ((Foto*) m) ->getURL());
+        }
+        m->ImprimeVisto();
+        li();
+    } else {
+        alarm("No se encontro mensaje con ese identificador");
+    }
+}
+
 
 // Funciones de imprecion
 

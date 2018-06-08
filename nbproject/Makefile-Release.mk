@@ -35,9 +35,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Contacto.o \
 	${OBJECTDIR}/Conversaciones.o \
 	${OBJECTDIR}/Estado.o \
 	${OBJECTDIR}/Fecha.o \
+	${OBJECTDIR}/Foto.o \
 	${OBJECTDIR}/Grupo.o \
 	${OBJECTDIR}/ICollection/Integer.o \
 	${OBJECTDIR}/ICollection/String.o \
@@ -58,7 +60,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Miembro_Conversacion.o \
 	${OBJECTDIR}/Sistema.o \
 	${OBJECTDIR}/Usuario.o \
+	${OBJECTDIR}/Video.o \
 	${OBJECTDIR}/Visto.o \
+	${OBJECTDIR}/factory.o \
 	${OBJECTDIR}/main.o
 
 
@@ -86,6 +90,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2.exe: ${OBJECTFILES
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Contacto.o: Contacto.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Contacto.o Contacto.cpp
+
 ${OBJECTDIR}/Conversaciones.o: Conversaciones.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -100,6 +109,11 @@ ${OBJECTDIR}/Fecha.o: Fecha.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Fecha.o Fecha.cpp
+
+${OBJECTDIR}/Foto.o: Foto.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Foto.o Foto.cpp
 
 ${OBJECTDIR}/Grupo.o: Grupo.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -201,10 +215,20 @@ ${OBJECTDIR}/Usuario.o: Usuario.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Usuario.o Usuario.cpp
 
+${OBJECTDIR}/Video.o: Video.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Video.o Video.cpp
+
 ${OBJECTDIR}/Visto.o: Visto.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Visto.o Visto.cpp
+
+${OBJECTDIR}/factory.o: factory.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/factory.o factory.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

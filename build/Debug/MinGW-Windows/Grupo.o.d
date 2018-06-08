@@ -14,7 +14,8 @@ build/Debug/MinGW-Windows/Grupo.o: Grupo.cpp Grupo.h \
  ICollection/collections/OrderedDictionaryEntry.h \
  ICollection/collections/../interfaces/OrderedKey.h \
  ICollection/collections/../interfaces/ICollectible.h \
- ICollection/collections/../interfaces/IDictionary.h InterfazGrafica.h
+ ICollection/collections/../interfaces/IDictionary.h InterfazGrafica.h \
+ Contacto.h Video.h Foto.h
 
 Grupo.h:
 
@@ -73,3 +74,9 @@ ICollection/collections/../interfaces/ICollectible.h:
 ICollection/collections/../interfaces/IDictionary.h:
 
 InterfazGrafica.h:
+
+Contacto.h:
+
+Video.h:
+
+Foto.h:

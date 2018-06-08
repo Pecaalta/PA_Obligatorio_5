@@ -1,6 +1,10 @@
 #ifndef FECHA_H
 #define FECHA_H
 
+#include "string"
+#include "string.h"
+using namespace std;
+
 class Fecha {
 public:
     int gets();
@@ -16,6 +20,7 @@ public:
     int getA();
     void setA(int _A);
     void Actual();
+    string imprimeFecha();
     // Constructores y Destructores
     Fecha(int _s, int _m, int _h, int _D, int _M, int _A);
     Fecha();

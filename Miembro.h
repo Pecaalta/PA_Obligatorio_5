@@ -31,17 +31,20 @@ public:
     void addMensaje(Mensaje* mens, string Numero);
     void ImprimeGrupo();
     void ImprimeUsuario();
-    void impresionSuperSimple();    
+    void impresionSuperSimple();
     void impresionNombreGrupo();
+
+    void ImprimeMensajeDetallado(string numbre);
+    void ImprimeMensajes(Usuario* user);
 
     void ImprimeUsuarioDetallada();
     string getNumero();
-    
+
     void MenuAgragaAdministrador();
     void SolicitaListaContactosDetallada();
 
     // Constructores y Destructores
-    Miembro(Usuario* _user,Grupo* _grupo );
+    Miembro(Usuario* _user, Grupo* _grupo);
     Miembro(Usuario* _user);
     Miembro();
     ~Miembro();

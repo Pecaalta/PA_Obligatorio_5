@@ -12,6 +12,7 @@ using namespace std;
 #include "ICollection/interfaces/IIterator.h"
 #include "ICollection/collections/List.h"
 #include "ICollection/String.h"
+
 class Mensaje : public ICollectible {
 public:
     Fecha* getFecha();
@@ -24,10 +25,13 @@ public:
     void setBorrado(bool _borrado);
     Usuario* getAutor();
     void setAutor(Usuario* _autor);
-   void SetVisto(Usuario* _user);
+    void SetVisto(Usuario* _user);
+    void ImprimeVisto();
+    string tipo;
 
     // Constructores y Destructores
     Mensaje(int _id, string _texto, Usuario* _autor);
+    Mensaje(int _id, string _texto, Usuario* _autor, string tipo);
     Mensaje();
     ~Mensaje();
 private:

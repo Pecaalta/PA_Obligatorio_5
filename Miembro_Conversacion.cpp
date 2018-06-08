@@ -67,10 +67,13 @@ void Miembro_Conversacion::impresionSuperSimple() {
 void Miembro_Conversacion::ImprimeUsuarioDetallada() {
     this->user->impresionSimple();
 };
-void Miembro_Conversacion::ImprimeMensajes() {
+void Miembro_Conversacion::ImprimeMensajes(Usuario* user) {//Este numero representa el telefono para poner vistos
     header("Mensajes");
-    this->Conversacion->ImprimeMensajes();
-   
+    this->Conversacion->ImprimeMensajes(user);
+};
+void Miembro_Conversacion::ImprimeMensajeDetallado(string numbre) {//este numero representa el identificador para vuscar el mensaeje
+    header("Mensajes");
+    this->Conversacion->ImprimeMensajeDetallado(numbre);
 };
 
 string Miembro_Conversacion::getNumero() {

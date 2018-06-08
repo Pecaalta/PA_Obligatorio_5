@@ -26,23 +26,25 @@ public:
     void setUsuario(Usuario* user);
     void addConversacion(Usuario* user, Conversaciones* con);
     Conversaciones* getConversacion();
-    
+
     void ImprimeConversacion(Usuario* user);
     void ImprimeConversacion();
     void ImprimeUsuario();
     void impresionSuperSimple();
     void ImprimeUsuarioDetallada();
-    void ImprimeMensajes();
+    void ImprimeMensajes(Usuario* user);
+    void ImprimeMensajeDetallado(string numbre);
+
     string getNumero();
     void addMensaje(Mensaje* mens, string Numero);
-    
+
     void MenuAgragaAdministrador();
     void SolicitaListaContactosDetallada();
 
     // Constructores y Destructores
-    Miembro_Conversacion(Usuario* _yo,Usuario* _user );
+    Miembro_Conversacion(Usuario* _yo, Usuario* _user);
     Miembro_Conversacion(Usuario* _user);
-    Miembro_Conversacion(Usuario* _yo,Conversaciones* _con);
+    Miembro_Conversacion(Usuario* _yo, Conversaciones* _con);
     Miembro_Conversacion();
     ~Miembro_Conversacion();
 private:

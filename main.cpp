@@ -14,13 +14,14 @@
 #include <cstdlib>
 
 #include "ISistema.h"
-#include "Sistema.h"
 #include "iostream"
+#include "Sistema.h"
 #include "string"
+#include "factory.h"
 using namespace std;
 
 int main(int argc, char** argv) {
-    ISistema* sis = Sistema::getInstance();
+    ISistema* sis = factory::CrearSistema();
     sis->CargarUsuario();
     while(!sis->ListarOpciones());
     return 0;

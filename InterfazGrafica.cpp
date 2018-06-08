@@ -222,6 +222,42 @@ void li(string texto) {
     }
 }
 
+void li(string texto, bool left) {
+    int anchoImprimible = ancho - (tab.size() * 4) - 3;
+    if (texto.compare("-") != 0) {
+        cout << tab << tab << (char) 179 << " ";
+        if (anchoImprimible > texto.size()) {
+            anchoImprimible -= texto.size();
+            if (left) {
+                cout << texto;
+                for (int i = 0; i < anchoImprimible; i++) {
+                    cout << " ";
+                }
+            } else {
+                for (int i = 0; i < anchoImprimible; i++) {
+                    cout << " ";
+                }
+                cout << texto;
+            }
+        } else {
+            anchoImprimible -= 4;
+            for (int i = 0; i < anchoImprimible; i++) {
+                cout << texto[i];
+            }
+            cout << "... ";
+        }
+        cout << (char) 179 << endl;
+    } else {
+        anchoImprimible += 1;
+        cout << tab << tab << (char) 195;
+        for (int i = 0; i < anchoImprimible; i++) {
+            cout << (char) 196;
+        }
+        cout << (char) 180;
+        cout << endl;
+    }
+}
+
 void ol(string texto) {
     ContOl++;
     int anchoImprimible = ancho - (tab.size() * 4) - 5;
