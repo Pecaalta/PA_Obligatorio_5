@@ -807,6 +807,9 @@ bool Usuario::AgregarParticipantes() {
                 if(!grupo->getAdministradores(k2)){
                     header("No tienes permisos para agregar participantes a este grupo");
                 }
+                else{
+                  admin = true;
+                }
             }
             Subheader("Miembros del grupo");
             grupo->SolicitaListaContactos();
