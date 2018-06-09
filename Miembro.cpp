@@ -80,7 +80,7 @@ void Miembro::impresionNombreGrupo() {
 
 void Miembro::ImprimeMensajes(Usuario* user) {//Este numero representa el telefono para poner vistos
     header("Mensajes");
-    this->Conversacion->ImprimeMensajes(user);
+    this->Conversacion->ImprimeMensajes(user,this->fecha);
 };
 void Miembro::ImprimeMensajeDetallado(string numbre) {//este numero representa el identificador para vuscar el mensaeje
     header("Mensajes");

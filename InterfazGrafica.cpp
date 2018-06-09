@@ -17,6 +17,49 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(hcon, dwPos);
 }
 
+void Color(int col) {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    FlushConsoleInputBuffer(hConsole);
+    SetConsoleTextAttribute(hConsole, col);
+}
+
+void Color() {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, 15);
+}
+
+void Console(int ancho, int largo) {
+    SMALL_RECT r;
+    COORD c;
+    HANDLE hConOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    r.Right = ancho - 1;
+    r.Bottom = largo - 1;
+    SetConsoleWindowInfo(hConOut, TRUE, &r);
+    c.X = ancho;
+    c.Y = largo+999;
+    SetConsoleScreenBufferSize(hConOut, c);
+
+}
+
+bool Rango(bool sent) {
+    if (sent) {
+        alarm("Opcion no valida");
+    }
+    return sent;
+}
+
+bool Rango(bool sent, bool exepcion) {
+    if (sent) {
+        alarm("Opcion no valida");
+    }
+    if (exepcion)
+        return true;
+    else
+        return sent;
+}
+
 int CinInt() {
     cout << endl << "\t>";
     string texto;

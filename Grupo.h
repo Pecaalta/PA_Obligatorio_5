@@ -35,7 +35,7 @@ public:
     void addMensaje(Mensaje* mens, string Numero);
     string tipo();
     
-    void ImprimeMensajes(Usuario* user);
+    void ImprimeMensajes(Usuario* user,Fecha* f);
     void ImprimeMensajeDetallado(string numbre);
 
     // Constructores y Destructores

@@ -21,6 +21,8 @@ public:
     void setA(int _A);
     void Actual();
     string imprimeFecha();
+    bool operator<(Fecha*);
+    bool operator<=(Fecha*);
     // Constructores y Destructores
     Fecha(int _s, int _m, int _h, int _D, int _M, int _A);
     Fecha();

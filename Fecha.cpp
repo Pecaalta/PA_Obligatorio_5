@@ -100,3 +100,58 @@ Fecha::Fecha() {
 
 Fecha::~Fecha() {
 };
+
+bool Fecha::operator<(Fecha* rhs) {
+    if (this->getA() == rhs->getA()) {
+        if (this->getM() == rhs->getM()) {
+            if (this->getD() == rhs->getD()) {
+                if (this->geth() == rhs->geth()) {
+                    if (this->getm() == rhs->getm()) {
+                        if (this->gets() == rhs->gets()) {
+                            return false;
+                        } else {
+                            return this->getA() < rhs->getA();
+                        }
+                    } else {
+                        return this->getM() < rhs->getM();
+                    }
+                } else {
+                    return this->getD() < rhs->getD();
+                }
+            } else {
+                return this->geth() < rhs->geth();
+            }
+        } else {
+            return this->getm() < rhs->getm();
+        }
+    } else {
+        return this->gets() < rhs->gets();
+    }
+}
+bool Fecha::operator<=(Fecha* rhs) {
+    if (this->getA() == rhs->getA()) {
+        if (this->getM() == rhs->getM()) {
+            if (this->getD() == rhs->getD()) {
+                if (this->geth() == rhs->geth()) {
+                    if (this->getm() == rhs->getm()) {
+                        if (this->gets() == rhs->gets()) {
+                            return true;
+                        } else {
+                            return this->getA() < rhs->getA();
+                        }
+                    } else {
+                        return this->getM() < rhs->getM();
+                    }
+                } else {
+                    return this->getD() < rhs->getD();
+                }
+            } else {
+                return this->geth() < rhs->geth();
+            }
+        } else {
+            return this->getm() < rhs->getm();
+        }
+    } else {
+        return this->gets() < rhs->gets();
+    }
+}

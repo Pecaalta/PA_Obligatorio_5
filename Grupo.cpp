@@ -184,34 +184,35 @@ string Grupo::tipo() {
     return "Grupo";
 };
 
-
-void Grupo::ImprimeMensajes(Usuario* user) {
+void Grupo::ImprimeMensajes(Usuario* user, Fecha* f) {
     Mensaje* m;
     li();
+    bool ok;
     if (!this->mensaejs->isEmpty()) {
         IIterator* it = this->mensaejs->getIterator();
         while (it->hasCurrent()) {
             m = (Mensaje*) it->getCurrent();
-            //if (id < m->getId()) {
-            m->SetVisto(user);
-            li("-");
-            li("Id: " + to_string(m->getId()));
-            li("Autor: " + m->getAutor()->getNombre());
-            li("Texto: " + m->getTexto());
-            if (m->tipo.compare("Contacto") == 0) {
-                li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
-                li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
-            } else if (m->tipo.compare("Video") == 0) {
-                li("Durecion de Video: " + ((Video*) m) ->getDuracion());
-                li("Url: " + ((Video*) m) ->getURL());
-            } else if (m->tipo.compare("Foto") == 0) {
-                li("Descripcion : " + ((Foto*) m) ->getDesc());
-                li("Formato : " + ((Foto*) m) ->getForm());
-                li("Tamaño : " + ((Foto*) m) ->getTama());
-                li("Ur : " + ((Foto*) m) ->getURL());
+            ok = f <= m->getFecha();
+            if (ok) {
+                m->SetVisto(user);
+                li("-");
+                li("Id: " + to_string(m->getId()));
+                li("Autor: " + m->getAutor()->getNombre());
+                li("Texto: " + m->getTexto());
+                if (m->tipo.compare("Contacto") == 0) {
+                    li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
+                    li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
+                } else if (m->tipo.compare("Video") == 0) {
+                    li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+                    li("Url: " + ((Video*) m) ->getURL());
+                } else if (m->tipo.compare("Foto") == 0) {
+                    li("Descripcion : " + ((Foto*) m) ->getDesc());
+                    li("Formato : " + ((Foto*) m) ->getForm());
+                    li("Tamaño : " + ((Foto*) m) ->getTama());
+                    li("Ur : " + ((Foto*) m) ->getURL());
+                }
+                li("-");
             }
-            li("-");
-            //}
             it->next();
         }
         delete it;
@@ -226,6 +227,7 @@ void Grupo::ImprimeMensajes(Usuario* user) {
 void Grupo::ImprimeMensajeDetallado(string numbre) {
     header("Mensajes");
     IKey* k = new String(numbre.c_str());
+    bool ok;
     if (this->mensaejs->member(k)) {
         Mensaje* m = (Mensaje*)this->mensaejs->find(k);
         li();

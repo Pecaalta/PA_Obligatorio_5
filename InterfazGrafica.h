@@ -17,7 +17,13 @@
 #include "string"
 using namespace std;
 
- void gotoxy(int x,int y);
+void gotoxy(int x, int y);
+void Color();
+void Color(int col);
+void Console(int ancho,int largo);
+
+bool Rango(bool sent, bool exepcion);
+bool Rango(bool sent);
 
 void Subheader(string texto);
 void header(string texto);

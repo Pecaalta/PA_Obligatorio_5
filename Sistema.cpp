@@ -84,6 +84,7 @@ void Sistema::NuevoUsuario(string Numero) {
     this->activo->setImagen(aux);
     GuardaUsuarioLocal(this->activo);
 };
+
 /*
 string cod(string texto){
   for (int i = 0;i < texto.size()-1; i++) {
@@ -117,16 +118,17 @@ struct DtUsuario {
     char Url[100] = "";
     char direccion[100] = "";
 };
+
 void Sistema::GuardaUsuarioLocal(Usuario* user) {
     DtUsuario userCargar;
-    strncpy(userCargar.Nombre, user->getNombre().c_str(), sizeof(userCargar.Nombre));
-    strncpy(userCargar.direccion, user->getDireccion().c_str(), sizeof(userCargar.direccion));
-    strncpy(userCargar.Numero, user->getNumero().c_str(), sizeof(userCargar.Numero));
-    strncpy(userCargar.Url, user->getImagen().c_str(), sizeof(userCargar.Url));
+    strncpy(userCargar.Nombre, user->getNombre().c_str(), sizeof (userCargar.Nombre));
+    strncpy(userCargar.direccion, user->getDireccion().c_str(), sizeof (userCargar.direccion));
+    strncpy(userCargar.Numero, user->getNumero().c_str(), sizeof (userCargar.Numero));
+    strncpy(userCargar.Url, user->getImagen().c_str(), sizeof (userCargar.Url));
 
     ofstream fichero;
     fichero.open("fichero.csv", ios::app);
-    fichero.write((char*)&userCargar, sizeof(userCargar));
+    fichero.write((char*) &userCargar, sizeof (userCargar));
 
     fichero.close();
 }
@@ -138,7 +140,7 @@ void Sistema::CargarUsuario() {
     Usuario* usuario_3 = new Usuario("Maxi", "2", "Url 2", "Direccion 2");
     Usuario* usuario_4 = new Usuario("Andres", "3", "Url 3", "Direccion 3");
     Usuario* usuario_5 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
-    
+
     usuario_1->addContacto(usuario_4);
     usuario_1->addContacto(usuario_1);
     usuario_1->addContacto(usuario_2);
@@ -188,55 +190,60 @@ void Sistema::SolicitaListaContactos() {
 
 bool Sistema::ListarOpciones() {
     int Opciones = 0;
-    do {
-        header(" Opciones del Sistema");
-        ol();
-        ol("AbrirGuasapTECNO");
-        ol("CerrarGuasapTECNO");
-        ol("AgregarContactos");
-        ol("AltaGrupo");
-        ol("AgregarAdministradores");
-        ol("EnviarMensaje");
-        ol("VerMensajes");
-        ol("ArchivarConversaciones");
-        ol("AgregarParticipantes");
-        ol("EliminarParticipantes");
-        ol("ModificarUsuario");
-        ol("EliminarMensaje");
-        ol("Cerrar Applicacion");
-        Opciones = CinInt();
-    } while (olBool(Opciones));
-    if (Opciones != 1 and this->activo == NULL) {
-        alarm("¡No hay usuario en secion!");
-    } else {
-        switch (Opciones) {
-            case 1:
-                return AbrirGuasapTECNO(); // Test
-            case 2:
-                return CerrarGuasapTECNO(); // Test
-            case 3:
-                return AgregarContactos(); // Test
-            case 4:
-                return AltaGrupo(); // Test
-            case 5:
-                return AgregarAdministradores(); // Test
-            case 6:
-                return EnviarMensaje(); // Mauro
-            case 7:
-                return VerMensajes(); // 
-            case 8:
-                return ArchivarConversaciones(); // Test
-            case 9:
-                return AgregarParticipantes(); // lucas
-            case 10:
-                return EliminarParticipantes(); // seba 
-            case 11:
-                return ModificarUsuario(); // maxi
-            case 12:
-                return EliminarMensaje(); // 
-            case 13:
-                return true;
+    try {
+        do {
+            header(" Opciones del Sistema");
+            ol();
+            ol("AbrirGuasapTECNO");
+            ol("CerrarGuasapTECNO");
+            ol("AgregarContactos");
+            ol("AltaGrupo");
+            ol("AgregarAdministradores");
+            ol("EnviarMensaje");
+            ol("VerMensajes");
+            ol("ArchivarConversaciones");
+            ol("AgregarParticipantes");
+            ol("EliminarParticipantes");
+            ol("ModificarUsuario");
+            ol("EliminarMensaje");
+            ol("Cerrar Applicacion");
+            Opciones = CinInt();
+        } while (olBool(Opciones));
+        if (Opciones != 1 and this->activo == NULL) {
+            alarm("¡No hay usuario en secion!");
+        } else {
+            switch (Opciones) {
+                case 1:
+                    return AbrirGuasapTECNO(); // Test
+                case 2:
+                    return CerrarGuasapTECNO(); // Test
+                case 3:
+                    return AgregarContactos(); // Test
+                case 4:
+                    return AltaGrupo(); // Test
+                case 5:
+                    return AgregarAdministradores(); // Test
+                case 6:
+                    return EnviarMensaje(); // Mauro
+                case 7:
+                    return VerMensajes(); // 
+                case 8:
+                    return ArchivarConversaciones(); // Test
+                case 9:
+                    return AgregarParticipantes(); // lucas
+                case 10:
+                    return EliminarParticipantes(); // seba 
+                case 11:
+                    return ModificarUsuario(); // maxi
+                case 12:
+                    return EliminarMensaje(); // 
+                case 13:
+                    return true;
+            }
         }
+    } catch (int e) {
+        alarm("Error " + e);
+        return false;
     }
 };
 
@@ -249,31 +256,14 @@ bool Sistema::AbrirGuasapTECNO() {
     header("Abrir GuasapTECNO");
     Numero = CinString("Ingrese su Numero");
     IKey* k = new String(Numero.c_str());
-    if (this->activo == NULL) {
-        if (this->usuarios->isEmpty()) {
-            do {
-                system("cls");
-                header("No hay usaurio en el sistema");
-                ol();
-                ol("Registrarse");
-                ol("Salir");
-                Opcion = CinInt();
-                if (Opcion == 1) {
-                    this->NuevoUsuario(Numero);
-                    this->log = true;
-                    return false;
-                } else if (Opcion == 2) {
-                    return true;
-                }
-            } while (olBool(Opcion));
-        } else {
-            do {
-                if (!this->usuarios->member(k)) {
+    do {
+        if (this->activo == NULL) {
+            if (this->usuarios->isEmpty()) {
+                do {
                     system("cls");
-                    header("El usaurio no existe");
+                    header("No hay usaurio en el sistema");
                     ol();
                     ol("Registrarse");
-                    ol("Reintentar");
                     ol("Salir");
                     Opcion = CinInt();
                     if (Opcion == 1) {
@@ -281,46 +271,64 @@ bool Sistema::AbrirGuasapTECNO() {
                         this->log = true;
                         return false;
                     } else if (Opcion == 2) {
+                        return true;
+                    }
+                } while (olBool(Opcion));
+            } else {
+                do {
+                    if (!this->usuarios->member(k)) {
+                        system("cls");
+                        header("El usaurio no existe");
+                        ol();
+                        ol("Registrarse");
+                        ol("Reintentar");
+                        ol("Salir");
+                        Opcion = CinInt();
+                        if (Opcion == 1) {
+                            this->NuevoUsuario(Numero);
+                            this->log = true;
+                            return false;
+                        } else if (Opcion == 2) {
+                            Numero = CinString("Ingrese su nuevamente el Numero");
+                            k = new String(Numero.c_str());
+                        } else if (Opcion == 3) {
+                            return true;
+                        }
+                    } else {
+                        this->activo = (Usuario*) this->usuarios->find(k);
+                        this->log = true;
+                        return false;
+                    }
+                } while (olBool(Opcion));
+            }
+        } else {
+            do {
+                if (Numero.compare(this->activo->getNumero()) != 0) {
+                    system("cls");
+                    header("Hay otro usaurio logeado");
+                    ol();
+                    ol("Cerrar secion");
+                    ol("Reintentar");
+                    ol("Salir");
+                    Opcion = CinInt();
+                    if (Opcion == 1) {
+                        this->CerrarGuasapTECNO();
+                        return false;
+                    } else if (Opcion == 2) {
                         Numero = CinString("Ingrese su nuevamente el Numero");
+                        fflush(stdin);
+                        getline(cin, Numero);
                         delete k;
                         k = new String(Numero.c_str());
                     } else if (Opcion == 3) {
                         return true;
                     }
                 } else {
-                    this->activo = (Usuario*) this->usuarios->find(k);
-                    this->log = true;
                     return false;
                 }
             } while (olBool(Opcion));
         }
-    } else {
-        do {
-            if (Numero.compare(this->activo->getNumero()) != 0) {
-                system("cls");
-                header("Hay otro usaurio logeado");
-                ol();
-                ol("Cerrar secion");
-                ol("Reintentar");
-                ol("Salir");
-                Opcion = CinInt();
-                if (Opcion == 1) {
-                    this->CerrarGuasapTECNO();
-                    return false;
-                } else if (Opcion == 2) {
-                    Numero = CinString("Ingrese su nuevamente el Numero");
-                    fflush(stdin);
-                    getline(cin, Numero);
-                    delete k;
-                    k = new String(Numero.c_str());
-                } else if (Opcion == 3) {
-                    return true;
-                }
-            } else {
-                return false;
-            }
-        } while (olBool(Opcion));
-    }
+    } while (this->activo == NULL);
 };
 
 bool Sistema::CerrarGuasapTECNO() {
@@ -505,7 +513,6 @@ bool Sistema::AltaGrupo() {
                     ol("Salir");
                     Opciones = CinInt();
                     if (Opciones == 2) {
-                        delete contactos;
                         return false;
                     }
                 }

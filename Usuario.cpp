@@ -1,3 +1,5 @@
+#include <windef.h>
+
 #include "Usuario.h"
 #include "string"
 #include "string.h"
@@ -444,16 +446,18 @@ int Usuario::EnviarMensaje(int idMensaje) {
         do {//Mintras quiera seleccionar conversacion
             system("cls");
 
-            //Selecciona conversacion
-            this->ListarMisConversaciones();
-            cout << endl;
-            this->ListarMisGruposSimple();
-            cout << endl;
-            cant = this->CuentaArchivadas();
-            li();
-            li(" Archivadas " + to_string(this->CuentaArchivadas()));
-            li();
             do {
+                //Selecciona conversacion
+                cout << endl;
+                this->ListarMisConversaciones();
+                cout << endl;
+                this->ListarMisGruposSimple();
+                cout << endl;
+                cant = this->CuentaArchivadas();
+                li();
+                li(" Archivadas " + to_string(this->CuentaArchivadas()));
+                li();
+
                 cout << endl;
                 ol();
                 ol("Seleccionar una conversacion activa");
@@ -461,7 +465,7 @@ int Usuario::EnviarMensaje(int idMensaje) {
                 ol("Enviar un mensaje a un contacto sin conversacion");
                 ol("Volver");
                 opcion = CinInt();
-            } while (opcion < 1 || opcion > 4);
+            } while (Rango(opcion < 1 || opcion > 4));
             switch (opcion) {
                 case 1:
                     if (!this->conversaciones->isEmpty() || !this->grupos->isEmpty()) {
@@ -531,8 +535,10 @@ int Usuario::EnviarMensaje(int idMensaje) {
                     return false;
                     break;
             }
+        } while (opcion != 4 and cerarMensaje == 0);
 
-            //Crea mensaje
+        //Crea mensaje
+        do {
             if (cerarMensaje != 0) {
                 do {
                     header("Seleccionar Tipo de mensaje");
@@ -596,7 +602,10 @@ int Usuario::EnviarMensaje(int idMensaje) {
             ol("Volver");
             opcion = CinInt();
             exit = opcion != 2;
-        } while (opcion != 2);
+            if (opcion<1 || opcion>2){
+                alarm("Fera de rango o caracter invalido");
+            }
+        } while (exit);
     } while (exit);
     return idMensaje;
 };
@@ -617,6 +626,11 @@ bool Usuario::VerMensajes() {
     Miembro_Conversacion* mimcon;
     int cerarMensaje = 0;
 
+
+    if (this->conversaciones->isEmpty() and this->grupos->isEmpty()) {
+        alarm("No tines conversaciones para poder ver mensajes");
+        return FALSE;
+    }
 
     system("cls");
     cout << endl;
@@ -704,7 +718,6 @@ bool Usuario::VerMensajes() {
                     mim->ImprimeMensajeDetallado(Numero);
                 }
             }
-            system("pause");
         }
     } while (opcion != 2);
 
