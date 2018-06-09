@@ -812,6 +812,9 @@ bool Usuario::AgregarParticipantes() {
                         return false;
                     }
                 }
+                else{
+                  admin = true;
+                }
             }
             grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
 
