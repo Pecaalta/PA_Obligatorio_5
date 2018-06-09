@@ -8,6 +8,13 @@
 #include "Video.h"
 #include "Foto.h"
 
+IDictionary* Grupo::getIntegrantes() {
+    return this->integrantes;
+};
+
+void Grupo::setIntegrantes(IDictionary* _integrantes) {
+    this->integrantes = _integrantes;
+};
 //Administradores
 
 void Grupo::HacerAdministradores(IKey* k) {

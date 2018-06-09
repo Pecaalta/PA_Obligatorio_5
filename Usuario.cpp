@@ -602,7 +602,7 @@ int Usuario::EnviarMensaje(int idMensaje) {
             ol("Volver");
             opcion = CinInt();
             exit = opcion != 2;
-            if (opcion<1 || opcion>2){
+            if (opcion < 1 || opcion > 2) {
                 alarm("Fera de rango o caracter invalido");
             }
         } while (exit);
@@ -772,57 +772,54 @@ bool Usuario::ArchivarConversaciones() {
 };
 
 bool Usuario::AgregarParticipantes() {
-  system("cls");
-  int Opciones;
-  string Numero;
-  string Nombre;
-  IKey* k;
-  Grupo* grupo = NULL;
-  do {
-      header("Agregar Participantes");
-      if (this->ListarMisGrupoas()) {
-          Nombre = CinString("Selecciona Grupo");
-          k = new String(Nombre.c_str());
-          while (!this->grupos->member(k)) {
-              header("No hay grupos con ese nombre");
-              ol();
-              ol("Reintentar");
-              ol("Salir");
-              Opciones = CinInt();
-              if (Opciones == 2) {
-                  return false;
-              }
-              header("Agregar Participantes");
-              this->ListarMisGrupoas();
-              Nombre = CinString("Selecciona Grupo");
-              delete k;
-              k = new String(Nombre.c_str());
-          }
-          grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
-          Subheader("Miembros del grupo");
-          grupo->SolicitaListaContactos();
-          Subheader("Tus contactos");
-          this->SolicitaListaContactos();
-          Numero = CinInt("Selecciona el numero de uno de tus contactos para agregarlo al grupo");
-          k = new String(Numero.c_str());
-          if(this->contactos->member(k)){
-              if(!grupo->integrantes->member(k)){
-                  grupo->addContacto(this->contactos->find(k));
-              }
-              else{
-                  cout << "El nuemero ingresado ya es un miembro del grupo\n";
-              }
-          }
-          else{
-              cout << "El numero ingresado no corresponde a uno de tus contactos\n";
-          }
-          cout << "Desea seguir agregando contactos al grupo?";
-          cout << "1 - Si\n 2 - No\n";
-          cin >> Opciones;
-
-  } while (Opciones != 2);
-  return false;
-  }
+    system("cls");
+    int Opciones;
+    string Numero;
+    string Nombre;
+    IKey* k;
+    Grupo* grupo = NULL;
+    do {
+        header("Agregar Participantes");
+        if (this->ListarMisGrupoas()) {
+            Nombre = CinString("Selecciona Grupo");
+            k = new String(Nombre.c_str());
+            while (!this->grupos->member(k)) {
+                header("No hay grupos con ese nombre");
+                ol();
+                ol("Reintentar");
+                ol("Salir");
+                Opciones = CinInt();
+                if (Opciones == 2) {
+                    return false;
+                }
+                header("Agregar Participantes");
+                this->ListarMisGrupoas();
+                Nombre = CinString("Selecciona Grupo");
+                delete k;
+                k = new String(Nombre.c_str());
+            }
+            grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
+            Subheader("Miembros del grupo");
+            grupo->SolicitaListaContactos();
+            Subheader("Tus contactos");
+            this->SolicitaListaContactos();
+            Numero = CinInt("Selecciona el numero de uno de tus contactos para agregarlo al grupo");
+            k = new String(Numero.c_str());
+            if (this->contactos->member(k)) {
+                if (!grupo->getIntegrantes()->member(k)) {
+                    grupo->addContacto((Usuario*)this->contactos->find(k));
+                } else {
+                    cout << "El nuemero ingresado ya es un miembro del grupo\n";
+                }
+            } else {
+                cout << "El numero ingresado no corresponde a uno de tus contactos\n";
+            }
+            cout << "Desea seguir agregando contactos al grupo?";
+            cout << "1 - Si\n 2 - No\n";
+            cin >> Opciones;
+        }
+    } while (Opciones != 2);
+    return false;
 };
 
 bool Usuario::EliminarParticipantes() {
