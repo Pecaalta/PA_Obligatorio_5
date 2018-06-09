@@ -44,6 +44,8 @@ public:
     
     
     void addGrupo(Miembro* con);
+    void removeGrupo(IKey* k);
+    
     void impresionSimple();
     void impresionSuperSimple();
     bool ListarMisGrupoas();
