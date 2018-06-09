@@ -776,29 +776,35 @@ bool Usuario::AgregarParticipantes() {
     int Opciones;
     string Numero;
     string Nombre;
-    IKey* k;
+    IKey* k, k2;
+    bool admin = false;
     Grupo* grupo = NULL;
     do {
         header("Agregar Participantes");
         if (this->ListarMisGrupoas()) {
             Nombre = CinString("Selecciona Grupo");
             k = new String(Nombre.c_str());
-            while (!this->grupos->member(k)) {
-                header("No hay grupos con ese nombre");
-                ol();
-                ol("Reintentar");
-                ol("Salir");
-                Opciones = CinInt();
-                if (Opciones == 2) {
-                    return false;
+            k2 = new String(this->numero.c_str());
+            while(!admin){
+                while (!this->grupos->member(k)) {
+                    header("No hay grupos con ese nombre");
+                    ol("Reintentar");
+                    ol("Salir");
+                    Opciones = CinInt();
+                    if (Opciones == 2) {
+                        return false;
+                    }
+                    header("Agregar Participantes");
+                    this->ListarMisGrupoas();
+                    Nombre = CinString("Selecciona Grupo");
+                    delete k;
+                    k = new String(Nombre.c_str());
                 }
-                header("Agregar Participantes");
-                this->ListarMisGrupoas();
-                Nombre = CinString("Selecciona Grupo");
-                delete k;
-                k = new String(Nombre.c_str());
+                grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
+                if(!grupo->getAdministradores(k2)){
+                    header("No tienes permisos para agregar participantes a este grupo");
+                }
             }
-            grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
             Subheader("Miembros del grupo");
             grupo->SolicitaListaContactos();
             Subheader("Tus contactos");
