@@ -289,12 +289,7 @@ Grupo::Grupo(string _nombre, string _imagen, IDictionary* contactos) {
     IKey* k;
     while (it->hasCurrent()) {
         user = (Usuario*) it->getCurrent();
-        miembro = new Miembro(user, this);
-        visto = new Visto(user);
-        user->addGrupo(miembro);
-        k = new String(user->getNumero().c_str());
-        this->visto->add(k, visto);
-        this->integrantes->add(k, miembro);
+        this->addContacto(user);
         it->next();
     }
     delete it;

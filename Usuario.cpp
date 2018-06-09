@@ -126,6 +126,7 @@ void Usuario::setMensajes(IDictionary* _mensajes) {
 void Usuario::addGrupo(Miembro* con) {
     this->grupos->add(new String(con->getConversacion()->getNombre().c_str()), con);
 }
+
 void Usuario::removeGrupo(IKey* k) {
     this->grupos->remove(k);
 }
@@ -779,18 +780,17 @@ bool Usuario::AgregarParticipantes() {
     int Opciones;
     string Numero;
     string Nombre;
-    IKey* k, k2;
-    bool admin = false;
+    IKey* k;
     Grupo* grupo = NULL;
     do {
         header("Agregar Participantes");
         if (this->ListarMisGrupoas()) {
             Nombre = CinString("Selecciona Grupo");
             k = new String(Nombre.c_str());
-            k2 = new String(this->numero.c_str());
-            while(!admin){
-                while (!this->grupos->member(k)) {
+            while (!this->grupos->member(k)) {
+                if (!this->grupos->member(k)) {
                     header("No hay grupos con ese nombre");
+                    ol();
                     ol("Reintentar");
                     ol("Salir");
                     Opciones = CinInt();
@@ -802,12 +802,20 @@ bool Usuario::AgregarParticipantes() {
                     Nombre = CinString("Selecciona Grupo");
                     delete k;
                     k = new String(Nombre.c_str());
-                }
-                grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
-                if(!grupo->getAdministradores(k2)){
+                } else if (!((Miembro*) this->grupos->find(k))->getAdministrador()) {
                     header("No tienes permisos para agregar participantes a este grupo");
+                    ol();
+                    ol("Reintentar");
+                    ol("Salir");
+                    Opciones = CinInt();
+                    if (Opciones == 2) {
+                        return false;
+                    }
                 }
             }
+            grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
+
+
             Subheader("Miembros del grupo");
             grupo->SolicitaListaContactos();
             this->SolicitaListaContactos();
@@ -820,13 +828,16 @@ bool Usuario::AgregarParticipantes() {
                     alarm("El nuemero ingresado ya es un miembro del grupo");
                 }
             } else {
-                    alarm("El numero ingresado no corresponde a uno de tus contactos");
+                alarm("El numero ingresado no corresponde a uno de tus contactos");
             }
             header("Desea seguir agregando contactos al grupo?");
             ol();
             ol("Si");
             ol("No");
             Opciones = CinInt();
+        }else{
+            return false;
+            
         }
     } while (Opciones != 2);
     return false;

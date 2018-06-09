@@ -88,6 +88,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>log.txt</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>ICollection</Elem>
@@ -263,6 +264,8 @@
       <item path="factory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="factory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="log.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -448,6 +451,8 @@
       <item path="factory.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="factory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="log.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

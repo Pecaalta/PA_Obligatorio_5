@@ -2,6 +2,11 @@
 #include "iostream"
 #include <stdio.h>  
 #include <windows.h>  
+
+#include <fstream>
+using namespace std;
+
+
 int ancho = 120;
 int largo = 30;
 string tab = "    ";
@@ -29,7 +34,16 @@ void Color() {
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, 15);
 }
-
+void log(string text){
+   ofstream fs("log.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+   fs << text<< endl;
+   fs.close();
+}
+void log(int text){
+   ofstream fs("log.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+   fs << text<< endl;
+   fs.close();
+}
 void Console(int ancho, int largo) {
     SMALL_RECT r;
     COORD c;
@@ -75,6 +89,7 @@ int CinInt() {
             return -1;
         }
     }
+    log(ret);
     return ret;
 };
 
@@ -92,6 +107,7 @@ int CinInt(string texto) {
             return -1;
         }
     }
+    log(ret);
     return ret;
 };
 
@@ -100,6 +116,7 @@ string CinString() {
     cout << endl << "\t>";
     fflush(stdin);
     getline(cin, texto);
+    log(texto);
     return texto;
 };
 
@@ -107,6 +124,7 @@ string CinString(string texto) {
     cout << "\t " << texto << ": ";
     fflush(stdin);
     getline(cin, texto);
+    log(texto);
     return texto;
 };
 

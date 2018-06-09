@@ -10,7 +10,10 @@ int main(int argc, char** argv) {
     
     ISistema* sis = factory::CrearSistema();
     sis->CargarUsuario();
-    while (!sis->ListarOpciones());
+    log("Inicio Programa");
+    while (!sis->ListarOpciones());    
+    log("Finaliso Programa\n");
+
     return 0;
 }
 

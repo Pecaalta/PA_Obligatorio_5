@@ -140,16 +140,29 @@ void Sistema::CargarUsuario() {
     Usuario* usuario_3 = new Usuario("Maxi", "2", "Url 2", "Direccion 2");
     Usuario* usuario_4 = new Usuario("Andres", "3", "Url 3", "Direccion 3");
     Usuario* usuario_5 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
+    Usuario* usuario_6 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
+    Usuario* usuario_7 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
+    Usuario* usuario_8 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
+    Usuario* usuario_9 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
+    Usuario* usuario_10 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
 
-    usuario_1->addContacto(usuario_4);
-    usuario_1->addContacto(usuario_1);
     usuario_1->addContacto(usuario_2);
+    usuario_1->addContacto(usuario_3);
+    usuario_1->addContacto(usuario_4);
+    usuario_1->addContacto(usuario_5);
+    usuario_1->addContacto(usuario_6);
+    usuario_1->addContacto(usuario_7);
+    usuario_1->addContacto(usuario_8);
+    usuario_1->addContacto(usuario_9);
+    usuario_1->addContacto(usuario_10);
 
-    usuario_2->addContacto(usuario_4);
     usuario_2->addContacto(usuario_1);
+    usuario_2->addContacto(usuario_3);
+    usuario_2->addContacto(usuario_4);
+    usuario_2->addContacto(usuario_5);
 
-    usuario_3->addContacto(usuario_5);
     usuario_3->addContacto(usuario_1);
+    usuario_3->addContacto(usuario_2);
 
     usuario_4->addContacto(usuario_1);
 
