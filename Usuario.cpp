@@ -772,9 +772,57 @@ bool Usuario::ArchivarConversaciones() {
 };
 
 bool Usuario::AgregarParticipantes() {
-    system("cls");
-    header("Agregar Participantes");
-    cout << endl;
+  system("cls");
+  int Opciones;
+  string Numero;
+  string Nombre;
+  IKey* k;
+  Grupo* grupo = NULL;
+  do {
+      header("Agregar Participantes");
+      if (this->ListarMisGrupoas()) {
+          Nombre = CinString("Selecciona Grupo");
+          k = new String(Nombre.c_str());
+          while (!this->grupos->member(k)) {
+              header("No hay grupos con ese nombre");
+              ol();
+              ol("Reintentar");
+              ol("Salir");
+              Opciones = CinInt();
+              if (Opciones == 2) {
+                  return false;
+              }
+              header("Agregar Participantes");
+              this->ListarMisGrupoas();
+              Nombre = CinString("Selecciona Grupo");
+              delete k;
+              k = new String(Nombre.c_str());
+          }
+          grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
+          Subheader("Miembros del grupo");
+          grupo->SolicitaListaContactos();
+          Subheader("Tus contactos");
+          this->SolicitaListaContactos();
+          Numero = CinInt("Selecciona el numero de uno de tus contactos para agregarlo al grupo");
+          k = new String(Numero.c_str());
+          if(this->contactos->member(k)){
+              if(!grupo->integrantes->member(k)){
+                  grupo->addContacto(this->contactos->find(k));
+              }
+              else{
+                  cout << "El nuemero ingresado ya es un miembro del grupo\n";
+              }
+          }
+          else{
+              cout << "El numero ingresado no corresponde a uno de tus contactos\n";
+          }
+          cout << "Desea seguir agregando contactos al grupo?";
+          cout << "1 - Si\n 2 - No\n";
+          cin >> Opciones;
+
+  } while (Opciones != 2);
+  return false;
+  }
 };
 
 bool Usuario::EliminarParticipantes() {
@@ -894,4 +942,3 @@ Usuario::Usuario() {
 
 Usuario::~Usuario() {
 };
-
