@@ -126,6 +126,9 @@ void Usuario::setMensajes(IDictionary* _mensajes) {
 void Usuario::addGrupo(Miembro* con) {
     this->grupos->add(new String(con->getConversacion()->getNombre().c_str()), con);
 }
+void Usuario::removeGrupo(IKey* k) {
+    this->grupos->remove(k);
+}
 
 void Usuario::addConversacion(Usuario* user, Conversaciones* con) {
     IKey* k = new String(user->getNumero().c_str());
@@ -807,22 +810,23 @@ bool Usuario::AgregarParticipantes() {
             }
             Subheader("Miembros del grupo");
             grupo->SolicitaListaContactos();
-            Subheader("Tus contactos");
             this->SolicitaListaContactos();
-            Numero = CinInt("Selecciona el numero de uno de tus contactos para agregarlo al grupo");
+            Numero = CinString("Selecciona el numero de uno de tus contactos para agregarlo al grupo");
             k = new String(Numero.c_str());
             if (this->contactos->member(k)) {
                 if (!grupo->getIntegrantes()->member(k)) {
                     grupo->addContacto((Usuario*)this->contactos->find(k));
                 } else {
-                    cout << "El nuemero ingresado ya es un miembro del grupo\n";
+                    alarm("El nuemero ingresado ya es un miembro del grupo");
                 }
             } else {
-                cout << "El numero ingresado no corresponde a uno de tus contactos\n";
+                    alarm("El numero ingresado no corresponde a uno de tus contactos");
             }
-            cout << "Desea seguir agregando contactos al grupo?";
-            cout << "1 - Si\n 2 - No\n";
-            cin >> Opciones;
+            header("Desea seguir agregando contactos al grupo?");
+            ol();
+            ol("Si");
+            ol("No");
+            Opciones = CinInt();
         }
     } while (Opciones != 2);
     return false;

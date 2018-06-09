@@ -531,6 +531,7 @@ bool Sistema::AltaGrupo() {
         } while (Opciones != 1 and Opciones != 2);
     } while (Opciones != 1 and Opciones != 2);
     if (Opciones == 1) {
+        header("Datos de grupo");
         Nombre = CinString("Ingrese un Nombre");
         Imagen = CinString("Ingrese un Imagen");
 

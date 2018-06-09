@@ -71,32 +71,24 @@ void Grupo::setAdmin(Usuario* _user) {
 void Grupo::addContacto(Usuario* user) {
     IKey* k = new String(user->getNumero().c_str());
     if (!this->integrantes->member(k)) {
-        Miembro* mim = new Miembro(user);
+        Miembro* miembro = new Miembro(user, this);
         Visto* v = new Visto(user);
-        this->integrantes->add(k, mim);
+        user->addGrupo(miembro);
         this->visto->add(k, v);
+        this->integrantes->add(k, miembro);
     } else {
-        system("cls");
-        cout << "-----------------------------------------" << endl;
-        cout << " Imposivle ya esta agregado" << endl;
-        cout << "-----------------------------------------" << endl;
-        cout << endl;
-        system("pause");
+        alarm("Imposivle ya esta agregado");
     }
 }
 
 void Grupo::removeContacto(Usuario* user) {
     IKey* k = new String(user->getNumero().c_str());
     if (!this->integrantes->isEmpty() and this->integrantes->member(k)) {
+        user->removeGrupo(k);
         this->integrantes->remove(k);
         this->visto->remove(k);
     } else {
-        system("cls");
-        cout << "-----------------------------------------" << endl;
-        cout << " Imposivle el Grupo esta vacio" << endl;
-        cout << "-----------------------------------------" << endl;
-        cout << endl;
-        system("pause");
+        alarm("Imposivle ya esta agregado");
     }
 }
 
