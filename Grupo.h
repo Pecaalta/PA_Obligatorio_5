@@ -34,9 +34,11 @@ public:
 
     void addMensaje(Mensaje* mens, string Numero);
     string tipo();
-    
-    void ImprimeMensajes(Usuario* user,Fecha* f);
+
+    void ImprimeMensajes(Usuario* user, Fecha* f);
     void ImprimeMensajeDetallado(string numbre);
+
+    void EliminarMensaje(string numbre,Usuario* user);
 
     // Constructores y Destructores
     Grupo(string _nombre, string _imagen);
@@ -51,6 +53,7 @@ public:
     void setId(int _id);
     void commit();
     void SolicitaListaContactos();
+    void SolicitaListaContactos(string name);
     void SolicitaListaContactosDetallada();
     void HacerAdministradores(IKey* k);
     bool getAdministradores(IKey* k);

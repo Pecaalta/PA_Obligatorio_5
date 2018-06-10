@@ -33,6 +33,8 @@ public:
     void ImprimeMensajes(Usuario* user);
     void ImprimeMensajeDetallado(string numbre);
 
+    void EliminarMensaje(string numbre, Usuario* user);
+ 
     Conversaciones(Usuario* _user_1, Usuario* _user_2, IDictionary* _mensaejs);
     Conversaciones(Miembro_Conversacion* mimbro, Usuario* _user_1);
     Conversaciones(Usuario* _user_1, Usuario* _user_2);

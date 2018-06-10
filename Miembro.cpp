@@ -86,6 +86,9 @@ void Miembro::ImprimeMensajeDetallado(string numbre) {//este numero representa e
     header("Mensajes");
     this->Conversacion->ImprimeMensajeDetallado(numbre);
 };
+void Miembro::EliminarMensaje(string numbre,Usuario* user) {//este numero representa el identificador para vuscar el mensaeje
+    this->Conversacion->EliminarMensaje(numbre,user);
+};
 
 void Miembro::ImprimeUsuarioDetallada() {
     this->user->impresionSimple();

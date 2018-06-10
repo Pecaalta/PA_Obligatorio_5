@@ -93,6 +93,7 @@ void Conversaciones::impresionSimple(string _user) {
 void Conversaciones::ImprimeMensajes(Usuario* user) {
     Mensaje* m;
     int id = this->user1->getIdmensaje();
+    int cont = 0;
     li();
     if (!this->mensaejs->isEmpty()) {
         IIterator* it = this->mensaejs->getIterator();
@@ -100,28 +101,32 @@ void Conversaciones::ImprimeMensajes(Usuario* user) {
             m = (Mensaje*) it->getCurrent();
             //if (id < m->getId()) {
             m->SetVisto(user);
-            li("-");
-            li("Id: " + to_string(m->getId()));
-            li("Autor: " + m->getAutor()->getNombre());
-            li("Texto: " + m->getTexto());
-            if (m->tipo.compare("Contacto") == 0) {
-                li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
-                li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
-            } else if (m->tipo.compare("Video") == 0) {
-                li("Durecion de Video: " + ((Video*) m) ->getDuracion());
-                li("Url: " + ((Video*) m) ->getURL());
-            } else if (m->tipo.compare("Foto") == 0) {
-                li("Descripcion : " + ((Foto*) m) ->getDesc());
-                li("Formato : " + ((Foto*) m) ->getForm());
-                li("Tamaño : " + ((Foto*) m) ->getTama());
-                li("Ur : " + ((Foto*) m) ->getURL());
+            if (!m->getBorrado(user)) {
+                cont++;
+                li("-");
+                li("Id: " + to_string(m->getId()));
+                li("Autor: " + m->getAutor()->getNombre());
+                li("Texto: " + m->getTexto());
+                if (m->tipo.compare("Contacto") == 0) {
+                    li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
+                    li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
+                } else if (m->tipo.compare("Video") == 0) {
+                    li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+                    li("Url: " + ((Video*) m) ->getURL());
+                } else if (m->tipo.compare("Foto") == 0) {
+                    li("Descripcion : " + ((Foto*) m) ->getDesc());
+                    li("Formato : " + ((Foto*) m) ->getForm());
+                    li("Tamaño : " + ((Foto*) m) ->getTama());
+                    li("Ur : " + ((Foto*) m) ->getURL());
+                }
+                li("-");
+                //}
             }
-            li("-");
-            //}
             it->next();
         }
         delete it;
-    } else {
+    }
+    if (cont == 0) {
         li("-");
         li("No tines Contactos");
         li("-");
@@ -159,7 +164,20 @@ void Conversaciones::ImprimeMensajeDetallado(string numbre) {
     }
 }
 
-
+void Conversaciones::EliminarMensaje(string numbre, Usuario* user) {
+    IKey* k = new String(numbre.c_str());
+    if (this->mensaejs->member(k)) {
+        Mensaje* m = (Mensaje*)this->mensaejs->find(k);
+        if (m->getAutor()->getNumero().compare(user->getNumero()) == 0) {
+            this->mensaejs->remove(k);
+            delete m;
+        } else {
+            m->serBorrado(user);
+        }
+    } else {
+        alarm("No se encontro mensaje con ese identificador");
+    }
+}
 
 // Constructores y Destructores
 

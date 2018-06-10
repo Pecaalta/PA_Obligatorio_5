@@ -41,17 +41,18 @@ public:
     void setMensajes(IDictionary* _mensajes);
     void addConversacion(Usuario* user, Conversaciones* con);
     void addConversacion(Usuario* user, Miembro_Conversacion* miembro);
-    
-    
+
+
     void addGrupo(Miembro* con);
     void removeGrupo(IKey* k);
-    
+
+    void impresion();
     void impresionSimple();
     void impresionSuperSimple();
     bool ListarMisGrupoas();
     void ListarMisGruposSimple();
     void ListarMisGruposSimpleArchivadas();
-    
+
     bool AgregarAdministradores();
 
     void ListarMisConversaciones();

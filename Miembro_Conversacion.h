@@ -27,6 +27,9 @@ public:
     void addConversacion(Usuario* user, Conversaciones* con);
     Conversaciones* getConversacion();
 
+
+    void EliminarMensaje(string numbre, Usuario* user);
+
     void ImprimeConversacion(Usuario* user);
     void ImprimeConversacion();
     void ImprimeUsuario();

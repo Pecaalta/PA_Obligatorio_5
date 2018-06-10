@@ -1,7 +1,9 @@
 #include "InterfazGrafica.h"
 #include "iostream"
+#include "Sistema.h"
 #include <stdio.h>  
 #include <windows.h>  
+#include <time.h>
 
 #include <fstream>
 using namespace std;
@@ -12,6 +14,13 @@ int largo = 30;
 string tab = "    ";
 bool Contli = true;
 int ContOl = 0;
+
+void GuardaUsuarioLocal(Usuario* user) {
+    FILE * pFile;
+    pFile = fopen("fichero.txt", "a");
+    fprintf(pFile, "%s,%s,%s,%s\n", user->getNombre().c_str(), user->getDireccion().c_str(), user->getNumero().c_str(), user->getImagen().c_str());
+    fclose(pFile);
+}
 
 void gotoxy(int x, int y) {
     HANDLE hcon;
@@ -34,16 +43,23 @@ void Color() {
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, 15);
 }
-void log(string text){
-   ofstream fs("log.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-   fs << text<< endl;
-   fs.close();
+
+void log(string text) {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    ofstream fs("log.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+    fs << (1900 + ltm->tm_year) << "-" << (1 + ltm->tm_mon) << "-" << (ltm->tm_mday) << " " << (ltm->tm_hour) << ":" << (1 + ltm->tm_min) << ":" << (1 + ltm->tm_sec) << " " << text << endl;
+    fs.close();
 }
-void log(int text){
-   ofstream fs("log.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-   fs << text<< endl;
-   fs.close();
+
+void log(int text) {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    ofstream fs("log.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+    fs << (1900 + ltm->tm_year) << "-" << (1 + ltm->tm_mon) << "-" << (ltm->tm_mday) << " " << (ltm->tm_hour) << ":" << (1 + ltm->tm_min) << ":" << (1 + ltm->tm_sec) << " " << text << endl;
+    fs.close();
 }
+
 void Console(int ancho, int largo) {
     SMALL_RECT r;
     COORD c;
@@ -52,7 +68,7 @@ void Console(int ancho, int largo) {
     r.Bottom = largo - 1;
     SetConsoleWindowInfo(hConOut, TRUE, &r);
     c.X = ancho;
-    c.Y = largo+999;
+    c.Y = largo + 999;
     SetConsoleScreenBufferSize(hConOut, c);
 
 }
@@ -343,7 +359,7 @@ void ol() {
 }
 
 int olNum() {
-    return (ContOl - 1);
+    return ContOl;
 }
 
 bool olBool(int numero) {//Retorna verdadero para ser usado en while
@@ -389,4 +405,330 @@ void alarm(string text) {
     cout << text;
     system("pause>nul");
     system("cls");
+}
+
+/*Pantallas*/
+
+/*
+ * Modificar Usuario
+ */
+
+int PantallaSeleccionModificarUsuario() {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        header("Modificar Usuario");
+        ol();
+        ol("Modificar Nombre");
+        ol("Modificar Descripcion");
+        ol("Modificar Imagen de Perfil");
+        ol("Cancelar");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 4);
+    return Opciones;
+};
+
+/*
+ * Enviar Mensajes
+ */
+
+int PantallaSeleccionConversacionEnviarMensaje(Usuario* user) {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        cout << endl;
+        user->ListarMisConversaciones();
+        cout << endl;
+        user->ListarMisGruposSimple();
+        cout << endl;
+        li();
+        li(" Archivadas " + to_string(user->CuentaArchivadas()));
+        li();
+        cout << endl;
+        ol();
+        ol("Seleccionar una conversacion activa");
+        ol("Ver las conversaciones archivadas");
+        ol("Enviar un mensaje a un contacto sin conversacion");
+        ol("Volver");
+        Opciones = CinInt();
+    } while (Rango(Opciones < 1 || Opciones > 4));
+    return Opciones;
+}
+
+int PantallaSeleccionTipomensajeEnviarMensaje() {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        header("Seleccionar Tipo de mensaje");
+        ol();
+        ol("Simple");
+        ol("Imagen");
+        ol("Video");
+        ol("Contacto");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 4);
+    return Opciones;
+}
+
+bool PantallaEnviarOtroEnviarMensaje(int tipo) {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        switch (tipo) {
+            case 1:case 2:
+                header("Crear otro Mensaje");
+                break;
+            default:
+                header("Algo a intentar mandar un mensaje");
+                break;
+        }
+        ol();
+        ol("Enviar mensajes");
+        ol("Cancelar");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 2);
+    return Opciones == 2;
+}
+
+bool PantallaSeleccionarOtraConversacionEnviarMensaje() {
+    int Opciones = -1;
+    do {
+        header("Elejir otra conversacion");
+        ol();
+        ol("Elejir conversacion");
+        ol("Menu Principal");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 2);
+    return Opciones == 1;
+}
+
+void PantallaImprimeArchivada(Usuario* user) {
+    header("Selecciona Conversacion archivada");
+    user->ListarMisConversacionesArchivadas();
+    cout << endl;
+    user->ListarMisGruposSimpleArchivadas();
+    cout << endl;
+}
+
+int PantallaImprimeAltagrupo(Usuario* user, IDictionary* contactos) {
+    Usuario* n;
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        Subheader("Contactos del grupo al momento");
+        li();
+        if (contactos->isEmpty()) {
+            li("El grupo esta vacio por el momento.");
+        } else {
+            IIterator* it = contactos->getIterator();
+            while (it->hasCurrent()) {
+                n = (Usuario*) it->getCurrent();
+                li("-");
+                n->impresionSimple();
+                li("-");
+                it->next();
+            }
+            delete it;
+        }
+        li();
+        user->SolicitaListaContactos();
+        ol();
+        ol("Agregar contactos");
+        ol("Quitar contactos");
+        ol("Finalizar");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 3);
+    return Opciones;
+}
+
+bool PantallaConformeContactos() {
+    return MenuDual("Confirma grupo", "Si", "No");
+}
+
+bool PantallaOtroGrupos() {
+    return MenuDual("Crear otro grupo", "Si", "Volver");
+}
+
+bool PantallaNoHayUsuario() {
+    return MenuDual("No hay usaurio en el sistema", "Registrarse", "Salir");
+}
+
+int PantallaUsuarioNoExiste() {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opcion Incorrecta");
+        }
+        header("NEl usaurio no existe");
+        ol();
+        ol("Registrarse");
+        ol("Reintentar");
+        ol("Salir");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 3);
+    return Opciones;
+}
+
+int PantallaUsuarioEquivocado() {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opcion Incorrecta");
+        }
+        header("Hay otro usaurio logeado");
+        ol();
+        ol("Cerrar secion");
+        ol("Reintentar");
+        ol("Salir");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 3);
+    return Opciones == 1;
+}
+
+bool PantallaUsuarioCerrar() {
+    return MenuDual("Cerrar GuasapTECNO", "Cerrar secion", "Volver");
+}
+
+bool PantallaAgregarContacto(Usuario* user) {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        header("Agregar contacto");
+        user->SolicitaListaContactos();
+
+        cout << endl;
+        ol();
+        ol("Si");
+        ol("Volver");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 2);
+    return Opciones == 1;
+}
+
+bool PantallaConfirmaContacto() {
+    return MenuDual(true,"Añadir a mis contactos", "Si", "Volver");
+}
+
+/*
+ * Ver Mensajes
+ */
+
+int PantallaSeleccionConversacionVerMensaje(Usuario* user) {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        system("cls");
+        cout << endl;
+        user->ListarMisConversaciones();
+        cout << endl;
+        user->ListarMisGruposSimple();
+        cout << endl;
+        li();
+        li(" Archivadas " + to_string(user->CuentaArchivadas()));
+        li();
+
+        cout << endl;
+        ol();
+        ol("Seleccionar una conversacion activa");
+        ol("Ver las conversaciones archivadas");
+        ol("Volver");
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > 3);
+    return Opciones;
+}
+
+bool PantallaSeleccionDetalladoVerMensaje() {
+    return MenuDual(true,"Seleccionar una Mensaje", "Si", "Volver");
+}
+bool PantallaSeleccionDetalladoEliminarMensaje() {
+    return MenuDual("Seleccionar una Mensaje", "Si", "Volver");
+}
+
+bool PantallaSeleccionMasMensajesDetalladoVerMensaje() {
+    return MenuDual("Segir vindo mensajes", "Si", "Volver");
+}
+
+/*
+ * Archivar Conversaciones
+ */
+
+
+bool PantallaSegirArchivandoConversacion() {
+    return MenuDual("Segir archivando?", "Si", "Volver");
+}
+
+/*
+ * Agregar Participantes
+ */
+
+bool PantallaSeleccionAgregarAdministradores() {
+    return MenuDual("Agregar Administradores", "Agregar Administrador", "Volver");
+}
+
+bool PantallaSeleccionAgregarParticipantes() {
+    return MenuDual("Agregar Mas Participantes", "Si", "Volver");
+}
+
+bool MenuDual(string titule, string OpcionFalsa, string OpcionVerdadera) {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        header(titule);
+        ol();
+        ol(OpcionFalsa);
+        ol(OpcionVerdadera);
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > olNum());
+    return Opciones == 1;
+}
+
+bool MenuDual(bool limpia, string titule, string OpcionFalsa, string OpcionVerdadera) {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        if (limpia) {
+            Subheader(titule);
+        } else {
+            header(titule);
+        }
+        ol();
+        ol(OpcionFalsa);
+        ol(OpcionVerdadera);
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > olNum());
+    return Opciones == 1;
+}
+
+int MenuTriple(string titule, string Opcion_1, string Opcion_2, string Opcion_3) {
+    int Opciones = -1;
+    do {
+        if (Opciones != -1) {
+            alarm("Opciones incorecta");
+        }
+        header(titule);
+        ol();
+        ol(Opcion_1);
+        ol(Opcion_2);
+        ol(Opcion_3);
+        Opciones = CinInt();
+    } while (Opciones < 1 || Opciones > olNum());
+    return Opciones;
 }

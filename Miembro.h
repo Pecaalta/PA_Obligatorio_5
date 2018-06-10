@@ -34,6 +34,8 @@ public:
     void impresionSuperSimple();
     void impresionNombreGrupo();
 
+    void EliminarMensaje(string numbre,Usuario* user);
+
     void ImprimeMensajeDetallado(string numbre);
     void ImprimeMensajes(Usuario* user);
 

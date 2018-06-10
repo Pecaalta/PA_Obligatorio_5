@@ -40,6 +40,12 @@ void Visto::setFecha() {
     this->check = true;
     this->fecha->Actual();
 };
+void Visto::setBorrado() {
+    this->borrar = true;
+};
+bool Visto::getBorrado() {
+    return this->borrar;
+};
 
 // Funciones de idmensaje
 
@@ -58,10 +64,12 @@ Visto::Visto(Usuario* _usuario) {
     this->fecha = new Fecha();
     this->idmensaje = -1;
     this->check = false;
+    this->borrar = false;
 }
 
 Visto::Visto() {
     this->check = false;
+    this->borrar = false;
     this->usuario = NULL;
     this->fecha = new Fecha();
     this->idmensaje = -1;

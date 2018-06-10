@@ -33,8 +33,7 @@ public:
     void CargarUsuario();
     void SolicitaListaContactos();
     void CargarUsuarioLocal();
-    void GuardaUsuarioLocal(Usuario*);
-
+void ActualizaUsuarioLocal();
 
     // Pantallas
     bool ListarOpciones();

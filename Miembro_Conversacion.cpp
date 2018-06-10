@@ -76,6 +76,10 @@ void Miembro_Conversacion::ImprimeMensajeDetallado(string numbre) {//este numero
     this->Conversacion->ImprimeMensajeDetallado(numbre);
 };
 
+void Miembro_Conversacion::EliminarMensaje(string numbre,Usuario* user) {//este numero representa el identificador para vuscar el mensaeje
+    this->Conversacion->EliminarMensaje(numbre,user);
+};
+
 string Miembro_Conversacion::getNumero() {
     return this->user->getNumero();
 };

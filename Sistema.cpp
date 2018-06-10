@@ -69,19 +69,12 @@ void Sistema::NuevoUsuario(string Numero) {
     this->activo = new Usuario();
     IKey* k = new String(Numero.c_str());
     this->usuarios->add(k, this->activo);
-    string aux;
     this->activo->setNumero(Numero);
 
-    system("cls");
     header("Nuevo Usuario");
-    aux = CinString("Ingrese su Nombre");
-    this->activo->setNombre(aux);
-
-    aux = CinString("Ingrese su Descripcion");
-    this->activo->setDireccion(aux);
-
-    aux = CinString("Ingrese url Imagen");
-    this->activo->setImagen(aux);
+    this->activo->setNombre(CinString("Ingrese su Nombre"));
+    this->activo->setDireccion(CinString("Ingrese su Descripcion"));
+    this->activo->setImagen(CinString("Ingrese url Imagen"));
     GuardaUsuarioLocal(this->activo);
 };
 
@@ -112,29 +105,37 @@ void Sistema::CargarUsuarioLocal() {
 }
  */
 
-struct DtUsuario {
-    char Nombre[20] = "";
-    char Numero[20] = "";
-    char Url[100] = "";
-    char direccion[100] = "";
-};
-
-void Sistema::GuardaUsuarioLocal(Usuario* user) {
-    DtUsuario userCargar;
-    strncpy(userCargar.Nombre, user->getNombre().c_str(), sizeof (userCargar.Nombre));
-    strncpy(userCargar.direccion, user->getDireccion().c_str(), sizeof (userCargar.direccion));
-    strncpy(userCargar.Numero, user->getNumero().c_str(), sizeof (userCargar.Numero));
-    strncpy(userCargar.Url, user->getImagen().c_str(), sizeof (userCargar.Url));
-
-    ofstream fichero;
-    fichero.open("fichero.csv", ios::app);
-    fichero.write((char*) &userCargar, sizeof (userCargar));
-
-    fichero.close();
+void Sistema::ActualizaUsuarioLocal() {
+    FILE * pFile;
+    pFile = fopen("fichero.txt", "w");
+    Usuario* user;
+    IIterator* it = this->usuarios->getIterator();
+    fprintf(pFile,"Nombre,Descripcion,Numero,Imagen\n");
+    while (it->hasCurrent()) {
+        user = (Usuario*) it->getCurrent();
+        fprintf(pFile, "%s,%s,%s,%s\n", user->getNombre().c_str(), user->getDireccion().c_str(), user->getNumero().c_str(), user->getImagen().c_str());
+        it->next();
+    }
+    fclose(pFile);
 }
 
 void Sistema::CargarUsuario() {
+    char getNombre[21], getDireccion[21], getNumero[101], getImagen[101];
+    FILE * pFile;
+    pFile = fopen("fichero.txt", "r");
+    if (pFile != NULL) {
+        fscanf(pFile, "%20[^,],%20[^,],%100[^,],%100[^,]", getNombre, getDireccion, getNumero, getImagen);
+        for (; fscanf(pFile, "\n%20[^,]", getNombre) != EOF;) {
+            fscanf(pFile, ",%20[^,]", getDireccion);
+            fscanf(pFile, ",%100[^,]", getNumero);
+            fscanf(pFile, ",%100[^\n]", getImagen);
+            Usuario* usuario_1 = new Usuario(getNombre, getNumero, getImagen, getDireccion);
+            this->usuarios->add(new String(getNumero), usuario_1);
+        }
+        fclose(pFile);
+    }
 
+    /*
     Usuario* usuario_1 = new Usuario("Mauro", "0", "Url 0", "Direccion 0");
     Usuario* usuario_2 = new Usuario("Lea", "1", "Url 1", "Direccion 1");
     Usuario* usuario_3 = new Usuario("Maxi", "2", "Url 2", "Direccion 2");
@@ -173,8 +174,13 @@ void Sistema::CargarUsuario() {
     this->usuarios->add(new String(usuario_2->getNumero().c_str()), usuario_2);
     this->usuarios->add(new String(usuario_3->getNumero().c_str()), usuario_3);
     this->usuarios->add(new String(usuario_4->getNumero().c_str()), usuario_4);
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_5);
-
+    this->usuarios->add(new String(usuario_5->getNumero().c_str()), usuario_5);
+    this->usuarios->add(new String(usuario_6->getNumero().c_str()), usuario_6);
+    this->usuarios->add(new String(usuario_7->getNumero().c_str()), usuario_7);
+    this->usuarios->add(new String(usuario_8->getNumero().c_str()), usuario_8);
+    this->usuarios->add(new String(usuario_9->getNumero().c_str()), usuario_9);
+    this->usuarios->add(new String(usuario_10->getNumero().c_str()), usuario_10);
+     */
 };
 
 //Pantallas
@@ -201,8 +207,42 @@ void Sistema::SolicitaListaContactos() {
     li();
 };
 
+// Constructores y Destructores
+Sistema * Sistema::instance = 0;
+
+Sistema * Sistema::getInstance() {
+    if (instance == 0) {
+        instance = new Sistema();
+    }
+    return instance;
+}
+
+Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary * _estados) {
+    this->IDMensaje = 0;
+    this->activo = _activo;
+    this->usuarios = _usuarios;
+    this->conversaciones = _conversaciones;
+    this->grupos = new OrderedDictionary();
+    this->estados = _estados;
+    this->log = false;
+};
+
+Sistema::Sistema() {
+    this->IDMensaje = 0;
+    this->activo = NULL;
+    this->usuarios = new OrderedDictionary();
+    this->conversaciones = new OrderedDictionary();
+    this->grupos = new OrderedDictionary();
+    this->estados = new OrderedDictionary();
+    this->log = false;
+};
+
+Sistema::~Sistema() {
+};
+
 bool Sistema::ListarOpciones() {
     int Opciones = 0;
+    bool ok;
     try {
         do {
             header(" Opciones del Sistema");
@@ -222,7 +262,7 @@ bool Sistema::ListarOpciones() {
             ol("Cerrar Applicacion");
             Opciones = CinInt();
         } while (olBool(Opciones));
-        if (Opciones != 1 and this->activo == NULL) {
+        if (Opciones != 1 and Opciones != 13 and !this->log) {
             alarm("¡No hay usuario en secion!");
         } else {
             switch (Opciones) {
@@ -237,17 +277,19 @@ bool Sistema::ListarOpciones() {
                 case 5:
                     return AgregarAdministradores(); // Test
                 case 6:
-                    return EnviarMensaje(); // Mauro
+                    return EnviarMensaje(); // Test
                 case 7:
-                    return VerMensajes(); // 
+                    return VerMensajes(); // Test
                 case 8:
                     return ArchivarConversaciones(); // Test
                 case 9:
-                    return AgregarParticipantes(); // lucas
+                    return AgregarParticipantes(); // Test
                 case 10:
                     return EliminarParticipantes(); // seba 
                 case 11:
-                    return ModificarUsuario(); // maxi
+                    ok = ModificarUsuario(); // Test
+                    ActualizaUsuarioLocal();
+                    return ok;
                 case 12:
                     return EliminarMensaje(); // 
                 case 13:
@@ -264,109 +306,62 @@ bool Sistema::ListarOpciones() {
 
 bool Sistema::AbrirGuasapTECNO() {
     string Numero;
-    int Opcion;
-    system("cls");
-    header("Abrir GuasapTECNO");
-    Numero = CinString("Ingrese su Numero");
-    IKey* k = new String(Numero.c_str());
     do {
+        header("Abrir GuasapTECNO");
+        Numero = CinString("Ingrese su Numero");
+        IKey* k = new String(Numero.c_str());
         if (this->activo == NULL) {
             if (this->usuarios->isEmpty()) {
-                do {
-                    system("cls");
-                    header("No hay usaurio en el sistema");
-                    ol();
-                    ol("Registrarse");
-                    ol("Salir");
-                    Opcion = CinInt();
-                    if (Opcion == 1) {
-                        this->NuevoUsuario(Numero);
-                        this->log = true;
-                        return false;
-                    } else if (Opcion == 2) {
-                        return true;
-                    }
-                } while (olBool(Opcion));
+                if (PantallaNoHayUsuario()) {
+                    this->NuevoUsuario(Numero);
+                    this->log = true;
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
-                do {
-                    if (!this->usuarios->member(k)) {
-                        system("cls");
-                        header("El usaurio no existe");
-                        ol();
-                        ol("Registrarse");
-                        ol("Reintentar");
-                        ol("Salir");
-                        Opcion = CinInt();
-                        if (Opcion == 1) {
+                if (!this->usuarios->member(k)) {
+                    switch (PantallaUsuarioNoExiste()) {
+                        case 1:
                             this->NuevoUsuario(Numero);
                             this->log = true;
                             return false;
-                        } else if (Opcion == 2) {
-                            Numero = CinString("Ingrese su nuevamente el Numero");
-                            k = new String(Numero.c_str());
-                        } else if (Opcion == 3) {
+                            break;
+                        case 3:
                             return true;
-                        }
-                    } else {
-                        this->activo = (Usuario*) this->usuarios->find(k);
-                        this->log = true;
-                        return false;
-                    }
-                } while (olBool(Opcion));
-            }
-        } else {
-            do {
-                if (Numero.compare(this->activo->getNumero()) != 0) {
-                    system("cls");
-                    header("Hay otro usaurio logeado");
-                    ol();
-                    ol("Cerrar secion");
-                    ol("Reintentar");
-                    ol("Salir");
-                    Opcion = CinInt();
-                    if (Opcion == 1) {
-                        this->CerrarGuasapTECNO();
-                        return false;
-                    } else if (Opcion == 2) {
-                        Numero = CinString("Ingrese su nuevamente el Numero");
-                        fflush(stdin);
-                        getline(cin, Numero);
-                        delete k;
-                        k = new String(Numero.c_str());
-                    } else if (Opcion == 3) {
-                        return true;
                     }
                 } else {
+                    this->activo = (Usuario*) this->usuarios->find(k);
+                    this->log = true;
                     return false;
                 }
-            } while (olBool(Opcion));
+            }
+        } else {
+            if (Numero.compare(this->activo->getNumero()) != 0) {
+                switch (PantallaUsuarioEquivocado()) {
+                    case 1:
+                        this->CerrarGuasapTECNO();
+                        return false;
+                        break;
+                    case 3:
+                        return true;
+                }
+            } else {
+                return false;
+            }
         }
-    } while (this->activo == NULL);
+    } while (true);
+    return false;
 };
 
 bool Sistema::CerrarGuasapTECNO() {
-    system("cls");
-    int opcion = 0;
-    if (this->activo != NULL) {
-        do {
-            header("Cerrar GuasapTECNO");
-            if (opcion != 0) {
-                alarm("Opcion incorrecta");
-            }
-            ol();
-            ol("Volver");
-            ol("Cerrar secion");
-            opcion = CinInt();
-            if (opcion == 1) {
-                return false;
-            } else {
-                this->activo = NULL;
-                return false;
-            }
-        } while (true);
+    if (this->log) {
+        if (PantallaUsuarioCerrar()) {
+            this->activo = NULL;
+        }
+        return false;
     } else {
         alarm("No hay usuario logeado");
-        system("pause");
     }
 };
 
@@ -388,20 +383,14 @@ bool Sistema::AgregarContactos() {
         un contacto que ya posee, el sistema muestra un mensaje acorde sin
         finalizar el caso de uso.
      */
-    int Opciones = 0, OpcionesSubMenu = 0;
     string Numero;
     IKey* k;
     do {
-        header("Agregar contacto");
-        this->activo->SolicitaListaContactos();
-        ol();
-        ol("Agregar contacto");
-        ol("Volvern");
-        Opciones = CinInt();
-        if (Opciones == 1) {
-            header("Agregar Contactos");
+        if (PantallaAgregarContacto(this->activo)) {
+            header("Seleccionar Contacto");
             Numero = CinString("Ingrese el numero");
             k = new String(Numero.c_str());
+            header("Datos de Contacto Seleccionado");
             if (this->usuarios->isEmpty()) {
                 alarm("¡El hay usuarios en el sistema!");
             } else if (!this->usuarios->member(k)) {
@@ -413,22 +402,13 @@ bool Sistema::AgregarContactos() {
             } else {
                 Usuario* n = (Usuario*) this->usuarios->find(k);
                 li();
-                li("Nombre " + n->getNombre());
-                li("Numero " + n->getNumero());
-                li("Imagen " + n->getImagen());
-                li("Descripcion " + n->getDireccion());
+                n->impresion();
                 li();
-                do {
-                    ol();
-                    ol("Añadir a mis contactos");
-                    ol("Me equivoque");
-                    OpcionesSubMenu = CinInt();
-                    if (OpcionesSubMenu == 1) {
-                        this->activo->addContacto(n);
-                    }
-                } while (olBool(OpcionesSubMenu));
+                if (PantallaConfirmaContacto()) {
+                    this->activo->addContacto(n);
+                };
             }
-        } else if (Opciones == 2) {
+        } else {
             return false;
         }
     } while (true);
@@ -463,37 +443,28 @@ bool Sistema::AltaGrupo() {
         return false;
     }
     int Opciones = 0;
-    string Numero, Nombre, Imagen;
+    string Numero, Nombre;
     IDictionary* contactos = new OrderedDictionary();
     IKey* k;
-    Usuario* n;
-    bool FinalisarPaso1 = true;
     do {
         do {
             header("Alta Grupo");
-            Subheader("Contactos del grupo al momento");
-            li();
-            if (contactos->isEmpty()) {
-                li("El grupo esta vacio por el momento.");
-            } else {
-                IIterator* it = contactos->getIterator();
-                while (it->hasCurrent()) {
-                    n = (Usuario*) it->getCurrent();
-                    li("-");
-                    n->impresionSimple();
-                    li("-");
-                    it->next();
+            Opciones = PantallaImprimeAltagrupo(this->activo, contactos);
+            if (Opciones == 3) {
+                if (contactos->isEmpty()) {
+                    alarm("El Grupo esta vacio");
+                } else if (PantallaConformeContactos()) {
+                    header("Datos de grupo");
+                    Nombre = CinString("Ingrese un Nombre");
+                    k = new String(Nombre.c_str());
+                    Grupo* g = new Grupo(Nombre, CinString("Ingrese un Imagen"), contactos);
+                    g->setAdmin(this->activo);
+                    this->grupos->add(k, g);
+                } else {
+                    delete contactos;
+                    return false;
                 }
-                delete it;
-            }
-            li();
-            this->activo->SolicitaListaContactos();
-            ol();
-            ol("Agregar contactos");
-            ol("Quitar contactos");
-            ol("Finalizar");
-            Opciones = CinInt();
-            if (Opciones == 1 || Opciones == 2) {
+            } else {
                 Numero = CinString("Ingrese el numero");
                 k = new String(Numero.c_str());
                 if (this->activo->memberContactos(k)) {
@@ -517,42 +488,9 @@ bool Sistema::AltaGrupo() {
                 } else {
                     alarm("El numero no es tu contacto");
                 }
-            } else if (Opciones == 3) {
-                if (contactos->isEmpty()) {
-                    system("cls");
-                    header("El Grupo esta vacio");
-                    ol();
-                    ol("Seguir");
-                    ol("Salir");
-                    Opciones = CinInt();
-                    if (Opciones == 2) {
-                        return false;
-                    }
-                }
             }
         } while (Opciones != 3);
-        do {
-            header(" ¿ Confirma grupo ? ");
-            ol();
-            ol("Si");
-            ol("No");
-            Opciones = CinInt();
-            if (Opciones == 2) {
-                delete contactos;
-                return false;
-            }
-        } while (Opciones != 1 and Opciones != 2);
-    } while (Opciones != 1 and Opciones != 2);
-    if (Opciones == 1) {
-        header("Datos de grupo");
-        Nombre = CinString("Ingrese un Nombre");
-        Imagen = CinString("Ingrese un Imagen");
-
-        k = new String(Nombre.c_str());
-        Grupo* g = new Grupo(Nombre, Imagen, contactos);
-        g->setAdmin(this->activo);
-        this->grupos->add(k, g);
-    }
+    } while (PantallaOtroGrupos());
     return false;
 };
 
@@ -578,7 +516,6 @@ bool Sistema::AgregarAdministradores() {
             En caso que el usuario no participe en ningún grupo, el sistema muestra
         un mensaje y finaliza el caso de uso.
      */
-    system("cls");
     return this->activo->AgregarAdministradores();
 };
 
@@ -756,7 +693,7 @@ bool Sistema::EliminarMensaje() {
     /*
             El caso de uso comienza cuando un usuario, que previamente ha iniciado
         sesión, desea eliminar un mensaje.
-        Primero, el sistema lista las conversaciones del usuario. Para cada
+            Primero, el sistema lista las conversaciones del usuario. Para cada
         conversación activa, si se corresponde a un grupo se muestra el nombre
         del grupo. Si es una conversación simple, se muestra nombre y número
         de celular del contacto con el cual se mantiene la misma. Para el caso de
@@ -788,37 +725,4 @@ bool Sistema::EliminarMensaje() {
         procede de la misma manera.
      */
     this->activo->EliminarMensaje();
-};
-
-// Constructores y Destructores
-Sistema* Sistema::instance = 0;
-
-Sistema* Sistema::getInstance() {
-    if (instance == 0) {
-        instance = new Sistema();
-    }
-    return instance;
-}
-
-Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary * _estados) {
-    this->IDMensaje = 0;
-    this->activo = _activo;
-    this->usuarios = _usuarios;
-    this->conversaciones = _conversaciones;
-    this->grupos = new OrderedDictionary();
-    this->estados = _estados;
-    this->log = false;
-};
-
-Sistema::Sistema() {
-    this->IDMensaje = 0;
-    this->activo = NULL;
-    this->usuarios = new OrderedDictionary();
-    this->conversaciones = new OrderedDictionary();
-    this->grupos = new OrderedDictionary();
-    this->estados = new OrderedDictionary();
-    this->log = false;
-};
-
-Sistema::~Sistema() {
 };

@@ -26,6 +26,8 @@ public:
     Usuario* getAutor();
     void setAutor(Usuario* _autor);
     void SetVisto(Usuario* _user);
+    bool getBorrado(Usuario* _user);
+    void serBorrado(Usuario* _user);
     void ImprimeVisto();
     string tipo;
 

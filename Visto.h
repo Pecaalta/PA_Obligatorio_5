@@ -7,26 +7,29 @@
 #include "ICollection/String.h"
 #include "Usuario.h"
 
-class Visto : public ICollectible{
-  public:
-	Usuario* getUsuario();
-	void  setUsuario(Usuario* _usuario);
-	Fecha* getFecha();
-	void  setFecha(Fecha* _fecha);
-	void  setFecha();
-	int getIdmensaje();
-	void  setIdmensaje(int _idmensaje);
-string getNumeroUsuario();
-void Imprimir();
-	// Constructores y Destructores
-	Visto(Usuario* _usuario);
-	Visto();
-	~Visto();
-  private:
-	Usuario* usuario;
-	Fecha* fecha;
-	int idmensaje;
-	bool check;
+class Visto : public ICollectible {
+public:
+    Usuario* getUsuario();
+    void setUsuario(Usuario* _usuario);
+    Fecha* getFecha();
+    void setFecha(Fecha* _fecha);
+    void setFecha();
+    bool getBorrado();
+    void setBorrado();
+    int getIdmensaje();
+    void setIdmensaje(int _idmensaje);
+    string getNumeroUsuario();
+    void Imprimir();
+    // Constructores y Destructores
+    Visto(Usuario* _usuario);
+    Visto();
+    ~Visto();
+private:
+    Usuario* usuario;
+    Fecha* fecha;
+    int idmensaje;
+    bool check;
+    bool borrar;
 };
 
 

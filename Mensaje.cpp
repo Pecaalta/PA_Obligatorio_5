@@ -70,6 +70,14 @@ void Mensaje::SetVisto(Usuario* _user) {
     }
 }
 
+bool Mensaje::getBorrado(Usuario* _user) {
+    return ((Visto*)this->MVisto->find(new String(_user->getNumero().c_str())))->getBorrado();
+}
+void Mensaje::serBorrado(Usuario* _user) {
+    //Recordar borradofisico
+    ((Visto*)this->MVisto->find(new String(_user->getNumero().c_str())))->setBorrado();
+}
+
 void Mensaje::ImprimeVisto() {
     IIterator* it = this->MVisto->getIterator();
     Visto* v;
@@ -103,6 +111,8 @@ Mensaje::Mensaje(int _id, string _texto, Usuario* _autor, string _tipo) {
 }
 
 Mensaje::~Mensaje() {
+    delete this->fecha;
+    delete this->MVisto;
 };
 
 Mensaje::Mensaje() {
