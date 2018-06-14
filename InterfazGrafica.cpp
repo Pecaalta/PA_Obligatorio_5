@@ -682,6 +682,9 @@ bool PantallaSeleccionAgregarAdministradores() {
 bool PantallaSeleccionAgregarParticipantes() {
     return MenuDual("Agregar Mas Participantes", "Si", "Volver");
 }
+bool PantallaSeleccionEliminarParticipantes() {
+    return MenuDual("Eliminar Mas Participantes", "Si, Eliminar mas participantes", "No, Volver a menu");
+}
 
 bool MenuDual(string titule, string OpcionFalsa, string OpcionVerdadera) {
     int Opciones = -1;
@@ -697,7 +700,13 @@ bool MenuDual(string titule, string OpcionFalsa, string OpcionVerdadera) {
     } while (Opciones < 1 || Opciones > olNum());
     return Opciones == 1;
 }
+/*
+ * Estados
+ */
 
+bool PantallaSeleccionEnviarEstado() {
+    return MenuDual(true,"Segir mandadno estados", "Si", "Volver");
+}
 bool MenuDual(bool limpia, string titule, string OpcionFalsa, string OpcionVerdadera) {
     int Opciones = -1;
     do {

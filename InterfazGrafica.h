@@ -63,6 +63,7 @@ bool PantallaSegirArchivandoConversacion();
 
 bool PantallaSeleccionAgregarAdministradores();
 bool PantallaSeleccionAgregarParticipantes();
+bool PantallaSeleccionEliminarParticipantes();
 
 
 void PantallaImprimeArchivada();
@@ -79,6 +80,7 @@ bool PantallaAgregarContacto(Usuario* user);
 bool PantallaConfirmaContacto();
 
 
+bool PantallaSeleccionEnviarEstado();
 
     void GuardaUsuarioLocal(Usuario*);
     void ActualizaUsuarioLocal(Usuario* user);

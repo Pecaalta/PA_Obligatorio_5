@@ -33,7 +33,7 @@ public:
     void CargarUsuario();
     void SolicitaListaContactos();
     void CargarUsuarioLocal();
-void ActualizaUsuarioLocal();
+    void ActualizaUsuarioLocal();
 
     // Pantallas
     bool ListarOpciones();
@@ -42,7 +42,7 @@ void ActualizaUsuarioLocal();
     static Sistema* getInstance();
 private:
     static Sistema* instance;
-    Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary* _estados);
+    Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones);
     Sistema();
     bool log;
     int IDMensaje;
@@ -50,7 +50,7 @@ private:
     IDictionary* usuarios;
     IDictionary* conversaciones;
     IDictionary* grupos;
-    IDictionary* estados;
+    ICollection* estados;
 };
 
 

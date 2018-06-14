@@ -22,8 +22,7 @@ void Estado::setDestinatarios(IDictionary* _destinatarios) {
 };
 
 // Constructores y Destructores
-Estado::Estado(string _texto, IDictionary* _destinatarios ) {
+Estado::Estado(string _texto ) {
 	this->texto = _texto;
-	this->destinatarios = _destinatarios;
 }
 Estado::~Estado(){};

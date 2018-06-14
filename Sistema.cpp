@@ -53,15 +53,6 @@ void Sistema::setConversaciones(IDictionary* _conversaciones) {
     this->conversaciones = _conversaciones;
 };
 
-// Funciones de estados
-
-IDictionary* Sistema::getEstados() {
-    return this->estados;
-};
-
-void Sistema::setEstados(IDictionary* _estados) {
-    this->estados = _estados;
-};
 
 //Funciones Usuarios
 
@@ -110,7 +101,7 @@ void Sistema::ActualizaUsuarioLocal() {
     pFile = fopen("fichero.txt", "w");
     Usuario* user;
     IIterator* it = this->usuarios->getIterator();
-    fprintf(pFile,"Nombre,Descripcion,Numero,Imagen\n");
+    fprintf(pFile, "Nombre,Descripcion,Numero,Imagen\n");
     while (it->hasCurrent()) {
         user = (Usuario*) it->getCurrent();
         fprintf(pFile, "%s,%s,%s,%s\n", user->getNombre().c_str(), user->getDireccion().c_str(), user->getNumero().c_str(), user->getImagen().c_str());
@@ -118,8 +109,8 @@ void Sistema::ActualizaUsuarioLocal() {
     }
     fclose(pFile);
 }
-
 void Sistema::CargarUsuario() {
+   /*
     char getNombre[21], getDireccion[21], getNumero[101], getImagen[101];
     FILE * pFile;
     pFile = fopen("fichero.txt", "r");
@@ -135,17 +126,17 @@ void Sistema::CargarUsuario() {
         fclose(pFile);
     }
 
-    /*
-    Usuario* usuario_1 = new Usuario("Mauro", "0", "Url 0", "Direccion 0");
-    Usuario* usuario_2 = new Usuario("Lea", "1", "Url 1", "Direccion 1");
-    Usuario* usuario_3 = new Usuario("Maxi", "2", "Url 2", "Direccion 2");
-    Usuario* usuario_4 = new Usuario("Andres", "3", "Url 3", "Direccion 3");
-    Usuario* usuario_5 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
-    Usuario* usuario_6 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
-    Usuario* usuario_7 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
-    Usuario* usuario_8 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
-    Usuario* usuario_9 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
-    Usuario* usuario_10 = new Usuario("Maia", "4", "Url 4", "Direccion 4");
+    */
+    Usuario* usuario_1  = new Usuario("Mauro >_< "   , "0", "Url 0", "Direccion 0");
+    Usuario* usuario_2  = new Usuario("Lucas"   , "1", "Url 1", "Direccion 1");
+    Usuario* usuario_3  = new Usuario("Maxi"    , "2", "Url 2", "Direccion 2");
+    Usuario* usuario_4  = new Usuario("Seva"    , "3", "Url 3", "Direccion 3");
+    Usuario* usuario_5  = new Usuario("Putin"   , "4", "Url 4", "Direccion 4");
+    Usuario* usuario_6  = new Usuario("Maia"    , "5", "Url 5", "Direccion 5");
+    Usuario* usuario_7  = new Usuario("Andres"  , "6", "Url 6", "Direccion 6");
+    Usuario* usuario_8  = new Usuario("Agustina", "7", "Url 7", "Direccion 7");
+    Usuario* usuario_9  = new Usuario("Diejo"   , "8", "Url 8", "Direccion 8");
+    Usuario* usuario_10 = new Usuario("Pedro"   , "9", "Url 9", "Direccion 9");
 
     usuario_1->addContacto(usuario_2);
     usuario_1->addContacto(usuario_3);
@@ -169,18 +160,33 @@ void Sistema::CargarUsuario() {
 
     usuario_5->addContacto(usuario_1);
     usuario_5->addContacto(usuario_2);
+    
+    usuario_6->addContacto(usuario_1);
+    usuario_6->addContacto(usuario_2);
+    
+    usuario_7->addContacto(usuario_1);
+    usuario_7->addContacto(usuario_2);
+    
+    usuario_8->addContacto(usuario_1);
+    usuario_8->addContacto(usuario_2);
+    
+    usuario_9->addContacto(usuario_1);
+    usuario_9->addContacto(usuario_2);
+    
+    usuario_10->addContacto(usuario_1);
+    usuario_10->addContacto(usuario_2);
 
-    this->usuarios->add(new String(usuario_1->getNumero().c_str()), usuario_1);
-    this->usuarios->add(new String(usuario_2->getNumero().c_str()), usuario_2);
-    this->usuarios->add(new String(usuario_3->getNumero().c_str()), usuario_3);
-    this->usuarios->add(new String(usuario_4->getNumero().c_str()), usuario_4);
-    this->usuarios->add(new String(usuario_5->getNumero().c_str()), usuario_5);
-    this->usuarios->add(new String(usuario_6->getNumero().c_str()), usuario_6);
-    this->usuarios->add(new String(usuario_7->getNumero().c_str()), usuario_7);
-    this->usuarios->add(new String(usuario_8->getNumero().c_str()), usuario_8);
-    this->usuarios->add(new String(usuario_9->getNumero().c_str()), usuario_9);
-    this->usuarios->add(new String(usuario_10->getNumero().c_str()), usuario_10);
-     */
+    this->usuarios->add(new String(usuario_1->getNumero().c_str())  , usuario_1);
+    this->usuarios->add(new String(usuario_2->getNumero().c_str())  , usuario_2);
+    this->usuarios->add(new String(usuario_3->getNumero().c_str())  , usuario_3);
+    this->usuarios->add(new String(usuario_4->getNumero().c_str())  , usuario_4);
+    this->usuarios->add(new String(usuario_5->getNumero().c_str())  , usuario_5);
+    this->usuarios->add(new String(usuario_6->getNumero().c_str())  , usuario_6);
+    this->usuarios->add(new String(usuario_7->getNumero().c_str())  , usuario_7);
+    this->usuarios->add(new String(usuario_8->getNumero().c_str())  , usuario_8);
+    this->usuarios->add(new String(usuario_9->getNumero().c_str())  , usuario_9);
+    this->usuarios->add(new String(usuario_10->getNumero().c_str()) , usuario_10);
+     
 };
 
 //Pantallas
@@ -217,13 +223,12 @@ Sistema * Sistema::getInstance() {
     return instance;
 }
 
-Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones, IDictionary * _estados) {
+Sistema::Sistema(Usuario* _activo, IDictionary* _usuarios, IDictionary* _conversaciones) {
     this->IDMensaje = 0;
     this->activo = _activo;
     this->usuarios = _usuarios;
     this->conversaciones = _conversaciones;
     this->grupos = new OrderedDictionary();
-    this->estados = _estados;
     this->log = false;
 };
 
@@ -233,7 +238,6 @@ Sistema::Sistema() {
     this->usuarios = new OrderedDictionary();
     this->conversaciones = new OrderedDictionary();
     this->grupos = new OrderedDictionary();
-    this->estados = new OrderedDictionary();
     this->log = false;
 };
 

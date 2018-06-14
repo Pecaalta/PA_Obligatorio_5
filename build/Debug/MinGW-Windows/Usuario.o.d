@@ -15,7 +15,7 @@ build/Debug/MinGW-Windows/Usuario.o: Usuario.cpp Usuario.h \
  ICollection/collections/../interfaces/OrderedKey.h \
  ICollection/collections/../interfaces/ICollectible.h \
  ICollection/collections/../interfaces/IDictionary.h \
- ICollection/Integer.h Foto.h Video.h Contacto.h
+ ICollection/Integer.h Foto.h Video.h Contacto.h Estado.h
 
 Usuario.h:
 
@@ -82,3 +82,5 @@ Foto.h:
 Video.h:
 
 Contacto.h:
+
+Estado.h:

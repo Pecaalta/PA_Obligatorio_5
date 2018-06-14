@@ -16,6 +16,7 @@
 #include "Foto.h"
 #include "Video.h"
 #include "Contacto.h"
+#include "Estado.h"
 
 using namespace std;
 
@@ -114,16 +115,6 @@ void Usuario::ActualisarConeccion() {
     this->ultima->Actual();
 };
 
-// Funciones de estados
-
-IDictionary* Usuario::getEstados() {
-    return this->estados;
-};
-
-void Usuario::setEstados(IDictionary* _estados) {
-    this->estados = _estados;
-};
-
 // Funciones de mensajes
 
 IDictionary* Usuario::getMensajes() {
@@ -137,11 +128,21 @@ void Usuario::setMensajes(IDictionary* _mensajes) {
 // Conversacion
 
 void Usuario::addGrupo(Miembro* con) {
-    this->grupos->add(new String(con->getConversacion()->getNombre().c_str()), con);
+    IKey* k = new String(con->getConversacion()->getNombre().c_str());
+    if (this->grupos->member(k)) {
+        alarm("El contacto ya pertenece al grupo");
+    } else {
+        this->grupos->add(k, con);
+    }
 }
 
 void Usuario::removeGrupo(IKey* k) {
-    this->grupos->remove(k);
+    if (this->grupos->member(k)) {
+        this->grupos->remove(k);
+    } else {
+            alarm("El contacto no pertenece al grupo");
+    }
+
 }
 
 void Usuario::addConversacion(Usuario* user, Conversaciones* con) {
@@ -252,7 +253,6 @@ void Usuario::ListarMisGruposSimple() {
                 li("-");
                 n->impresionNombreGrupo();
                 li("-");
-            } else {
                 cont++;
             }
             it->next();
@@ -371,7 +371,6 @@ void Usuario::ListarMisConversaciones() {
                 li("-");
                 n->ImprimeConversacion(this);
                 li("-");
-            } else {
                 cont++;
             }
             it->next();
@@ -499,12 +498,12 @@ bool Usuario::EliminarMensaje() {
             } else if (cerarMensaje == 2) {
                 mim->ImprimeMensajes(this);
             }
-                Numero = CinString("Cual es el identificador");
-                if (cerarMensaje == 1) {
-                    mimcon->EliminarMensaje(Numero,this);
-                } else if (cerarMensaje == 2) {
-                    mim->EliminarMensaje(Numero,this);
-                }
+            Numero = CinString("Cual es el identificador");
+            if (cerarMensaje == 1) {
+                mimcon->EliminarMensaje(Numero, this);
+            } else if (cerarMensaje == 2) {
+                mim->EliminarMensaje(Numero, this);
+            }
         } while (PantallaSeleccionMasMensajesDetalladoVerMensaje());
     }
 };
@@ -693,6 +692,7 @@ bool Usuario::VerMensajes() {
                 } else if (cerarMensaje == 2) {
                     mim->ImprimeMensajeDetallado(Numero);
                 }
+                system("pause");
             }
         } while (PantallaSeleccionMasMensajesDetalladoVerMensaje());
     }
@@ -768,9 +768,30 @@ bool Usuario::AgregarParticipantes() {
 };
 
 bool Usuario::EliminarParticipantes() {
-    system("cls");
-    header("Eliminar Participantes");
-    cout << endl;
+    IKey* k;
+    Grupo* grupo = NULL;
+    if (this->grupos->isEmpty()) {
+        alarm("No tines conversaciones para archivadas");
+    } else {
+        do {
+            header("Eliminat Participantes");
+            if (this->ListarMisGrupoas()) {
+                k = new String(CinString("Selecciona Grupo").c_str());
+                if (!this->grupos->member(k)) {
+                    alarm("No hay grupos con ese nombre");
+                } else if (!((Miembro*) this->grupos->find(k))->getAdministrador()) {
+                    alarm("No tienes permisos para agregar participantes a este grupo");
+                } else {
+                    grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
+                    header("Miembros del grupo");
+                    grupo->SolicitaListaContactos(this->numero);
+                    k = new String(CinString("Selecciona el numero de uno de tus contactos para quitar del grupo").c_str());
+                    grupo->removeContacto((Usuario*)this->contactos->find(k));
+                }
+            }
+        } while (PantallaSeleccionEliminarParticipantes());
+    }
+    return false;
 };
 
 bool Usuario::AgregarAdministradores() {
@@ -818,7 +839,6 @@ Usuario::Usuario(string _nombre, string _numero, string _imagen, string _direcci
     this->creacion = _creacion;
     this->contactos = new OrderedDictionary();
     this->conversaciones = new OrderedDictionary();
-    this->estados = new OrderedDictionary();
     this->mensajes = new OrderedDictionary();
     this->grupos = new OrderedDictionary();
 }
@@ -832,7 +852,6 @@ Usuario::Usuario(string _nombre, string _numero, string _imagen, string _direcci
     this->creacion = new Fecha();
     this->contactos = new OrderedDictionary();
     this->conversaciones = new OrderedDictionary();
-    this->estados = new OrderedDictionary();
     this->mensajes = new OrderedDictionary();
     this->grupos = new OrderedDictionary();
 }
@@ -846,7 +865,6 @@ Usuario::Usuario() {
     this->creacion = new Fecha();
     this->conversaciones = new OrderedDictionary();
     this->contactos = new OrderedDictionary();
-    this->estados = new OrderedDictionary();
     this->mensajes = new OrderedDictionary();
     this->grupos = new OrderedDictionary();
 };

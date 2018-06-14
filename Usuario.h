@@ -90,7 +90,7 @@ private:
     IDictionary* grupos;
     IDictionary* conversaciones;
     IDictionary* contactos;
-    IDictionary* estados;
+    ICollection* estados;
     IDictionary* mensajes;
 };
 

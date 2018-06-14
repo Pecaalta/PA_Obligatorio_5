@@ -17,7 +17,7 @@ public:
     void setDestinatarios(IDictionary* _destinatarios);
 
     // Constructores y Destructores
-    Estado(string _texto, IDictionary* _destinatarios);
+    Estado(string _texto);
     Estado();
     ~Estado();
 private:

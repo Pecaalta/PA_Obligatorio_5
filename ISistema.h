@@ -17,11 +17,12 @@ public:
     virtual bool EliminarParticipantes() = 0;
     virtual bool ModificarUsuario() = 0;
     virtual bool EliminarMensaje() = 0;
-    
-    virtual void CargarUsuario()= 0;
-    virtual bool ListarOpciones()= 0;
-    
-    virtual ~ISistema() {};
+
+    virtual void CargarUsuario() = 0;
+    virtual bool ListarOpciones() = 0;
+
+    virtual ~ISistema() {
+    };
 };
 
 
