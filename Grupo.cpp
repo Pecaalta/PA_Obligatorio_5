@@ -81,16 +81,16 @@ void Grupo::addContacto(Usuario* user) {
     }
 }
 
-void Grupo::removeContacto(Usuario* user) {
-    IKey* k = new String(user->getNumero().c_str());
-    if (!this->integrantes->isEmpty() and this->integrantes->member(k)) {
+void Grupo::removeContacto(IKey* k) {
+    if (this->integrantes->member(k)) {
+        Usuario* user = ((Miembro*)this->integrantes->find(k))->getUsuario();
         user->removeGrupo(new String(this->getNombre().c_str()));
         if (this->integrantes->member(k))
             this->integrantes->remove(k);
 /*        if (this->visto->member(k))
             this->visto->remove(k);*/
     } else {
-        alarm("Imposivle ya esta agregado");
+        alarm("El usuario no pertenece");
     }
 }
 

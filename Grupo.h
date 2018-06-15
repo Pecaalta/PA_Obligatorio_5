@@ -48,7 +48,7 @@ public:
 
     bool isEmpty();
     void addContacto(Usuario* user);
-    void removeContacto(Usuario* user);
+    void removeContacto(IKey* k);
     int getId();
     void setId(int _id);
     void commit();

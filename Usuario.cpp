@@ -140,7 +140,7 @@ void Usuario::removeGrupo(IKey* k) {
     if (this->grupos->member(k)) {
         this->grupos->remove(k);
     } else {
-            alarm("El contacto no pertenece al grupo");
+        alarm("El contacto no pertenece al grupo");
     }
 
 }
@@ -786,7 +786,7 @@ bool Usuario::EliminarParticipantes() {
                     header("Miembros del grupo");
                     grupo->SolicitaListaContactos(this->numero);
                     k = new String(CinString("Selecciona el numero de uno de tus contactos para quitar del grupo").c_str());
-                    grupo->removeContacto((Usuario*)this->contactos->find(k));
+                    grupo->removeContacto(k);
                 }
             }
         } while (PantallaSeleccionEliminarParticipantes());
