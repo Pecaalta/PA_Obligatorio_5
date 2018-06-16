@@ -618,9 +618,11 @@ int Usuario::EnviarMensaje(int idMensaje) {
                 }
                 //Envia mensaje
                 if (cerarMensaje == 2) {
+                    mim->setArchivado(false);
                     mim->addMensaje(mens, this->getNumero());
                 } else if (cerarMensaje == 1) {
                     mimcon->addMensaje(mens, this->getNumero());
+                    mimcon->setArchivado(false);
                 }
             } while (PantallaEnviarOtroEnviarMensaje(cerarMensaje));
         } while (PantallaSeleccionarOtraConversacionEnviarMensaje());

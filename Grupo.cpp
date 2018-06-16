@@ -35,6 +35,7 @@ void Grupo::addMensaje(Mensaje* mens, string Numero) {
     IIterator* it = this->integrantes->getIterator();
     while (it->hasCurrent()) {
         n = (Miembro*) it->getCurrent();
+        n->setArchivado(false);
         mens->SetVisto(n->getUsuario());
         it->next();
     }

@@ -28,6 +28,8 @@ void Conversaciones::addMensaje(Mensaje* mens, string Numero) {
     this->mensaejs->add(k, mens);
     mens->SetVisto(this->user1->getUsuario());
     mens->SetVisto(this->user2->getUsuario());
+    ((Miembro*)this->user1->getUsuario()->getConversaciones()->find( new String( this->user2->getUsuario()->getNumero().c_str() ) ))->setArchivado(false);
+    ((Miembro*)this->user2->getUsuario()->getConversaciones()->find( new String( this->user1->getUsuario()->getNumero().c_str() ) ))->setArchivado(false);
     if (Numero.compare(this->user1->getNumeroUsuario()) != 0) {
         Visto* v = this->user1;
         v->setIdmensaje(mens->getId());
@@ -36,7 +38,6 @@ void Conversaciones::addMensaje(Mensaje* mens, string Numero) {
         Visto* v = this->user2;
         v->setIdmensaje(mens->getId());
         v->setFecha();
-
     }
 }
 // Funciones de user
