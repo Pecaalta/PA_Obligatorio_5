@@ -259,13 +259,13 @@ void Usuario::ListarMisGruposSimple() {
         }
         if (cont == 0) {
             li("-");
-            li("No tines Grupos");
+            li("No tienes Grupos");
             li("-");
         }
         delete it;
     } else {
         li("-");
-        li("No tines Grupos");
+        li("No tienes Grupos");
         li("-");
     }
     li();
@@ -291,13 +291,13 @@ void Usuario::ListarMisGruposSimpleArchivadas() {
         }
         if (cont == 0) {
             li("-");
-            li("No tines Grupos");
+            li("No tienes Grupos");
             li("-");
         }
         delete it;
     } else {
         li("-");
-        li("No tines Grupos");
+        li("No tienes Grupos");
         li("-");
     }
     li();
@@ -321,7 +321,7 @@ bool Usuario::ListarMisGrupoas() {
         li();
         return true;
     } else {
-        alarm("No tines Grupos");
+        alarm("No tienes Grupos");
         return false;
     }
 }
@@ -346,13 +346,13 @@ void Usuario::ListarMisConversacionesArchivadas() {
         }
         if (cont == 0) {
             li("-");
-            li("No tines Conversaciones");
+            li("No tienes Conversaciones");
             li("-");
         }
         delete it;
     } else {
         li("-");
-        li("No tines Conversaciones Activas");
+        li("No tienes Conversaciones Activas");
         li("-");
     }
     li();
@@ -377,13 +377,13 @@ void Usuario::ListarMisConversaciones() {
         }
         if (cont == 0) {
             li("-");
-            li("No tines Conversaciones");
+            li("No tienes Conversaciones");
             li("-");
         }
         delete it;
     } else {
         li("-");
-        li("No tines Conversaciones Activas");
+        li("No tienes Conversaciones Activas");
         li("-");
     }
     li();
@@ -409,15 +409,15 @@ void Usuario::SolicitaListaContactos() {
         delete it;
     } else {
         li("-");
-        li("No tines Contactos");
+        li("No tienes Contactos");
         li("-");
     }
     li();
 };
 /*
- * 
+ *
  * DSS
- * 
+ *
  */
 
 // Usuario
@@ -448,7 +448,7 @@ bool Usuario::EliminarMensaje() {
     Miembro_Conversacion* mimcon;
     int cerarMensaje = 0;
     if (this->conversaciones->isEmpty() and this->grupos->isEmpty()) {
-        alarm("No tines conversaciones para poder ver mensajes");
+        alarm("No tienes conversaciones para poder ver mensajes");
         return FALSE;
     }
     switch (PantallaSeleccionConversacionVerMensaje(this)) {
@@ -515,7 +515,7 @@ int Usuario::EnviarMensaje(int idMensaje) {
     Miembro_Conversacion* mimcon;
     int cerarMensaje = 0;
     if (this->contactos->isEmpty()) {
-        alarm("No tines contactos a quien mandar mensajes");
+        alarm("No tienes contactos a quien mandar mensajes");
     } else {
 
         do {
@@ -533,7 +533,7 @@ int Usuario::EnviarMensaje(int idMensaje) {
                                 mim = (Miembro*) this->grupos->find(k);
                                 cerarMensaje = 2;
                             } else {
-                                alarm("No posee ese Conversacion con ese numero");
+                                alarm("No posee esa Conversacion con ese numero");
                             }
                         } else {
                             alarm("No posees Conversaciones");
@@ -552,10 +552,10 @@ int Usuario::EnviarMensaje(int idMensaje) {
                                 mim->setArchivado(false);
                                 cerarMensaje = 2;
                             } else {
-                                alarm("No posee ese Conversacion con ese numero");
+                                alarm("No posee esa Conversacion con ese numero");
                             }
                         } else {
-                            alarm("No posee ese Conversacion Archivadas");
+                            alarm("No posee esa Conversacion Archivadas");
                         }
                         break;
                     case 3:
@@ -577,7 +577,7 @@ int Usuario::EnviarMensaje(int idMensaje) {
                                 alarm("No posee ese numero como contacto");
                             }
                         } else {
-                            alarm("No tines contactos");
+                            alarm("No tienes contactos");
                         }
                         break;
                     case 4:
@@ -637,7 +637,7 @@ bool Usuario::VerMensajes() {
     Miembro_Conversacion* mimcon;
     int cerarMensaje = 0;
     if (this->conversaciones->isEmpty() and this->grupos->isEmpty()) {
-        alarm("No tines conversaciones para poder ver mensajes");
+        alarm("No tienes conversaciones para poder ver mensajes");
         return FALSE;
     }
     switch (PantallaSeleccionConversacionVerMensaje(this)) {
@@ -704,7 +704,7 @@ bool Usuario::VerMensajes() {
 
 bool Usuario::ArchivarConversaciones() {
     if (this->CuentaNoArchivadas() == 0) {
-        alarm("No tines conversaciones para archivadas");
+        alarm("No tienes conversaciones para archivar");
     } else {
         do {
             system("cls");
@@ -737,7 +737,7 @@ bool Usuario::AgregarParticipantes() {
     IKey* k;
     Grupo* grupo = NULL;
     if (this->grupos->isEmpty()) {
-        alarm("No tines conversaciones para archivadas");
+        alarm("No tienes conversaciones para archivadar");
     } else {
         do {
             header("Agregar Participantes");
@@ -757,7 +757,7 @@ bool Usuario::AgregarParticipantes() {
                         if (!grupo->getIntegrantes()->member(k)) {
                             grupo->addContacto((Usuario*)this->contactos->find(k));
                         } else {
-                            alarm("El nuemero ingresado ya es un miembro del grupo");
+                            alarm("El numero ingresado ya es un miembro del grupo");
                         }
                     } else {
                         alarm("El numero ingresado no corresponde a uno de tus contactos");
@@ -773,10 +773,10 @@ bool Usuario::EliminarParticipantes() {
     IKey* k;
     Grupo* grupo = NULL;
     if (this->grupos->isEmpty()) {
-        alarm("No tines conversaciones para archivadas");
+        alarm("No tienes conversaciones para archivadas");
     } else {
         do {
-            header("Eliminat Participantes");
+            header("Eliminar Participantes");
             if (this->ListarMisGrupoas()) {
                 k = new String(CinString("Selecciona Grupo").c_str());
                 if (!this->grupos->member(k)) {
@@ -787,7 +787,7 @@ bool Usuario::EliminarParticipantes() {
                     grupo = ((Miembro*) this->grupos->find(k))->getConversacion();
                     header("Miembros del grupo");
                     grupo->SolicitaListaContactos(this->numero);
-                    k = new String(CinString("Selecciona el numero de uno de tus contactos para quitar del grupo").c_str());
+                    k = new String(CinString("Selecciona el numero de uno de los contactos para quitar del grupo").c_str());
                     grupo->removeContacto(k);
                 }
             }
@@ -800,7 +800,7 @@ bool Usuario::AgregarAdministradores() {
     IKey* k;
     Grupo* gurpo = NULL;
     if (this->grupos->isEmpty()) {
-        alarm("No tines conversaciones para archivadas");
+        alarm("No tienes conversaciones para archivadas");
     } else {
         do {
             header("Agregar Administradores");
@@ -813,9 +813,9 @@ bool Usuario::AgregarAdministradores() {
                     if (!gurpo->getIntegrantes()->member(k)) {
                         alarm("No se encontro el usuario");
                     } else if (!gurpo->getAdministradores(new String(this->numero.c_str()))) {
-                        alarm("No tines permisos");
+                        alarm("No tienes permisos");
                     } else if (gurpo->getAdministradores(k)) {
-                        alarm("Ya tines permisos");
+                        alarm("Ya tienes permisos");
                     } else {
                         gurpo->HacerAdministradores(k);
                     }
@@ -823,7 +823,7 @@ bool Usuario::AgregarAdministradores() {
                     alarm("No hay grupos con ese nombre");
                 }
             } else {
-                alarm("No tines grupoes");
+                alarm("No tienes grupoes");
             }
         } while (PantallaSeleccionAgregarAdministradores());
     }

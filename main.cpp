@@ -7,13 +7,12 @@ using namespace std;
 int main(int argc, char** argv) {
     system("TITLE GuasapTECNO");
     Console(120,30);
-    
+
     ISistema* sis = factory::CrearSistema();
     sis->CargarUsuario();
     log("Inicio Programa");
-    while (!sis->ListarOpciones());    
-    log("Finaliso Programa\n");
+    while (!sis->ListarOpciones());
+    log("Finalizo Programa\n");
 
     return 0;
 }
-

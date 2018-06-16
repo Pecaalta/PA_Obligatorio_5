@@ -1,8 +1,8 @@
 #include "InterfazGrafica.h"
 #include "iostream"
 #include "Sistema.h"
-#include <stdio.h>  
-#include <windows.h>  
+#include <stdio.h>
+#include <windows.h>
 #include <time.h>
 
 #include <fstream>
@@ -417,7 +417,7 @@ int PantallaSeleccionModificarUsuario() {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         header("Modificar Usuario");
         ol();
@@ -438,7 +438,7 @@ int PantallaSeleccionConversacionEnviarMensaje(Usuario* user) {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         cout << endl;
         user->ListarMisConversaciones();
@@ -463,7 +463,7 @@ int PantallaSeleccionTipomensajeEnviarMensaje() {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         header("Seleccionar Tipo de mensaje");
         ol();
@@ -480,7 +480,7 @@ bool PantallaEnviarOtroEnviarMensaje(int tipo) {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         switch (tipo) {
             case 1:case 2:
@@ -501,9 +501,9 @@ bool PantallaEnviarOtroEnviarMensaje(int tipo) {
 bool PantallaSeleccionarOtraConversacionEnviarMensaje() {
     int Opciones = -1;
     do {
-        header("Elejir otra conversacion");
+        header("Elegir otra conversacion");
         ol();
-        ol("Elejir conversacion");
+        ol("Elegir conversacion");
         ol("Menu Principal");
         Opciones = CinInt();
     } while (Opciones < 1 || Opciones > 2);
@@ -523,7 +523,7 @@ int PantallaImprimeAltagrupo(Usuario* user, IDictionary* contactos) {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         Subheader("Contactos del grupo al momento");
         li();
@@ -569,7 +569,7 @@ int PantallaUsuarioNoExiste() {
         if (Opciones != -1) {
             alarm("Opcion Incorrecta");
         }
-        header("NEl usaurio no existe");
+        header("El usaurio no existe");
         ol();
         ol("Registrarse");
         ol("Reintentar");
@@ -585,9 +585,9 @@ int PantallaUsuarioEquivocado() {
         if (Opciones != -1) {
             alarm("Opcion Incorrecta");
         }
-        header("Hay otro usaurio logeado");
+        header("Hay otro usuario logeado");
         ol();
-        ol("Cerrar secion");
+        ol("Cerrar sesion");
         ol("Reintentar");
         ol("Salir");
         Opciones = CinInt();
@@ -596,14 +596,14 @@ int PantallaUsuarioEquivocado() {
 }
 
 bool PantallaUsuarioCerrar() {
-    return MenuDual("Cerrar GuasapTECNO", "Cerrar secion", "Volver");
+    return MenuDual("Cerrar GuasapTECNO", "Cerrar sesion", "Volver");
 }
 
 bool PantallaAgregarContacto(Usuario* user) {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         header("Agregar contacto");
         user->SolicitaListaContactos();
@@ -629,7 +629,7 @@ int PantallaSeleccionConversacionVerMensaje(Usuario* user) {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         system("cls");
         cout << endl;
@@ -652,14 +652,14 @@ int PantallaSeleccionConversacionVerMensaje(Usuario* user) {
 }
 
 bool PantallaSeleccionDetalladoVerMensaje() {
-    return MenuDual(true,"Seleccionar una Mensaje", "Si", "Volver");
+    return MenuDual(true,"Seleccionar un Mensaje", "Si", "Volver");
 }
 bool PantallaSeleccionDetalladoEliminarMensaje() {
-    return MenuDual("Seleccionar una Mensaje", "Si", "Volver");
+    return MenuDual("Seleccionar un Mensaje", "Si", "Volver");
 }
 
 bool PantallaSeleccionMasMensajesDetalladoVerMensaje() {
-    return MenuDual("Segir vindo mensajes", "Si", "Volver");
+    return MenuDual("Seguir viendo mensajes", "Si", "Volver");
 }
 
 /*
@@ -668,7 +668,7 @@ bool PantallaSeleccionMasMensajesDetalladoVerMensaje() {
 
 
 bool PantallaSegirArchivandoConversacion() {
-    return MenuDual("Segir archivando?", "Si", "Volver");
+    return MenuDual("Seguir archivando?", "Si", "Volver");
 }
 
 /*
@@ -690,7 +690,7 @@ bool MenuDual(string titule, string OpcionFalsa, string OpcionVerdadera) {
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         header(titule);
         ol();
@@ -711,7 +711,7 @@ bool MenuDual(bool limpia, string titule, string OpcionFalsa, string OpcionVerda
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         if (limpia) {
             Subheader(titule);
@@ -730,7 +730,7 @@ int MenuTriple(string titule, string Opcion_1, string Opcion_2, string Opcion_3)
     int Opciones = -1;
     do {
         if (Opciones != -1) {
-            alarm("Opciones incorecta");
+            alarm("Opciones incorrecta");
         }
         header(titule);
         ol();

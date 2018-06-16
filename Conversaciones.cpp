@@ -112,7 +112,7 @@ void Conversaciones::ImprimeMensajes(Usuario* user) {
                     li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
                     li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
                 } else if (m->tipo.compare("Video") == 0) {
-                    li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+                    li("Duracion de Video: " + ((Video*) m) ->getDuracion());
                     li("Url: " + ((Video*) m) ->getURL());
                 } else if (m->tipo.compare("Foto") == 0) {
                     li("Descripcion : " + ((Foto*) m) ->getDesc());
@@ -150,13 +150,13 @@ void Conversaciones::ImprimeMensajeDetallado(string numbre) {
             li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
             li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
         } else if (m->tipo.compare("Video") == 0) {
-            li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+            li("Duracion de Video: " + ((Video*) m) ->getDuracion());
             li("Url: " + ((Video*) m) ->getURL());
         } else if (m->tipo.compare("Foto") == 0) {
             li("Descripcion : " + ((Foto*) m) ->getDesc());
             li("Formato : " + ((Foto*) m) ->getForm());
             li("Tamaño : " + ((Foto*) m) ->getTama());
-            li("Ur : " + ((Foto*) m) ->getURL());
+            li("Url : " + ((Foto*) m) ->getURL());
         }
         m->ImprimeVisto();
         li();

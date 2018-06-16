@@ -78,7 +78,7 @@ void Grupo::addContacto(Usuario* user) {
         this->visto->add(k, v);
         this->integrantes->add(k, miembro);
     } else {
-        alarm("Imposivle ya esta agregado");
+        alarm("Imposible ya esta agregado");
     }
 }
 
@@ -115,7 +115,7 @@ void Grupo::commit() {
         delete it;
     } else {
         cout << endl;
-        cout << "\t No tines Contactos" << endl;
+        cout << "\t No tienes Contactos" << endl;
         cout << endl;
     }
 }
@@ -136,7 +136,7 @@ void Grupo::SolicitaListaContactos() {
         li();
         delete it;
     } else {
-        alarm("No tines Contactos");
+        alarm("No tienes Contactos");
     }
 };
 
@@ -158,7 +158,7 @@ void Grupo::SolicitaListaContactos(string name) {
         li();
         delete it;
     } else {
-        alarm("No tines Contactos");
+        alarm("No tienes Contactos");
     }
 };
 
@@ -179,7 +179,7 @@ void Grupo::SolicitaListaContactosDetallada() {
         delete it;
     } else {
         cout << endl;
-        cout << "\t No tines Contactos" << endl;
+        cout << "\t No tienes Contactos" << endl;
         cout << endl;
     }
 }
@@ -226,7 +226,7 @@ void Grupo::ImprimeMensajes(Usuario* user, Fecha* f) {
                         li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
                         li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
                     } else if (m->tipo.compare("Video") == 0) {
-                        li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+                        li("Duracion de Video: " + ((Video*) m) ->getDuracion());
                         li("Url: " + ((Video*) m) ->getURL());
                     } else if (m->tipo.compare("Foto") == 0) {
                         li("Descripcion : " + ((Foto*) m) ->getDesc());
@@ -242,7 +242,7 @@ void Grupo::ImprimeMensajes(Usuario* user, Fecha* f) {
         delete it;
     } else {
         li("-");
-        li("No tines Contactos");
+        li("No tienes Contactos");
         li("-");
     }
     li();
@@ -274,7 +274,7 @@ void Grupo::ImprimeMensajeDetallado(string numbre) {
             li("Nombre Contacto: " + ((Contacto*) m) ->getContenido()->getNombre());
             li("Numero Contacto: " + ((Contacto*) m) ->getContenido()->getNumero());
         } else if (m->tipo.compare("Video") == 0) {
-            li("Durecion de Video: " + ((Video*) m) ->getDuracion());
+            li("Duracion de Video: " + ((Video*) m) ->getDuracion());
             li("Url: " + ((Video*) m) ->getURL());
         } else if (m->tipo.compare("Foto") == 0) {
             li("Descripcion : " + ((Foto*) m) ->getDesc());

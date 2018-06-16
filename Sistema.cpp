@@ -19,7 +19,7 @@
 #include <cstring>
 #include <string>
 #include <string.h>
-#include <cstdlib> 
+#include <cstdlib>
 
 using namespace std;
 
@@ -160,19 +160,19 @@ void Sistema::CargarUsuario() {
 
     usuario_5->addContacto(usuario_1);
     usuario_5->addContacto(usuario_2);
-    
+
     usuario_6->addContacto(usuario_1);
     usuario_6->addContacto(usuario_2);
-    
+
     usuario_7->addContacto(usuario_1);
     usuario_7->addContacto(usuario_2);
-    
+
     usuario_8->addContacto(usuario_1);
     usuario_8->addContacto(usuario_2);
-    
+
     usuario_9->addContacto(usuario_1);
     usuario_9->addContacto(usuario_2);
-    
+
     usuario_10->addContacto(usuario_1);
     usuario_10->addContacto(usuario_2);
 
@@ -186,7 +186,7 @@ void Sistema::CargarUsuario() {
     this->usuarios->add(new String(usuario_8->getNumero().c_str())  , usuario_8);
     this->usuarios->add(new String(usuario_9->getNumero().c_str())  , usuario_9);
     this->usuarios->add(new String(usuario_10->getNumero().c_str()) , usuario_10);
-     
+
 };
 
 //Pantallas
@@ -207,7 +207,7 @@ void Sistema::SolicitaListaContactos() {
         delete it;
     } else {
         li("-");
-        li("No tines Contactos");
+        li("No tienes Contactos");
         li("-");
     }
     li();
@@ -267,7 +267,7 @@ bool Sistema::ListarOpciones() {
             Opciones = CinInt();
         } while (olBool(Opciones));
         if (Opciones != 1 and Opciones != 13 and !this->log) {
-            alarm("¡No hay usuario en secion!");
+            alarm("¡No hay usuario en sesion!");
         } else {
             switch (Opciones) {
                 case 1:
@@ -289,13 +289,13 @@ bool Sistema::ListarOpciones() {
                 case 9:
                     return AgregarParticipantes(); // Test
                 case 10:
-                    return EliminarParticipantes(); // seba 
+                    return EliminarParticipantes(); // seba
                 case 11:
                     ok = ModificarUsuario(); // Test
                     ActualizaUsuarioLocal();
                     return ok;
                 case 12:
-                    return EliminarMensaje(); // 
+                    return EliminarMensaje(); //
                 case 13:
                     return true;
             }
@@ -396,7 +396,7 @@ bool Sistema::AgregarContactos() {
             k = new String(Numero.c_str());
             header("Datos de Contacto Seleccionado");
             if (this->usuarios->isEmpty()) {
-                alarm("¡El hay usuarios en el sistema!");
+                alarm("¡Hay usuarios en el sistema!");
             } else if (!this->usuarios->member(k)) {
                 alarm("¡El Usuario no existe!");
             } else if (this->activo->getNumero().compare(Numero) == 0) {
@@ -431,7 +431,7 @@ bool Sistema::AltaGrupo() {
         usuario restantes. Luego, el usuario puede quitar algún contacto elegido
         previamente o elegir un nuevo participante. Para cualquiera de estas dos
         opciones utiliza el número de celular. Si no elige a ningún participante,
-        el sistema le avisa que debe seleccionar al menos 1 y el usuario elige entre 
+        el sistema le avisa que debe seleccionar al menos 1 y el usuario elige entre
         repetir este primer paso o cancelar el caso de uso.
         Una vez elegidos los participantes del grupo, el paso dos consiste en el
         ingreso por parte del usuario del nombre del grupo y la URL de la imagen.
@@ -487,7 +487,7 @@ bool Sistema::AltaGrupo() {
                             }
                         }
                     } else {
-                        alarm("Imposivle es tu numero");
+                        alarm("Imposible es tu numero");
                     }
                 } else {
                     alarm("El numero no es tu contacto");
@@ -563,7 +563,7 @@ bool Sistema::EnviarMensaje() {
         mismo.
         Finalmente, el sistema crea el mensaje con un código identificatorio
         autogenerado por el sistema y la fecha y hora de envío con la fecha
-        y hora actual del sistema. Adicionalmente, en caso que el mensaje 
+        y hora actual del sistema. Adicionalmente, en caso que el mensaje
         sea enviado en una conversación archivada, la misma se convierte
         en activa. Por último, el mensaje se agrega como no visto.
         En caso que el usuario no participe en ninguna conversación, el
@@ -607,7 +607,7 @@ bool Sistema::VerMensajes() {
         mensajes que desee.
         Luego, finaliza el caso de uso.
         En caso que el usuario no participe en ninguna conversación, el sistema
-        muestra un aviso y se finaliza el caso de uso. En situaciones análogas se 
+        muestra un aviso y se finaliza el caso de uso. En situaciones análogas se
         procede de la misma manera.
      */
     this->activo->VerMensajes();
@@ -648,7 +648,7 @@ bool Sistema::AgregarParticipantes() {
         En caso que el usuario no sea administrador del grupo o que el número de
         celular no sea contacto del usuario, el sistema muestra un mensaje
         apropiado, sin finalizar el caso de uso.
-        En caso que el usuario no participe en ningún grupo, el sistema muestra 
+        En caso que el usuario no participe en ningún grupo, el sistema muestra
         un aviso y se finaliza el caso de uso.
      */
     this->activo->AgregarParticipantes();
