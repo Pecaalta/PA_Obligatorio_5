@@ -63,6 +63,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Video.o \
 	${OBJECTDIR}/Visto.o \
 	${OBJECTDIR}/factory.o \
+	${OBJECTDIR}/generadorId.o \
 	${OBJECTDIR}/main.o
 
 
@@ -84,11 +85,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pa_obligatorio_5_2 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Contacto.o: Contacto.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -229,6 +230,11 @@ ${OBJECTDIR}/factory.o: factory.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/factory.o factory.cpp
+
+${OBJECTDIR}/generadorId.o: generadorId.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/generadorId.o generadorId.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

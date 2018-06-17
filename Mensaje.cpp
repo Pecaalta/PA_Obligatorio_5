@@ -5,6 +5,7 @@
 #include "Visto.h"
 #include "string.h"
 #include "ICollection/collections/OrderedDictionary.h"
+#include "generadorId.h"
 
 using namespace std;
 
@@ -93,7 +94,7 @@ void Mensaje::ImprimeVisto() {
 Mensaje::Mensaje(int _id, string _texto, Usuario* _autor) {
     this->tipo = "Simple";
     this->fecha = new Fecha();
-    this->id = _id;
+    this->id = generadorId::getid();
     this->texto = _texto;
     this->borrado = false;
     this->autor = _autor;
@@ -103,7 +104,7 @@ Mensaje::Mensaje(int _id, string _texto, Usuario* _autor) {
 Mensaje::Mensaje(int _id, string _texto, Usuario* _autor, string _tipo) {
     this->tipo = _tipo;
     this->fecha = new Fecha();
-    this->id = _id;
+    this->id = generadorId::getid();
     this->texto = _texto;
     this->borrado = false;
     this->autor = _autor;

@@ -339,7 +339,6 @@ void Usuario::ListarMisConversacionesArchivadas() {
                 li("-");
                 n->ImprimeConversacion(this);
                 li("-");
-            } else {
                 cont++;
             }
             it->next();
@@ -352,7 +351,7 @@ void Usuario::ListarMisConversacionesArchivadas() {
         delete it;
     } else {
         li("-");
-        li("No tienes Conversaciones Activas");
+        li("No tienes Conversaciones");
         li("-");
     }
     li();
@@ -554,7 +553,6 @@ int Usuario::EnviarMensaje(int idMensaje) {
     if (this->contactos->isEmpty()) {
         alarm("No tienes contactos a quien mandar mensajes");
     } else {
-
         do {
             // Seleccionar conversacion
             do {

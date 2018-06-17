@@ -491,11 +491,11 @@ bool PantallaEnviarOtroEnviarMensaje(int tipo) {
                 break;
         }
         ol();
-        ol("Enviar mensajes");
-        ol("Cancelar");
+        ol("Enviar otro mensajes");
+        ol("Volver");
         Opciones = CinInt();
     } while (Opciones < 1 || Opciones > 2);
-    return Opciones == 2;
+    return Opciones == 1;
 }
 
 bool PantallaSeleccionarOtraConversacionEnviarMensaje() {

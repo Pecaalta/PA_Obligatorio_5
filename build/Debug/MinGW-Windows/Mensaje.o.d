@@ -14,7 +14,7 @@ build/Debug/MinGW-Windows/Mensaje.o: Mensaje.cpp Mensaje.h Fecha.h \
  ICollection/collections/OrderedDictionaryEntry.h \
  ICollection/collections/../interfaces/OrderedKey.h \
  ICollection/collections/../interfaces/ICollectible.h \
- ICollection/collections/../interfaces/IDictionary.h
+ ICollection/collections/../interfaces/IDictionary.h generadorId.h
 
 Mensaje.h:
 
@@ -73,3 +73,5 @@ ICollection/collections/../interfaces/OrderedKey.h:
 ICollection/collections/../interfaces/ICollectible.h:
 
 ICollection/collections/../interfaces/IDictionary.h:
+
+generadorId.h:
