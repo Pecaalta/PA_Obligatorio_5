@@ -249,7 +249,11 @@ bool Sistema::ListarOpciones() {
     bool ok;
     try {
         do {
-            header(" Opciones del Sistema");
+            if (this->log){
+                header(" Opciones de "+this->activo->getNombre() + " - " +this->activo->getNumero() );
+            }else{
+                header(" Opciones del Sistema");
+            }
             ol();
             ol("AbrirGuasapTECNO");
             ol("CerrarGuasapTECNO");
@@ -348,7 +352,7 @@ bool Sistema::AbrirGuasapTECNO() {
                         return false;
                         break;
                     case 3:
-                        return true;
+                        return false;
                 }
             } else {
                 return false;

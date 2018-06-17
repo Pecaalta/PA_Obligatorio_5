@@ -589,10 +589,10 @@ int PantallaUsuarioEquivocado() {
         ol();
         ol("Cerrar sesion");
         ol("Reintentar");
-        ol("Salir");
+        ol("Volver al menu");
         Opciones = CinInt();
     } while (Opciones < 1 || Opciones > 3);
-    return Opciones == 1;
+    return Opciones;
 }
 
 bool PantallaUsuarioCerrar() {
