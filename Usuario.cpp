@@ -414,6 +414,7 @@ void Usuario::SolicitaListaContactos() {
     }
     li();
 };
+
 void Usuario::SolicitaListaContactos(IDictionary* cont) {
     Usuario* n;
     Subheader("Tus Contactos");
@@ -424,7 +425,7 @@ void Usuario::SolicitaListaContactos(IDictionary* cont) {
         IIterator* it = this->contactos->getIterator();
         while (it->hasCurrent()) {
             n = (Usuario*) it->getCurrent();
-            if (!cont->member( new String(n->getNumero().c_str()) )){
+            if (!cont->member(new String(n->getNumero().c_str()))) {
                 li("-");
                 li("Nombre " + n->getNombre());
                 li("Numero " + n->getNumero());
@@ -436,7 +437,7 @@ void Usuario::SolicitaListaContactos(IDictionary* cont) {
             it->next();
         }
         delete it;
-        if (contar == 0){
+        if (contar == 0) {
             li("-");
             li("No quedan contactos");
             li("-");
@@ -844,24 +845,27 @@ bool Usuario::AgregarAdministradores() {
                 k = new String(CinString("Selecciona Grupo").c_str());
                 if (this->grupos->member(k)) {
                     gurpo = ((Miembro*) this->grupos->find(k))->getConversacion();
-                    gurpo->SolicitaListaContactos();
-                    k = new String(CinString("Selecciona Usuario").c_str());
-                    if (!gurpo->getIntegrantes()->member(k)) {
-                        alarm("No se encontro el usuario");
-                    } else if (!gurpo->getAdministradores(new String(this->numero.c_str()))) {
-                        alarm("No tienes permisos");
-                    } else if (gurpo->getAdministradores(k)) {
-                        alarm("Ya tienes permisos");
-                    } else {
-                        gurpo->HacerAdministradores(k);
-                    }
+                    do {
+                        header("Agregar Administradores");
+                        gurpo->SolicitaListaContactos();
+                        k = new String(CinString("Selecciona Usuario").c_str());
+                        if (!gurpo->getIntegrantes()->member(k)) {
+                            alarm("No se encontro el usuario");
+                        } else if (!gurpo->getAdministradores(new String(this->numero.c_str()))) {
+                            alarm("No tienes permisos");
+                        } else if (gurpo->getAdministradores(k)) {
+                            alarm("Ya tienes permisos");
+                        } else {
+                            gurpo->HacerAdministradores(k);
+                        }
+                    } while (PantallaSeleccionAgregarAdministradores());
                 } else {
                     alarm("No hay grupos con ese nombre");
                 }
             } else {
                 alarm("No tienes grupoes");
             }
-        } while (PantallaSeleccionAgregarAdministradores());
+        } while (PantallaSeleccionSeleccionGrupoAgregarAdministradores());
     }
     return false;
 };

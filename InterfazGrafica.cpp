@@ -678,6 +678,9 @@ bool PantallaSegirArchivandoConversacion() {
 bool PantallaSeleccionAgregarAdministradores() {
     return MenuDual("Agregar Administradores", "Agregar Administrador", "Volver");
 }
+bool PantallaSeleccionSeleccionGrupoAgregarAdministradores() {
+    return MenuDual("Agregar Administradores", "Seleccionar otro grupo", "Volver");
+}
 
 bool PantallaSeleccionAgregarParticipantes() {
     return MenuDual("Agregar Mas Participantes", "Si", "Volver");

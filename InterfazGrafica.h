@@ -62,6 +62,7 @@ bool PantallaSeleccionMasMensajesDetalladoVerMensaje();
 bool PantallaSegirArchivandoConversacion();
 
 bool PantallaSeleccionAgregarAdministradores();
+bool PantallaSeleccionSeleccionGrupoAgregarAdministradores();
 bool PantallaSeleccionAgregarParticipantes();
 bool PantallaSeleccionEliminarParticipantes();
 
