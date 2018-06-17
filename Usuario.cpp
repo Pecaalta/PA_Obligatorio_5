@@ -702,11 +702,11 @@ bool Usuario::VerMensajes() {
                 k = new String(CinString("Seleccionar una Conversacion").c_str());
                 if (this->conversaciones->member(k)) {
                     mimcon = (Miembro_Conversacion*) this->conversaciones->find(k);
-                    mimcon->setArchivado(false);
+//                    mimcon->setArchivado(false);
                     cerarMensaje = 1;
                 } else if (this->grupos->member(k)) {
                     mim = (Miembro*) this->grupos->find(k);
-                    mim->setArchivado(false);
+  //                  mim->setArchivado(false);
                     cerarMensaje = 2;
                 } else {
                     alarm("No posee ese Conversacion con ese numero");
