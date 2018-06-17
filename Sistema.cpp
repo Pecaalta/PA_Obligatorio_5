@@ -325,7 +325,7 @@ bool Sistema::AbrirGuasapTECNO() {
                     this->log = true;
                     return false;
                 } else {
-                    return true;
+                    return false;
                 }
             } else {
                 if (!this->usuarios->member(k)) {
@@ -336,10 +336,11 @@ bool Sistema::AbrirGuasapTECNO() {
                             return false;
                             break;
                         case 3:
-                            return true;
+                            return false;
                     }
                 } else {
                     this->activo = (Usuario*) this->usuarios->find(k);
+                    this->activo->getUltima()->Actual();
                     this->log = true;
                     return false;
                 }
@@ -365,6 +366,7 @@ bool Sistema::AbrirGuasapTECNO() {
 bool Sistema::CerrarGuasapTECNO() {
     if (this->log) {
         if (PantallaUsuarioCerrar()) {
+            this->activo->getUltima()->Actual();
             this->activo = NULL;
             this->log = false;
         }

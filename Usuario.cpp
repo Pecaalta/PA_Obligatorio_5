@@ -414,6 +414,42 @@ void Usuario::SolicitaListaContactos() {
     }
     li();
 };
+void Usuario::SolicitaListaContactos(IDictionary* cont) {
+    Usuario* n;
+    Subheader("Tus Contactos");
+    int contar = 0;
+    cout << endl;
+    li();
+    if (!this->contactos->isEmpty()) {
+        IIterator* it = this->contactos->getIterator();
+        while (it->hasCurrent()) {
+            n = (Usuario*) it->getCurrent();
+            if (!cont->member( new String(n->getNumero().c_str()) )){
+                li("-");
+                li("Nombre " + n->getNombre());
+                li("Numero " + n->getNumero());
+                li("Imagen " + n->getImagen());
+                li("Descripcion " + n->getDireccion());
+                li("-");
+                contar++;
+            }
+            it->next();
+        }
+        delete it;
+        if (contar == 0){
+            li("-");
+            li("No quedan contactos");
+            li("-");
+        }
+    } else {
+        li("-");
+        li("No tienes Contactos");
+        li("-");
+    }
+    li();
+};
+
+
 /*
  *
  * DSS

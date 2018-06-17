@@ -73,6 +73,7 @@ public:
     bool member(IKey* k);
     void addContacto(Usuario* user);
     void SolicitaListaContactos();
+    void SolicitaListaContactos(IDictionary* cont);
     void ActualisarConeccion();
 
     // Constructores y Destructores

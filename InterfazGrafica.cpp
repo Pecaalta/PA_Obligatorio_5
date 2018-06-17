@@ -541,7 +541,7 @@ int PantallaImprimeAltagrupo(Usuario* user, IDictionary* contactos) {
             delete it;
         }
         li();
-        user->SolicitaListaContactos();
+        user->SolicitaListaContactos(contactos);
         ol();
         ol("Agregar contactos");
         ol("Quitar contactos");
@@ -560,7 +560,7 @@ bool PantallaOtroGrupos() {
 }
 
 bool PantallaNoHayUsuario() {
-    return MenuDual("No hay usaurio en el sistema", "Registrarse", "Salir");
+    return MenuDual("No hay usaurio en el sistema", "Registrarse", "Volver a menu");
 }
 
 int PantallaUsuarioNoExiste() {
@@ -573,7 +573,7 @@ int PantallaUsuarioNoExiste() {
         ol();
         ol("Registrarse");
         ol("Reintentar");
-        ol("Salir");
+        ol("Volver a menu");
         Opciones = CinInt();
     } while (Opciones < 1 || Opciones > 3);
     return Opciones;
