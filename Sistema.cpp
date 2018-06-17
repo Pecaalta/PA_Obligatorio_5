@@ -362,6 +362,7 @@ bool Sistema::CerrarGuasapTECNO() {
     if (this->log) {
         if (PantallaUsuarioCerrar()) {
             this->activo = NULL;
+            this->log = false;
         }
         return false;
     } else {

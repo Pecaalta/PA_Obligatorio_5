@@ -2,8 +2,4 @@
 DEPFILES=$(wildcard $(addsuffix .d, ${OBJECTFILES} ${TESTOBJECTFILES}))
 ifneq (${DEPFILES},)
 include ${DEPFILES}
-DEPFILES=$(wildcard $(addsuffix .d, ${OBJECTFILES} ${TESTOBJECTFILES}))
-ifneq (${DEPFILES},)
-endif
-include ${DEPFILES}
 endif
