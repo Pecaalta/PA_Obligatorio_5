@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/* 
- * File:   Video.h
- * Author: Mauro
- *
- * Created on 7 de junio de 2018, 8:04
- */
 
 #ifndef VIDEO_H
 #define VIDEO_H
