@@ -129,7 +129,7 @@ void Conversaciones::ImprimeMensajes(Usuario* user) {
     }
     if (cont == 0) {
         li("-");
-        li("No tines Contactos");
+        li("No hay mensajes actualmente");
         li("-");
     }
     li();

@@ -450,7 +450,7 @@ bool Sistema::AltaGrupo() {
         manera.
      */
     if (this->activo->isEmptyContactos()) {
-        alarm("No tienes contactos como para aser un grupo");
+        alarm("No tienes contactos como para hacer un grupo");
         return false;
     }
     int Opciones = 0;
